@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "abigne:block/stripped_ember_log_top",
+    "side": "abigne:block/stripped_ember_log"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "abigne:block/ashen_tile_tiny"
+  }
+}
