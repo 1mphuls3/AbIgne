@@ -9,9 +9,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PedestalBlockEntity extends InventoryBlockEntity {
@@ -25,23 +23,6 @@ public class PedestalBlockEntity extends InventoryBlockEntity {
 
     protected NonNullList<ItemStack> getItems(){
         return this.items;
-    }
-
-    public void infuse(){
-        boolean hasAndesiteInSlotOne = false;
-        int count = this.inventory.getStackInSlot(0).getCount();
-
-        if(this.inventory.getStackInSlot(0) == Items.ANDESITE.getDefaultInstance()){
-            hasAndesiteInSlotOne = true;
-        }
-
-        if(hasAndesiteInSlotOne){
-            this.inventory.getStackInSlot(0).shrink(count);
-            while(count > 0) {
-                count--;
-                this.inventory.insertItem(0, new ItemStack(Items.OBSIDIAN), false);
-            }
-        }
     }
 
     public ItemStack getItem(){

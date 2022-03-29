@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -28,14 +29,14 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.stream.Stream;
 
 @SuppressWarnings("deprecation")
-public class PedestalBlock extends HorizontalDirectionalBlock implements EntityBlock {
+public class PedestalBlock extends Block implements EntityBlock {
     public PedestalBlock(Properties properties) {
         super(properties);
-        registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH));
     }
 
     public static final VoxelShape SHAPE = Stream.of(
@@ -69,11 +70,6 @@ public class PedestalBlock extends HorizontalDirectionalBlock implements EntityB
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> beType) {
         return level.isClientSide ? null : (level0, pos, state0, blockEntity) -> ((PedestalBlockEntity) blockEntity).tick();
     }
@@ -95,15 +91,8 @@ public class PedestalBlock extends HorizontalDirectionalBlock implements EntityB
                     pedestal.prependStack(player);
                 }
             } else {
-                pedestal.infuse();
             }
         }
         return InteractionResult.SUCCESS;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(FACING);
     }
 }
