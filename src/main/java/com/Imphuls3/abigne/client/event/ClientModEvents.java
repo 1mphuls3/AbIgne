@@ -21,7 +21,7 @@ public final class ClientModEvents {
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.ITEM_PEDESTAL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.PEDESTAL.get(), RenderType.translucent());
     }
 
     @SubscribeEvent
@@ -30,6 +30,6 @@ public final class ClientModEvents {
 
     @SubscribeEvent
     public static void EntityRenderersEvent$RegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(BlockEntityInit.ITEM_PEDESTAL.get(), PedestalRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityInit.PEDESTAL.get(), PedestalRenderer::new);
     }
 }

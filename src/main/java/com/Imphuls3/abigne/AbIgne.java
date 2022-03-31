@@ -3,6 +3,8 @@ package com.Imphuls3.abigne;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import com.Imphuls3.abigne.core.init.BlockInit;
 import com.Imphuls3.abigne.core.init.ItemInit;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,18 +20,23 @@ public class AbIgne
 {
     public static final String MOD_ID = "abigne";
 
+    public static CreativeModeTab itemGroup = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MOD_ID) {
+        @Override
+        public ItemStack makeIcon() {
+            return ItemInit.IGNIS_INGOT.get().getDefaultInstance();
+        }
+    };
+
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
     public AbIgne() {
-        // Register the setup method for modloading
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         BlockEntityInit.BLOCK_ENTITIES.register(bus);
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
 
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 

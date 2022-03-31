@@ -12,6 +12,6 @@ public final class BlockEntityInit {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister
             .create(ForgeRegistries.BLOCK_ENTITIES, AbIgne.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> ITEM_PEDESTAL = BLOCK_ENTITIES.register("pedestal",
-            () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockInit.ITEM_PEDESTAL.get()).build(null));
+    public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL = BLOCK_ENTITIES.register("pedestal",
+            () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockInit.PEDESTAL.get()).build(null));
 }

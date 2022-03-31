@@ -1,0 +1,6 @@
+{
+  "parent": "reliquary:block/pedestal",
+  "textures": {
+    "wool": "abigne:block/ashen_bricks_soft"
+  }
+}

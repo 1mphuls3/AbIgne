@@ -3,7 +3,6 @@ package com.Imphuls3.abigne.core.init;
 import com.Imphuls3.abigne.AbIgne;
 import com.Imphuls3.abigne.common.block.PedestalBlock;
 import com.Imphuls3.abigne.common.block.custom.ModFlammableRotatedPillarBlock;
-import com.Imphuls3.abigne.common.block.entity.PedestalBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -12,16 +11,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.*;
 
 public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
             AbIgne.MOD_ID);
 
-    public static final RegistryObject<PedestalBlock> ITEM_PEDESTAL = BLOCKS.register("pedestal",
-            () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)));
+    public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
     public static final RegistryObject<Block> IGNIS_BLOCK = BLOCKS.register("ignis_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
