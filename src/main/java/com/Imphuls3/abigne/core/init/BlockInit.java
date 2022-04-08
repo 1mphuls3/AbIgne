@@ -1,6 +1,7 @@
 package com.Imphuls3.abigne.core.init;
 
 import com.Imphuls3.abigne.AbIgne;
+import com.Imphuls3.abigne.common.block.CrucibleBlock;
 import com.Imphuls3.abigne.common.block.PedestalBlock;
 import com.Imphuls3.abigne.common.block.custom.ModFlammableRotatedPillarBlock;
 import net.minecraft.core.BlockPos;
@@ -18,6 +19,8 @@ public class BlockInit {
             AbIgne.MOD_ID);
 
     public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
+    public static final RegistryObject<Block> CRUCIBLE = BLOCKS.register("crucible", () -> new CrucibleBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
     public static final RegistryObject<Block> IGNIS_BLOCK = BLOCKS.register("ignis_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));

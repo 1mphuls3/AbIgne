@@ -14,6 +14,9 @@ public class ItemInit {
     public static final RegistryObject<BlockItem> PEDESTAL_ITEM = ITEMS.register("pedestal",
             () -> new BlockItem(BlockInit.PEDESTAL.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
+    public static final RegistryObject<BlockItem> CRUCIBLE_ITEM = ITEMS.register("crucible",
+            () -> new BlockItem(BlockInit.CRUCIBLE.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+
     public static final RegistryObject<Item> IGNIS_INGOT = ITEMS.register("ignis_ingot",
             () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
 

@@ -1,6 +1,7 @@
 package com.Imphuls3.abigne.core.init;
 
 import com.Imphuls3.abigne.AbIgne;
+import com.Imphuls3.abigne.common.block.entity.CrucibleBlockEntity;
 import com.Imphuls3.abigne.common.block.entity.PedestalBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,4 +15,7 @@ public final class BlockEntityInit {
 
     public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL = BLOCK_ENTITIES.register("pedestal",
             () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockInit.PEDESTAL.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<CrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITIES.register("crucible",
+            () -> BlockEntityType.Builder.of(CrucibleBlockEntity::new, BlockInit.CRUCIBLE.get()).build(null));
 }

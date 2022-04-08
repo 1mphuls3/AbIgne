@@ -29,6 +29,7 @@ public class ModBlockEntity extends BlockEntity {
     public ItemStack onClone(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
         return ItemStack.EMPTY;
     }
+
     public InteractionResult onUse(Player player, InteractionHand hand) {
         return InteractionResult.PASS;
     }

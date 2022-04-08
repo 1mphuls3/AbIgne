@@ -16,10 +16,12 @@ import net.minecraft.world.level.material.Fluids;
 
 public class WaterLoggedBlock<T extends BlockEntity> extends SimpleBlock<T> implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     public WaterLoggedBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED);

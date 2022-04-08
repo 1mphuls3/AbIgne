@@ -1,6 +1,7 @@
 package com.Imphuls3.abigne.client.event;
 
 import com.Imphuls3.abigne.AbIgne;
+import com.Imphuls3.abigne.client.renderer.block.CrucibleRenderer;
 import com.Imphuls3.abigne.client.renderer.block.PedestalRenderer;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import com.Imphuls3.abigne.core.init.BlockInit;
@@ -31,5 +32,7 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void EntityRenderersEvent$RegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityInit.PEDESTAL.get(), PedestalRenderer::new);
+
+        event.registerBlockEntityRenderer(BlockEntityInit.CRUCIBLE.get(), CrucibleRenderer::new);
     }
 }
