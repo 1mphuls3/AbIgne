@@ -33,11 +33,12 @@ public class CrucibleRenderer implements BlockEntityRenderer<CrucibleBlockEntity
             stackIn.popPose();
         }
         for(double i = 0; i < 8; i++){
+            float time = blockEntityIn.getLevel().getGameTime() + partialTicks;
             ItemStack stack = blockEntityIn.extrasInventory.getStackInSlot((int)i);
             if (!blockEntityIn.extrasInventory.getStackInSlot((int)i).isEmpty()) {
                 stackIn.pushPose();
                 float yDiff = Mth.sin((System.currentTimeMillis() % 86400000) / 1000F) * 0.1F + 0.1F;
-                stackIn.translate(0.5D + ((i-4)/8), 1.5D + yDiff, 0.5D + ((i-4)/8));
+                stackIn.translate(0.5D + (Math.sin(0.8 * i) / 2.75), 1.2D + yDiff, 0.5D + (Math.cos(0.8 * i) / 2.75));
                 stackIn.mulPose(Vector3f.YP.rotationDegrees((level.getGameTime()) * 3 + partialTicks));
                 stackIn.scale(0.35F, 0.35F, 0.35F);
                 Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLightIn, NO_OVERLAY, stackIn, bufferIn, 0);

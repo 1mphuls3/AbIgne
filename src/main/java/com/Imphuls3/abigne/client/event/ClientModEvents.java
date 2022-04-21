@@ -23,10 +23,17 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(BlockInit.PEDESTAL.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.CRUCIBLE.get(), RenderType.translucent());
+
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.IGNIS_CLUSTER.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.SMALL_IGNIS_BUD.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.MEDIUM_IGNIS_BUD.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockInit.LARGE_IGNIS_BUD.get(), RenderType.cutout());
     }
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+
     }
 
     @SubscribeEvent

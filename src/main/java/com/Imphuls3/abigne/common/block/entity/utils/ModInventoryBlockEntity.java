@@ -1,7 +1,6 @@
 package com.Imphuls3.abigne.common.block.entity.utils;
 
 import com.Imphuls3.abigne.core.helper.DataHelper;
-import com.Imphuls3.abigne.common.inventory.ModBlockEntityInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -17,21 +16,24 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import javax.annotation.Nonnull;
 
 public class ModInventoryBlockEntity extends ModBlockEntity {
+    //A base block entity with a single inventory
     public ModBlockEntityInventory inv;
 
     public ModInventoryBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
+    //places items in the slot when right clicked with an item
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
         inv.interact(player.level, player, hand);
         return InteractionResult.SUCCESS;
     }
 
+    //drops items when broken
     @Override
     public void onBreak() {
-        inv.dumpItems(level, DataHelper.fromBlockPos(worldPosition).add(0.5f,0.5f,0.5f));
+        inv.dropItems(level, DataHelper.fromBlockPos(worldPosition).add(0.5f,0.5f,0.5f));
     }
 
     @Override

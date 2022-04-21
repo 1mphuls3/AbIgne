@@ -1,5 +1,9 @@
 package com.Imphuls3.abigne;
 
+import com.Imphuls3.abigne.common.config.Config;
+import com.Imphuls3.abigne.common.config.GeodeConfig;
+import com.Imphuls3.abigne.common.features.ModFeatures;
+import com.Imphuls3.abigne.common.worldgen.ModWorldGen;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import com.Imphuls3.abigne.core.init.BlockInit;
 import com.Imphuls3.abigne.core.init.ItemInit;
@@ -7,7 +11,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -16,8 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(AbIgne.MOD_ID)
-public class AbIgne
-{
+public class AbIgne {
     public static final String MOD_ID = "abigne";
 
     public static CreativeModeTab itemGroup = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MOD_ID) {
@@ -33,17 +35,17 @@ public class AbIgne
     public AbIgne() {
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        BlockEntityInit.BLOCK_ENTITIES.register(bus);
+        BlockEntityInit.BE.register(bus);
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
+        Config.register();
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new ModWorldGen());
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        ModFeatures.initialize();
     }
 }
