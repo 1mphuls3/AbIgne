@@ -1,14 +1,22 @@
 package com.Imphuls3.abigne.common.item;
 
 import com.Imphuls3.abigne.core.init.ItemInit;
-import net.minecraft.client.Minecraft;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
-public class IgnisShield implements ICurio {
+public class IgnisShield extends Item implements ICurio {
+
+    public IgnisShield(Properties properties) {
+        super(properties);
+    }
 
     @Override
     public ItemStack getStack() {
@@ -16,13 +24,10 @@ public class IgnisShield implements ICurio {
     }
 
     @Override
-    public void curioTick(SlotContext slotContext) {
-        LivingEntity entity = slotContext.entity();
-        if (entity instanceof Player) {
-            Player player = ((Player) entity);
-            if(player.isOnFire()){
-                player.clearFire();
-            }
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean selected) {
+        if(entity.isOnFire()){
+            entity.clearFire();
         }
+        super.inventoryTick(stack, level, entity, slotId, selected);
     }
 }

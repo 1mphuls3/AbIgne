@@ -40,13 +40,13 @@ public class ModFeatureInit {
             NAME = name;
 
             GEODE = FeatureUtils.register(name + "_geode", Feature.GEODE, new GeodeConfiguration(
-                    new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR), SimpleStateProvider.simple(BlockInit.IGNIS_GEM_BLOCK.get()),
-                            SimpleStateProvider.simple(BlockInit.BUDDING_IGNIS_GEM_BLOCK.get()), BlockStateProvider.simple(BlockInit.HELLSTONE.get()),
+                    new GeodeBlockSettings(BlockStateProvider.simple(Blocks.AIR), SimpleStateProvider.simple(BlockInit.PYROLITE_GEM_BLOCK.get()),
+                            SimpleStateProvider.simple(BlockInit.BUDDING_PYROLITE_GEM_BLOCK.get()), BlockStateProvider.simple(BlockInit.BLACK_CALCITE.get()),
                             SimpleStateProvider.simple(Blocks.SMOOTH_BASALT),
-                            List.of(BlockInit.SMALL_IGNIS_BUD.get().defaultBlockState(),
-                                    BlockInit.MEDIUM_IGNIS_BUD.get().defaultBlockState(),
-                                    BlockInit.LARGE_IGNIS_BUD.get().defaultBlockState(),
-                                    BlockInit.IGNIS_CLUSTER.get().defaultBlockState()),
+                            List.of(BlockInit.SMALL_PYROLITE_BUD.get().defaultBlockState(),
+                                    BlockInit.MEDIUM_PYROLITE_BUD.get().defaultBlockState(),
+                                    BlockInit.LARGE_PYROLITE_BUD.get().defaultBlockState(),
+                                    BlockInit.PYROLITE_CLUSTER.get().defaultBlockState()),
                             BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.GEODE_INVALID_BLOCKS),
                     new GeodeLayerSettings(1.7D, 2.2D, 3.2D, 4.2D),
                     new GeodeCrackSettings(0.95D, 2.0D, 2), 0.35D, 0.083D, true,

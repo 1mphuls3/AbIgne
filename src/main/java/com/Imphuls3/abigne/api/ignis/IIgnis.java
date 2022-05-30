@@ -1,15 +1,22 @@
 package com.Imphuls3.abigne.api.ignis;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+
 public interface IIgnis {
-    void consumeIgnis(int amount);
+    int getTransferRate();
 
-    void fillIgnis(int amount);
-
-    void setIgnis(int amount);
+    boolean canAcceptIgnis();
 
     int getIgnis();
 
     int getMaxIgnis();
 
-    boolean isFull();
+    void setMaxIgnis(int amountMax);
+
+    int setIgnis(final int amountSet);
+
+    int addIgnis(final int amountAdd);
+
+    int removeIgnis(final int amountRemove);
 }

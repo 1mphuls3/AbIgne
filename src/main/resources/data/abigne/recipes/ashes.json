@@ -1,0 +1,10 @@
+{
+  "type": "abigne:infuser",
+  "input": {
+    "item": "minecraft:andesite"
+  },
+  "output": {
+    "item": "abigne:ashes"
+  },
+  "time": 50
+}

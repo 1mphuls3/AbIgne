@@ -1,51 +1,108 @@
 package com.Imphuls3.abigne.common.block;
 
-import com.Imphuls3.abigne.api.ignis.IIgnis;
 import com.Imphuls3.abigne.common.block.entity.CrucibleBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.WaterLoggedBlock;
+import com.Imphuls3.abigne.common.block.utils.ModWaterLoggableBlock;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
+import com.Imphuls3.abigne.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.IntTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.world.Container;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
 
-import javax.annotation.Nullable;
-import java.util.Optional;
+import java.util.Random;
 
-public class CrucibleBlock extends WaterLoggedBlock<CrucibleBlockEntity> implements IIgnis, INBTSerializable<Tag> {
-    int ignis = 100;
-    int maxIgnis = 200;
+public class CrucibleBlock extends ModWaterLoggableBlock<CrucibleBlockEntity> {
+    /*public static final VoxelShape SHAPE = makeShape();
+    public static final VoxelShape RENDER_SHAPE = makeRenderShape();*/
 
-    public static final VoxelShape SHAPE = makeShape();
-    public static final VoxelShape RENDER_SHAPE = makeRenderShape();
-    public CrucibleBlock(Properties properties)
-    {
+    public static final BooleanProperty HASPIPEN = BooleanProperty.create("pipe_north");
+    public static final BooleanProperty HASPIPEE = BooleanProperty.create("pipe_east");
+    public static final BooleanProperty HASPIPES = BooleanProperty.create("pipe_south");
+    public static final BooleanProperty HASPIPEW = BooleanProperty.create("pipe_west");
+
+    public CrucibleBlock(Properties properties) {
         super(properties);
-        setTile(BlockEntityInit.CRUCIBLE);
+        setBlockEntity(BlockEntityInit.CRUCIBLE);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(HASPIPEN, false).setValue(HASPIPEE, false).setValue(HASPIPES, false).setValue(HASPIPEW, false));
     }
 
     @Override
-    public VoxelShape getInteractionShape(BlockState p_60547_, BlockGetter p_60548_, BlockPos p_60549_) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(HASPIPEN, HASPIPEE, HASPIPES, HASPIPEW);
+        super.createBlockStateDefinition(builder);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return super.getStateForPlacement(context).setValue(HASPIPEN, false).setValue(HASPIPEE, false).setValue(HASPIPES, false).setValue(HASPIPEW, false);
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit)
+    {
+        if (player.getItemInHand(handIn).getItem().equals(ItemInit.PYROLITE_SHARD.get()))
+        {
+            if(player.getDirection() == Direction.NORTH){
+                level.setBlockAndUpdate(pos,state.setValue(HASPIPEN, !state.getValue(HASPIPEN)));
+            }
+            if(player.getDirection() == Direction.EAST){
+                level.setBlockAndUpdate(pos,state.setValue(HASPIPEE, !state.getValue(HASPIPEE)));
+            }
+            if(player.getDirection() == Direction.SOUTH){
+                level.setBlockAndUpdate(pos,state.setValue(HASPIPES, !state.getValue(HASPIPES)));
+            }
+            if(player.getDirection() == Direction.WEST){
+                level.setBlockAndUpdate(pos,state.setValue(HASPIPEW, !state.getValue(HASPIPEW)));
+            }
+            player.swing(handIn);
+            return InteractionResult.SUCCESS;
+        }
+        return super.use(state, level, pos, player, handIn, hit);
+    }
+
+   /* @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+        if(player.getDirection() == Direction.NORTH){
+            level.setBlockAndUpdate(pos,state.setValue(HASPIPEN, !state.getValue(HASPIPEN)));
+        }
+        if(player.getDirection() == Direction.EAST){
+            level.setBlockAndUpdate(pos,state.setValue(HASPIPEE, !state.getValue(HASPIPEE)));
+        }
+        if(player.getDirection() == Direction.SOUTH){
+            level.setBlockAndUpdate(pos,state.setValue(HASPIPES, !state.getValue(HASPIPES)));
+        }
+        if(player.getDirection() == Direction.WEST){
+            level.setBlockAndUpdate(pos,state.setValue(HASPIPEW, !state.getValue(HASPIPEW)));
+        }
+    }*/
+    /* @Override
+    public void onNeighborChange(BlockState state, LevelReader reader, BlockPos pos, BlockPos neighbor) {
+        if(reader.getBlockState(neighbor).getBlock().equals(BlockInit.CHARRED_LOG)){
+
+        }
+    }*/
+/*
+    @Override
+    public VoxelShape getInteractionShape(BlockState state, BlockGetter getter, BlockPos pos) {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState p_60572_, BlockGetter p_60573_, BlockPos p_60574_, CollisionContext p_60575_) {
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         return RENDER_SHAPE;
     }
     public static VoxelShape makeShape(){
@@ -79,49 +136,5 @@ public class CrucibleBlock extends WaterLoggedBlock<CrucibleBlockEntity> impleme
         shape = Shapes.join(shape, Shapes.box(0, 0, 0.3125, 0.1875, 0.375, 0.6875), BooleanOp.OR);
 
         return shape;
-    }
-
-    @Override
-    public void consumeIgnis(int amount) {
-        this.ignis -= amount;
-    }
-
-    @Override
-    public void fillIgnis(int amount) {
-        this.ignis += amount;
-    }
-
-    @Override
-    public void setIgnis(int amount) {
-        this.ignis = amount;
-    }
-
-    @Override
-    public int getIgnis() {
-        return this.ignis;
-    }
-
-    @Override
-    public int getMaxIgnis() {
-        return this.maxIgnis;
-    }
-
-    @Override
-    public boolean isFull() {
-        return false;
-    }
-
-    @Override
-    public Tag serializeNBT()
-    {
-        return IntTag.valueOf(this.getIgnis());
-    }
-
-    @Override
-    public void deserializeNBT(Tag nbt)
-    {
-        if (!(nbt instanceof IntTag intNbt))
-            throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
-        this.ignis = intNbt.getAsInt();
-    }
+    }*/
 }

@@ -21,8 +21,8 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity
     @Override
     public void render(PedestalBlockEntity blockEntityIn, float partialTicks, PoseStack stackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         Level level = Minecraft.getInstance().level;
-        if (!blockEntityIn.inv.getStackInSlot(0).isEmpty()) {
-            ItemStack stack = blockEntityIn.inv.getStackInSlot(0);
+        if (!blockEntityIn.inventory.getStackInSlot(0).isEmpty()) {
+            ItemStack stack = blockEntityIn.inventory.getStackInSlot(0);
             stackIn.pushPose();
             float yDiff = Mth.sin((System.currentTimeMillis() % 86400000) / 1000F) * 0.1F + 0.1F;
             stackIn.translate(0.5D, 1.2D + yDiff, 0.5D);

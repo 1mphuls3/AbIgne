@@ -1,0 +1,18 @@
+{
+  "name": "abigne.entry.geodes",
+  "icon": "abigne:budding_ignis",
+  "category": "abigne:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "abigne.page.geodes1"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "abigne.entry.geodes",
+      "images": [
+        "abigne:textures/gui/entries/geodes.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "abigne:block/medium_pyrolite_bud"
+  }
+}

@@ -15,6 +15,7 @@ import net.minecraft.world.level.material.PushReaction;
 
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class BuddingIgnisBlock extends AmethystBlock {
     public static final int GROWTH_CHANCE = 5;
     private static final Direction[] DIRECTIONS = Direction.values();
@@ -22,6 +23,7 @@ public class BuddingIgnisBlock extends AmethystBlock {
     public BuddingIgnisBlock(BlockBehaviour.Properties p_152726_) {
         super(p_152726_);
     }
+
 
     public PushReaction getPistonPushReaction(BlockState pState) {
         return PushReaction.DESTROY;
@@ -34,13 +36,13 @@ public class BuddingIgnisBlock extends AmethystBlock {
             BlockState blockstate = pLevel.getBlockState(blockpos);
             Block block = null;
             if (canClusterGrowAtState(blockstate)) {
-                block = BlockInit.SMALL_IGNIS_BUD.get().defaultBlockState().getBlock();
-            } else if (blockstate.is(BlockInit.SMALL_IGNIS_BUD.get().defaultBlockState().getBlock()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = BlockInit.MEDIUM_IGNIS_BUD.get().defaultBlockState().getBlock();
-            } else if (blockstate.is(BlockInit.MEDIUM_IGNIS_BUD.get().defaultBlockState().getBlock()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = BlockInit.LARGE_IGNIS_BUD.get().defaultBlockState().getBlock();
-            } else if (blockstate.is(BlockInit.LARGE_IGNIS_BUD.get().defaultBlockState().getBlock()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
-                block = BlockInit.IGNIS_CLUSTER.get().defaultBlockState().getBlock();
+                block = BlockInit.SMALL_PYROLITE_BUD.get().defaultBlockState().getBlock();
+            } else if (blockstate.is(BlockInit.SMALL_PYROLITE_BUD.get().defaultBlockState().getBlock()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = BlockInit.MEDIUM_PYROLITE_BUD.get().defaultBlockState().getBlock();
+            } else if (blockstate.is(BlockInit.MEDIUM_PYROLITE_BUD.get().defaultBlockState().getBlock()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = BlockInit.LARGE_PYROLITE_BUD.get().defaultBlockState().getBlock();
+            } else if (blockstate.is(BlockInit.LARGE_PYROLITE_BUD.get().defaultBlockState().getBlock()) && blockstate.getValue(AmethystClusterBlock.FACING) == direction) {
+                block = BlockInit.PYROLITE_CLUSTER.get().defaultBlockState().getBlock();
             }
 
             if (block != null) {

@@ -1,5 +1,38 @@
 {
+
+  "TO TRANSLATORS - purple text are notes, either for you or left for me to remember things!": "",
+  "Thank you for your contributions!": "",
+
+
   "itemGroup.abigne": "Ab Igne",
+
+  "All langs for the Patchouli guidebook, Philosophia Ignis ------------------------------------------------------------------------": "",
+  "Note to Translators: Ignore the - $() - and the text inside of it when translating, it is for formatting text, like changing text colors": "",
+
+  "item.abigne.philosophia": "Philosophia Ignis",
+  "philosophia.landing": "Ab Igne$(#636363)(Een-yay)$(), \"From Fire\", is a magic mod about Fire. Utilizing its mana system, $(#b00b30)Ignis$(), you can create new gear, spells, and machines.",
+
+  "abigne.category.getting_started": "Getting Started",
+  "abigne.landing.geodes": "Landing",
+
+  "abigne.entry.geodes": "Ignis Geodes",
+  "abigne.page.geodes1": "Concentrated Ignis deep in the $(#820000)Nether$() dimension can crystallize, forming Ignis Geodes. $(item)Ignis Crystals$() can be used to focus Ignis for player use. Surrounding the Geodes is $(item)Black Calcite$(), another very good conductor of Ignis",
+
+  "abigne.category.metallurgy": "Metallurgy",
+  "abigne.landing.metallurgy": "Landing",
+
+  "abigne.entry.metallurgy": "Tempered Iron",
+  "abigne.page.metallurgy1": "Page",
+
+  "----------------------------------------------------------------------------------------------": "",
+
+
+  "WAND STUFF -----------------------------------------------------------------------------------": "",
+
+  "item.abigne.wand": "Wand",
+  "text.abigne.tier": "Tier: ",
+
+  "---------------------------------------------------------------------------------------------": "",
 
   "block.abigne.pedestal": "Pedestal",
 

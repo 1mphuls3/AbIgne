@@ -16,24 +16,34 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import javax.annotation.Nonnull;
 
 public class ModInventoryBlockEntity extends ModBlockEntity {
-    //A base block entity with a single inventory
-    public ModBlockEntityInventory inv;
+    public ModInventory inv;
 
     public ModInventoryBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
-    //places items in the slot when right clicked with an item
+    public ModInventoryBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int size) {
+        super(type, pos, state);
+    }
+
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
-        inv.interact(player.level, player, hand);
+        inv.invInteract(player.level, player, hand);
         return InteractionResult.SUCCESS;
+    }
+
+    public void update() {
+        requestModelDataUpdate();
+        setChanged();
+        if (this.level != null) {
+            this.level.setBlockAndUpdate(this.worldPosition, getBlockState());
+        }
     }
 
     //drops items when broken
     @Override
     public void onBreak() {
-        inv.dropItems(level, DataHelper.fromBlockPos(worldPosition).add(0.5f,0.5f,0.5f));
+        inv.dropItems(level, DataHelper.v3fromBlockPos(worldPosition).add(0.5f,0.5f,0.5f));
     }
 
     @Override

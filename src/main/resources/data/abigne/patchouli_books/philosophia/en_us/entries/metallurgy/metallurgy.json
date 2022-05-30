@@ -1,0 +1,11 @@
+{
+  "name": "abigne.entry.metallurgy",
+  "icon": "abigne:tempered_ingot",
+  "category": "abigne:metallurgy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "abigne.page.metallurgy1"
+    }
+  ]
+}

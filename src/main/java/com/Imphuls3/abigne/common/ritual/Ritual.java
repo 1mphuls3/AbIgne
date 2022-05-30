@@ -82,29 +82,5 @@ public abstract class Ritual {
         return RitualResult.PASS;
     }
 
-    public AABB getSearchBounds(BlockPos pos) {
-        return getDefaultBounds(pos);
-    }
 
-    //default bounds for block entities of a ritual
-    public static AABB getDefaultBounds(BlockPos pos) {
-        return new AABB(pos.getX() - 8, pos.getY() - 3, pos.getZ() - 8,
-                pos.getX() + 8, pos.getY() + 11, pos.getZ() + 8);
-    }
-
-    //gets block entities within a certain bounding box
-    public static <T> List<T> getBlockEntitiesWithinAABB(Class<T> type, Level world, AABB bounds) {
-        List<T> blockEntityList = new ArrayList<>();
-        for (int i = (int)Math.floor(bounds.minX); i < (int)Math.ceil(bounds.maxX) + 16; i += 16) {
-            for (int k = (int)Math.floor(bounds.minZ); k < (int)Math.ceil(bounds.maxZ) + 16; k += 16) {
-                ChunkAccess chunk = world.getChunk(new BlockPos(i, 0, k));
-                Set<BlockPos> blockEntities = chunk.getBlockEntitiesPos();
-                for (BlockPos pos : blockEntities) if (bounds.contains(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)) {
-                    BlockEntity t = world.getBlockEntity(pos);
-                    if (type.isInstance(t)) blockEntityList.add((T)t);
-                }
-            }
-        }
-        return blockEntityList;
-    }
 }

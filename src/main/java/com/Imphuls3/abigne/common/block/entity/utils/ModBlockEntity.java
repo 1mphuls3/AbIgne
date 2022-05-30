@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 
 public class ModBlockEntity extends BlockEntity {
-    //a base block entity
     public ModBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
@@ -63,6 +62,5 @@ public class ModBlockEntity extends BlockEntity {
     }
 
     public void tick() {
-
     }
 }

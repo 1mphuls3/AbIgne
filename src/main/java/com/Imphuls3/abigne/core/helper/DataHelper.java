@@ -6,7 +6,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 
 public class DataHelper {
-    public static Vec3 fromBlockPos(BlockPos pos) {
+    /**
+     * Returns a new Vec3 from a Block Pos
+     * */
+    public static Vec3 v3fromBlockPos(BlockPos pos) {
         return new Vec3(pos.getX(), pos.getY(), pos.getZ());
     }
 }
