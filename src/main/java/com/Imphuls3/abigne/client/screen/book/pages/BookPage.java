@@ -28,7 +28,7 @@ public class BookPage {
     public void renderBackgroundLeft(Minecraft minecraft, PoseStack stack, float xOffset, float yOffset, int mouseX, int mouseY, float partialTicks) {
         int guiLeft = guiLeft();
         int guiTop = guiTop();
-        BookScreen.renderTexture(BACKGROUND, stack, guiLeft, guiTop,1,1,screen.bookWidth-147, screen.bookHeight,512,512);
+        BookScreen.renderTexture(BACKGROUND, stack, guiLeft, guiTop,1,1,screen.bookWidth-100, screen.bookHeight,512,512);
     }
 
     public void renderBackgroundRight(Minecraft minecraft, PoseStack stack, float xOffset, float yOffset, int mouseX, int mouseY, float partialTicks) {
