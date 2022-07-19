@@ -1,0 +1,6 @@
+{
+    "parent": "block/redstone_dust_side_alt",
+    "textures": {
+        "line": "abigne:block/enflamed_ash_line1_ignited"
+    }
+}

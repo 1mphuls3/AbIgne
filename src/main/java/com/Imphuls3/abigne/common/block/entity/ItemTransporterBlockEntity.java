@@ -29,7 +29,13 @@ import javax.annotation.Nonnull;
 public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
     private final int maxIgnis = 1000;
 
-    public ModInventory inventory;
+    public ModInventory inventory = new ModInventory(1, 64, t -> !(t.getItem() instanceof TransporterBinder)) {
+        @Override
+        public void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            BlockHelper.updateStateAndNeighbor(level, worldPosition);
+        }
+    };
     public ItemTransporterBlockEntity bound;
     public BlockPos boundPos;
 
@@ -39,28 +45,21 @@ public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
 
     public ItemTransporterBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityInit.TRANSPORTER.get(), pos, state);
-        inventory = new ModInventory(1, 64, t -> !(t.getItem() instanceof TransporterBinder)) {
-            @Override
-            public void onContentsChanged(int slot) {
-                super.onContentsChanged(slot);
-                BlockHelper.updateStateAndNeighbor(level, worldPosition);
-            }
-        };
     }
 
     int timer;
     float dist;
-    float diag;
     @Override
-    public void tick() {
+    public void tick(Level level, BlockState state, BlockPos pos) {
         if(!this.getLevel().isClientSide()) {
+            if(bound == null){
+                updateBound();
+            }
             if(bound != null/* && canTransfer()*/) {
                 float xDiff = Mth.abs(this.getBlockPos().getX() - bound.getBlockPos().getX());
                 float yDiff = Mth.abs(this.getBlockPos().getY() - bound.getBlockPos().getY());
                 float zDiff = Mth.abs(this.getBlockPos().getZ() - bound.getBlockPos().getZ());
-/*                diag = Mth.sqrt((xDiff * xDiff) + (zDiff * zDiff));
-                dist = Mth.sqrt((diag * diag) + (yDiff * yDiff));*/
-                dist = MathHelper.pythagorean3D(xDiff, yDiff, zDiff);
+                dist = MathHelper.pythag3D(xDiff, yDiff, zDiff);
                 if(!inventory.getStackInSlot(0).isEmpty()) {
                     timer++;
                     if(timer == 10 * (int)dist) {
@@ -79,6 +78,12 @@ public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
         }
     }
 
+    private void updateBound(){
+        if(boundPos != null){
+            this.bound = (ItemTransporterBlockEntity) getLevel().getBlockEntity(boundPos);
+            update();
+        }
+    }
 
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
@@ -93,7 +98,7 @@ public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
         }
         if(player.getItemInHand(hand).getItem() instanceof TransporterBinder) {
             this.boundPos = TransporterBinder.getPos();
-            this.bound = (ItemTransporterBlockEntity) getLevel().getBlockEntity(boundPos);
+            updateBound();
             String txt = "Bound!";
             TextComponent msg = new TextComponent(txt);
             player.sendMessage(msg, player.getUUID());
@@ -122,7 +127,8 @@ public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
     public void transferItems(ItemTransporterBlockEntity to, ItemTransporterBlockEntity from, float dist) {
         if(!(from.inventory.getStackInSlot(0).isEmpty()) && to.inventory.getStackInSlot(0).isEmpty() /* && from.getIgnis() >= 20*/) {
             int count = from.inventory.getStackInSlot(0).getCount();
-/*            this.removeIgnis(20);*/
+/*            from.removeIgnis(100);
+            to.addIgnis((int)(100/((dist*dist))));*/
             to.inventory.setStackInSlot(0, from.inventory.getStackInSlot(0).copy());
             to.inventory.getStackInSlot(0).setCount(count);
             from.inventory.clear();
@@ -132,9 +138,7 @@ public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
     @Override
     public void saveAdditional(CompoundTag nbt) {
         inventory.save(nbt, "inventory");
-        if(boundPos != null){
-            saveBound(nbt);
-        }
+        saveBound(nbt);
         super.saveAdditional(nbt);
     }
 
@@ -157,9 +161,10 @@ public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
     void loadBound(Level level, CompoundTag nbt) {
         CompoundTag boundTag = nbt.getCompound("bound");
         BlockPos pos = NBTHelper.loadBlockPos(boundTag);
-        if (level != null && level.getBlockEntity(pos) instanceof ItemTransporterBlockEntity) {
+        if (level.getBlockEntity(pos) instanceof ItemTransporterBlockEntity) {
+            NBTHelper.saveBlockPos(boundTag, pos);
             boundPos = pos;
-            bound = (ItemTransporterBlockEntity) level.getBlockEntity(pos);
+            updateBound();
         }
     }
 

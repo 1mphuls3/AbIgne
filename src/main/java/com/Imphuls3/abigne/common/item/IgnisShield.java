@@ -24,10 +24,10 @@ public class IgnisShield extends Item implements ICurio {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean selected) {
-        if(entity.isOnFire()){
-            entity.clearFire();
+    public void curioTick(SlotContext slotContext) {
+        if(slotContext.entity().isOnFire()){
+            slotContext.entity().clearFire();
         }
-        super.inventoryTick(stack, level, entity, slotId, selected);
+        ICurio.super.curioTick(slotContext);
     }
 }

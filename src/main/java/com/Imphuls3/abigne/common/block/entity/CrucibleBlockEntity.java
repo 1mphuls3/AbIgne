@@ -1,22 +1,18 @@
 package com.Imphuls3.abigne.common.block.entity;
 
-import com.Imphuls3.abigne.AbIgne;
 import com.Imphuls3.abigne.api.ignis.AbstractIgnisMachine;
 import com.Imphuls3.abigne.common.block.entity.utils.ModInventory;
-import com.Imphuls3.abigne.common.item.Wand;
-import com.Imphuls3.abigne.common.item.WandPart;
 import com.Imphuls3.abigne.core.helper.BlockHelper;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import com.Imphuls3.abigne.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -30,8 +26,13 @@ public class CrucibleBlockEntity extends AbstractIgnisMachine {
 
     private int maxIgnis = 500;
 
-    public ModInventory mainInv;
-    public ModInventory outInv;
+    public ModInventory inventory = new ModInventory(8, 1, t -> !(t.getItem() == ItemInit.IGNIS_NUGGET.get())) {
+        @Override
+        public void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            BlockHelper.updateStateAndNeighbor(level, worldPosition);
+        }
+    };
 
     public CrucibleBlockEntity(BlockEntityType<? extends CrucibleBlockEntity> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -39,73 +40,38 @@ public class CrucibleBlockEntity extends AbstractIgnisMachine {
 
     public CrucibleBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityInit.CRUCIBLE.get(), pos, state);
-        mainInv = new ModInventory(8, 1, t -> !(t.getItem() == ItemInit.IGNIS_NUGGET.get())) {
-            @Override
-            public void onContentsChanged(int slot) {
-                super.onContentsChanged(slot);
-                BlockHelper.updateStateAndNeighbor(level, worldPosition);
-            }
-        };
-        outInv = new ModInventory(1, 64) {
-            @Override
-            public void onContentsChanged(int slot) {
-                super.onContentsChanged(slot);
-                BlockHelper.updateStateAndNeighbor(level, worldPosition);
-            }
-        };
+
     }
 
     private void craft(){
-        for (int i = 0; i < 8; i++) {
-            int count;
-            if(mainInv.getStackInSlot(i).getItem() == ItemInit.PYROLITE_SHARD.get() && this.getIgnis() >= 100){
-                mainInv.setStackInSlot(i, ItemStack.EMPTY);
-                this.removeIgnis(100);
-                if(outInv.getStackInSlot(0).getItem() == ItemInit.IGNIS_INGOT.get()){
-                    count = outInv.getStackInSlot(0).getCount();
-                    outInv.getStackInSlot(0).setCount(count + 1);
-                } else {
-                    outInv.setStackInSlot(0, ItemInit.IGNIS_INGOT.get().getDefaultInstance());
-                }
+        for (int i = 0; i < inventory.getSlots(); i++) {
+            if(inventory.getStackInSlot(i).getItem() == ItemInit.PYROLITE_SHARD.get()/* && this.getIgnis() >= 100*/){
+                inventory.setStackInSlot(i, ItemStack.EMPTY);
+/*                this.removeIgnis(100)*/;
+                ItemEntity item = new ItemEntity(level, getBlockPos().getX() + 0.5, getBlockPos().getY() + 1, getBlockPos().getZ() + 0.5,
+                        ItemInit.IGNIS_INGOT.get().getDefaultInstance());
+                level.addFreshEntity(item);
             }
         }
     }
 
     @Override
-    public void tick() {
-        if(!level.isClientSide){
+    public void tick(Level level, BlockState state, BlockPos pos) {
+        if(!this.level.isClientSide){
             if(!this.level.hasNeighborSignal(this.getBlockPos())){
                 craft();
             }
         }
     }
 
-    @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
         if (level.isClientSide) {
             return InteractionResult.FAIL;
         }
-
-        String ignisText = "Ignis amount: " + this.getIgnis();
-        TextComponent msg = new TextComponent(ignisText);
-        player.sendMessage(msg, player.getUUID());
-        if(player.getItemInHand(hand).getItem() == Items.STICK){;
-            outInv.setStackInSlot(0, ItemInit.WAND.get().getDefaultInstance());
-            return InteractionResult.SUCCESS;
-        }
         if (hand.equals(InteractionHand.MAIN_HAND)) {
-            ItemStack heldStack = player.getMainHandItem();
-            if (!outInv.getStackInSlot(0).isEmpty() && heldStack.isEmpty()) {
-                ItemStack stack = outInv.invInteract(level, player, hand);
-                if (!stack.isEmpty()) {
-                    return InteractionResult.SUCCESS;
-                }
-            }
-            mainInv.invInteract(level, player, hand);
-            if (heldStack.isEmpty()) {
+            ItemStack stack = inventory.invInteract(level, player, hand);
+            if (!stack.isEmpty()) {
                 return InteractionResult.SUCCESS;
-            } else {
-                return InteractionResult.FAIL;
             }
         }
         return super.onUse(player, hand);
@@ -127,30 +93,28 @@ public class CrucibleBlockEntity extends AbstractIgnisMachine {
 
     @Override
     public void saveAdditional(CompoundTag nbt) {
-        mainInv.save(nbt, "mainInv");
-        outInv.save(nbt, "outInv");
+        inventory.save(nbt, "mainInv");
         super.saveAdditional(nbt);
     }
 
     @Override
     public void load(CompoundTag nbt) {
         updateRecipe = true;
-        mainInv.load(nbt, "mainInv");
-        outInv.load(nbt, "outInv");
+        inventory.load(nbt, "mainInv");
         super.load(nbt);
     }
 
 
     @Override
     public void onBreak() {
-        mainInv.dropItems(level, worldPosition);
+        inventory.dropItems(level, worldPosition);
     }
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return mainInv.invOptional.cast();
+            return inventory.invOptional.cast();
         }
         return super.getCapability(cap);
     }
@@ -158,10 +122,8 @@ public class CrucibleBlockEntity extends AbstractIgnisMachine {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction direction) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && direction == Direction.DOWN) {
-            return outInv.invOptional.cast();
-        } else if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return mainInv.invOptional.cast();
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return inventory.invOptional.cast();
         }
         return super.getCapability(cap, direction);
     }

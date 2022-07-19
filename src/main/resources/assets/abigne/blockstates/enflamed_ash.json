@@ -1,0 +1,230 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "OR": [
+          {
+            "west": "none",
+            "east": "none",
+            "south": "none",
+            "north": "none",
+            "ignited": false
+          },
+          {
+            "east": "side|up",
+            "north": "side|up",
+            "ignited": false
+          },
+          {
+            "east": "side|up",
+            "south": "side|up",
+            "ignited": false
+          },
+          {
+            "west": "side|up",
+            "south": "side|up",
+            "ignited": false
+          },
+          {
+            "west": "side|up",
+            "north": "side|up",
+            "ignited": false
+          }
+        ]
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_dot"
+      }
+    },
+    {
+      "when": {
+        "north": "side|up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side0"
+      }
+    },
+    {
+      "when": {
+        "south": "side|up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side_alt0"
+      }
+    },
+    {
+      "when": {
+        "east": "side|up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side_alt1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "west": "side|up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "north": "up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up"
+      }
+    },
+    {
+      "when": {
+        "east": "up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "up",
+        "ignited": false
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "west": "none",
+            "east": "none",
+            "south": "none",
+            "north": "none",
+            "ignited": true
+          },
+          {
+            "east": "side|up",
+            "north": "side|up",
+            "ignited": true
+          },
+          {
+            "east": "side|up",
+            "south": "side|up",
+            "ignited": true
+          },
+          {
+            "west": "side|up",
+            "south": "side|up",
+            "ignited": true
+          },
+          {
+            "west": "side|up",
+            "north": "side|up",
+            "ignited": true
+          }
+        ]
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_dot_ignited"
+      }
+    },
+    {
+      "when": {
+        "north": "side|up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side0_ignited"
+      }
+    },
+    {
+      "when": {
+        "south": "side|up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side_alt0_ignited"
+      }
+    },
+    {
+      "when": {
+        "east": "side|up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side_alt1_ignited",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "west": "side|up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_side1_ignited",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "north": "up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up_ignited"
+      }
+    },
+    {
+      "when": {
+        "east": "up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up_ignited",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up_ignited",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "up",
+        "ignited": true
+      },
+      "apply": {
+        "model": "abigne:block/enflamed_ash_up_ignited",
+        "y": 270
+      }
+    }
+  ]
+}

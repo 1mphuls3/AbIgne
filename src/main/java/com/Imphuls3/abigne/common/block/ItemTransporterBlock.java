@@ -1,14 +1,12 @@
 package com.Imphuls3.abigne.common.block;
 
 import com.Imphuls3.abigne.common.block.entity.ItemTransporterBlockEntity;
-import com.Imphuls3.abigne.common.block.entity.PedestalBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.ModWaterLoggableBlock;
+import com.Imphuls3.abigne.common.block.utils.ModBlock;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -16,7 +14,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-public class ItemTransporterBlock extends ModWaterLoggableBlock<ItemTransporterBlockEntity> {
+public class ItemTransporterBlock extends ModBlock<ItemTransporterBlockEntity> {
 
     public static final VoxelShape SHAPE = Stream.of(
             Block.box(4, 0, 4, 12, 4, 12),
@@ -27,7 +25,6 @@ public class ItemTransporterBlock extends ModWaterLoggableBlock<ItemTransporterB
     public ItemTransporterBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
         setBlockEntity(BlockEntityInit.TRANSPORTER);
     }
 

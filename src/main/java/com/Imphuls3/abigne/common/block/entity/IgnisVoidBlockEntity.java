@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -22,8 +23,8 @@ public class IgnisVoidBlockEntity extends AbstractIgnisMachine {
     }
 
     @Override
-    public void tick() {
-        if(!level.isClientSide){
+    public void tick(Level level, BlockState state, BlockPos pos) {
+        if(!this.level.isClientSide){
             this.setIgnis(0);
         }
     }

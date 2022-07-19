@@ -1,0 +1,6 @@
+{
+    "parent": "abigne:block/enflamed_ash_side",
+    "textures": {
+        "line": "abigne:block/enflamed_ash_line1"
+    }
+}

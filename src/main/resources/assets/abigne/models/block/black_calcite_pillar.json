@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "abigne:block/black_calcite_pillar_top",
+    "end": "abigne:block/polished_black_calcite_indent",
     "side": "abigne:block/black_calcite_pillar"
   }
 }

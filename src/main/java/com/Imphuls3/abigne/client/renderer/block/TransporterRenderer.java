@@ -14,7 +14,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
@@ -37,16 +36,16 @@ public class TransporterRenderer implements BlockEntityRenderer<ItemTransporterB
             stackIn.popPose();
         }
         if(blockEntityIn.bound != null/* && blockEntityIn.canTransfer()*/){
-            float xDiff = blockEntityIn.getBlockPos().getX() - blockEntityIn.bound.getBlockPos().getX();
-            float yDiff = blockEntityIn.getBlockPos().getY() - blockEntityIn.bound.getBlockPos().getY();
-            float zDiff = blockEntityIn.getBlockPos().getZ() - blockEntityIn.bound.getBlockPos().getZ();
-            float diag = MathHelper.pythagorean3D(xDiff, yDiff, zDiff);
+            float xDiff = blockEntityIn.getBlockPos().getX() - (blockEntityIn.bound.getBlockPos().getX()+0.5F);
+            float yDiff = blockEntityIn.getBlockPos().getY() - (blockEntityIn.bound.getBlockPos().getY()+0.5F);
+            float zDiff = blockEntityIn.getBlockPos().getZ() - (blockEntityIn.bound.getBlockPos().getZ()+0.5F);
+            float diag = MathHelper.pythag3D(xDiff, yDiff, zDiff);
 
-            float xRot = (float) ((Math.atan(zDiff/xDiff)));
-            float yRot = (float) ((Math.asin(yDiff/diag)));
+            float xRot = (float) ((Math.tan(zDiff/xDiff)));
+            float yRot = (float) ((Math.sin(yDiff/diag)));
 
             BlockPos pos = blockEntityIn.getBlockPos();
-            level.addAlwaysVisibleParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, xRot, yRot, xRot);
+            level.addAlwaysVisibleParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, xRot, 0/*yRot*/, xRot);
         }
     }
 }

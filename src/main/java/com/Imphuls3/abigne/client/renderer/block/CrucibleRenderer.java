@@ -24,32 +24,22 @@ public class CrucibleRenderer implements BlockEntityRenderer<CrucibleBlockEntity
     @Override
     public void render(CrucibleBlockEntity blockEntityIn, float partialTicks, PoseStack stackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {
         Level level = Minecraft.getInstance().level;
-        if (!blockEntityIn.outInv.getStackInSlot(0).isEmpty()) {
-            ItemStack stack = blockEntityIn.outInv.getStackInSlot(0);
-            stackIn.pushPose();
-            double yDiff = Math.sin((((double) level.getGameTime() + partialTicks) / 9) + ((2 * Math.PI) / 8)) * (0.11);
-            stackIn.translate(0.5D, 1.4D + yDiff, 0.5D);
-
-            stackIn.mulPose(Vector3f.YP.rotationDegrees((level.getGameTime()) * 3 + partialTicks));
-            stackIn.scale(0.5F, 0.5F, 0.5F);
-            Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLightIn, NO_OVERLAY, stackIn, bufferIn, 0);
-            stackIn.popPose();
-        }
         int numSlotsInUse = 0;
         for (int i = 0; i < 8; i++) {
-            if(!blockEntityIn.mainInv.getStackInSlot(i).isEmpty()){
+            if(!blockEntityIn.inventory.getStackInSlot(i).isEmpty()){
                 numSlotsInUse++;
             }
         }
         for(int k = 0; k < numSlotsInUse; k++){
-            ItemStack stack = blockEntityIn.mainInv.getStackInSlot(k);
-            double xDiff = Math.cos((((double) level.getGameTime() + partialTicks) / 8) + (k * (2 * Math.PI) / numSlotsInUse)) * (0.75);
-            double zDiff = Math.sin((((double) level.getGameTime() + partialTicks) / 8) + (k * (2 * Math.PI) / numSlotsInUse)) * (0.75);
+            ItemStack stack = blockEntityIn.inventory.getStackInSlot(k);
+            double size = 0.75;
+            double xDiff = Math.cos((((double) level.getGameTime() + partialTicks) / 8) + (k * (2 * Math.PI) / numSlotsInUse)) * (size);
+            double zDiff = Math.sin((((double) level.getGameTime() + partialTicks) / 8) + (k * (2 * Math.PI) / numSlotsInUse)) * (size);
             /*double ring = Math.sin((((double) level.getGameTime() + partialTicks) / 8) + (k * (2 * Math.PI) / 8)) * (0.25);*/
             //causes an angled ring, maybe useful for something else?
             double yDiff = -Math.sin((((double) level.getGameTime() + partialTicks) / 9) + ((2 * Math.PI) / 8)) * (0.11);
 
-            if (!blockEntityIn.mainInv.getStackInSlot(k).isEmpty()) {
+            if (!blockEntityIn.inventory.getStackInSlot(k).isEmpty()) {
                 stackIn.pushPose();
                 stackIn.translate(0.5D + xDiff, 1.4D + yDiff, 0.5D + zDiff);
                 stackIn.mulPose(Vector3f.YP.rotationDegrees((level.getGameTime()) * 3 + partialTicks));

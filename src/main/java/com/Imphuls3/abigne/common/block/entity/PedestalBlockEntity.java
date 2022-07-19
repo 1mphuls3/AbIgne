@@ -1,17 +1,16 @@
 package com.Imphuls3.abigne.common.block.entity;
 
-import com.Imphuls3.abigne.api.ignis.AbstractIgnisMachine;
 import com.Imphuls3.abigne.common.block.entity.utils.ModBlockEntity;
-import com.Imphuls3.abigne.common.block.entity.utils.ModInventoryBlockEntity;
+import com.Imphuls3.abigne.common.block.entity.utils.ModInventory;
 import com.Imphuls3.abigne.core.helper.BlockHelper;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
-import com.Imphuls3.abigne.common.block.entity.utils.ModInventory;
-import com.Imphuls3.abigne.core.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -21,7 +20,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import javax.annotation.Nonnull;
 
 public class PedestalBlockEntity extends ModBlockEntity {
-    public ModInventory inventory;
+    public ModInventory inventory = new ModInventory(1, 64) {
+        @Override
+        public void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            BlockHelper.updateStateAndNeighbor(level, worldPosition);
+        }
+    };
 
     public PedestalBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -29,23 +34,7 @@ public class PedestalBlockEntity extends ModBlockEntity {
 
     public PedestalBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityInit.PEDESTAL.get(), pos, state);
-        inventory = new ModInventory(1, 64) {
-            @Override
-            public void onContentsChanged(int slot) {
-                super.onContentsChanged(slot);
-                BlockHelper.updateStateAndNeighbor(level, worldPosition);
-            }
-        };
     }
-
-    public boolean canCraft(){
-        if(BlockHelper.getBlockBelow(this.level, this.getBlockPos()) == BlockInit.CHISELED_BLACK_CALCITE_BRICKS.get()){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
@@ -55,9 +44,25 @@ public class PedestalBlockEntity extends ModBlockEntity {
         return InteractionResult.SUCCESS;
     }
 
-    @Override
-    public void tick() {
+    public void tick(Level level, BlockState state, BlockPos pos) {
 
+    }
+
+    @Override
+    public void onBreak() {
+        inventory.dropItems(level, worldPosition);
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag nbt) {
+        inventory.save(nbt, "inventory");
+        super.saveAdditional(nbt);
+    }
+
+    @Override
+    public void load(CompoundTag nbt) {
+        inventory.load(nbt, "inventory");
+        super.load(nbt);
     }
 
     @Nonnull

@@ -87,6 +87,10 @@ public abstract class AbstractIgnisMachine extends ModBlockEntity implements IIg
         return this.getIgnis() + ignis <= this.getMaxIgnis();
     }
 
+    public boolean canCraft() {
+        return !getLevel().hasNeighborSignal(getBlockPos());
+    }
+
     /**
      * Transfers the maximum possible amount of ignis from one tile to another.
      * Takes the maximum transfer rate of the two tiles into account, and the space remaining.

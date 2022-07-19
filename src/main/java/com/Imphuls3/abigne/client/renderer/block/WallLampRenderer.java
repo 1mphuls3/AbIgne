@@ -1,6 +1,7 @@
 package com.Imphuls3.abigne.client.renderer.block;
 
 import com.Imphuls3.abigne.common.block.entity.WallLampEntity;
+import com.lowdragmc.shimmer.client.postprocessing.PostProcessing;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -23,11 +24,11 @@ public class WallLampRenderer implements BlockEntityRenderer<WallLampEntity> {
         Level level = blockEntity.getLevel();
         BlockPos pos = blockEntity.getBlockPos();
         Random random = new Random();
-        level.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.75,
+        PostProcessing.BLOOM_UNREAL.postParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.75,
                 Mth.randomBetween(random, -0.015F, 0.015F),
                 Mth.randomBetween(random, 0F, 0.02F),
                 Mth.randomBetween(random, -0.015F, 0.015F));
-        level.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.75,
+        PostProcessing.BLOOM_UNREAL.postParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.75,
                 Mth.randomBetween(random, -0.0035F, 0.0035F),
                 Mth.randomBetween(random, 0F, 0.045F),
                 Mth.randomBetween(random, -0.0035F, 0.0035F));

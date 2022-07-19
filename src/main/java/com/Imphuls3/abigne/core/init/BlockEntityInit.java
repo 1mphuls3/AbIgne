@@ -1,20 +1,40 @@
 package com.Imphuls3.abigne.core.init;
 
 import com.Imphuls3.abigne.AbIgne;
+import com.Imphuls3.abigne.common.block.PedestalBlock;
 import com.Imphuls3.abigne.common.block.entity.*;
 import com.Imphuls3.abigne.common.block.pipe.PipeBlockEntity;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+
 public final class BlockEntityInit {
 
+    public static Block[] getBlocks(Class<?>... blockClasses) {
+        Collection<RegistryObject<Block>> blocks = BlockInit.BLOCKS.getEntries();
+        ArrayList<Block> matchingBlocks = new ArrayList<>();
+        for (RegistryObject<Block> registryObject : blocks) {
+            if (Arrays.stream(blockClasses).anyMatch(b -> b.isInstance(registryObject.get()))) {
+                matchingBlocks.add(registryObject.get());
+            }
+        }
+        return matchingBlocks.toArray(new Block[0]);
+    }
+
     public static final DeferredRegister<BlockEntityType<?>> BE = DeferredRegister
-            .create(ForgeRegistries.BLOCK_ENTITIES, AbIgne.MOD_ID);
+            .create(ForgeRegistries.BLOCK_ENTITIES, AbIgne.MODID);
+
+    public static final RegistryObject<BlockEntityType<CalmingTorchBlockEntity>> TORCH = BE.register("calming_torch",
+            () -> BlockEntityType.Builder.of(CalmingTorchBlockEntity::new, BlockInit.TORCH.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL = BE.register("pedestal",
-            () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, BlockInit.PEDESTAL.get()).build(null));
+            () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, getBlocks(PedestalBlock.class)).build(null));
 
     public static final RegistryObject<BlockEntityType<CrucibleBlockEntity>> CRUCIBLE = BE.register("crucible",
             () -> BlockEntityType.Builder.of(CrucibleBlockEntity::new, BlockInit.CRUCIBLE.get()).build(null));

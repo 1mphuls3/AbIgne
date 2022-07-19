@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,21 @@ public class BlockHelper {
      * */
     public static Block getBlockBelow(Level level, BlockPos pos){
         return level.getBlockState(pos.below()).getBlock();
+    }
+
+    /**
+     * Returns a new Vec3 from a Block Pos
+     * */
+    public static Vec3 v3fromBlockPos(BlockPos pos) {
+        return new Vec3(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+
+    /**
+    * Returns a new BlockPos from a Vec3
+    * */
+    public static BlockPos blockPosfromVec3(Vec3 pos) {
+        return new BlockPos(pos.x(), pos.y(), pos.z());
     }
 
     /**
@@ -45,8 +61,7 @@ public class BlockHelper {
      * mainly for use in rituals
      * */
     public static AABB defaultBounds(BlockPos pos) {
-        return new AABB(pos.getX() - 10, pos.getY() - 5, pos.getZ() - 10,
-                pos.getX() + 10, pos.getY() + 10, pos.getZ() + 10);
+        return new AABB(pos.getX() - 10, pos.getY() - 5, pos.getZ() - 10, pos.getX() + 10, pos.getY() + 10, pos.getZ() + 10);
     }
 
     public static void updateState(BlockState state, Level level, BlockPos pos) {

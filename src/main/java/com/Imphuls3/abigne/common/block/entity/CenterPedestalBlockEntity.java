@@ -12,6 +12,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -23,20 +24,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CenterPedestalBlockEntity extends ModInventoryBlockEntity {
-    public ModInventory inventory;
+    public ModInventory inventory = new ModInventory(1, 64) {
+        @Override
+        public void onContentsChanged(int slot) {
+            super.onContentsChanged(slot);
+            BlockHelper.updateStateAndNeighbor(level, worldPosition);
+        }
+    };
+
     public CenterPedestalBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
     public CenterPedestalBlockEntity(BlockPos pos, BlockState state) {
         super(BlockEntityInit.RITUAL_PEDESTAL.get(), pos, state);
-        inventory = new ModInventory(1, 64) {
-            @Override
-            public void onContentsChanged(int slot) {
-                super.onContentsChanged(slot);
-                BlockHelper.updateStateAndNeighbor(level, worldPosition);
-            }
-        };
     }
 
     public void ritualActivate() {
@@ -87,12 +88,11 @@ public class CenterPedestalBlockEntity extends ModInventoryBlockEntity {
     }
 
     @Override
-    public void tick() {
-        if(!level.isClientSide()){
+    public void tick(Level level, BlockState state, BlockPos pos) {
+        if(!this.level.isClientSide()){
             ritualActivate();
         }
     }
-
 
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {

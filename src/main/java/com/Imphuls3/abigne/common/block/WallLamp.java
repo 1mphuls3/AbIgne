@@ -1,7 +1,7 @@
 package com.Imphuls3.abigne.common.block;
 
 import com.Imphuls3.abigne.common.block.entity.WallLampEntity;
-import com.Imphuls3.abigne.common.block.utils.ModWaterLoggableBlock;
+import com.Imphuls3.abigne.common.block.utils.ModBlock;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -14,7 +14,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-public class WallLamp extends ModWaterLoggableBlock<WallLampEntity> {
+public class WallLamp extends ModBlock<WallLampEntity> {
     public static final VoxelShape SHAPE = makeShape();
 
     public WallLamp(Properties properties) {

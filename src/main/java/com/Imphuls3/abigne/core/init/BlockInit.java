@@ -2,30 +2,39 @@ package com.Imphuls3.abigne.core.init;
 
 import com.Imphuls3.abigne.AbIgne;
 import com.Imphuls3.abigne.common.block.*;
-import com.Imphuls3.abigne.common.block.custom.BuddingIgnisBlock;
-import com.Imphuls3.abigne.common.block.custom.FullyRotatingPillarBlock;
-import com.Imphuls3.abigne.common.block.custom.IgnisClusterBlock;
-import com.Imphuls3.abigne.common.block.custom.ModFlammableRotatedPillarBlock;
+import com.Imphuls3.abigne.common.block.custom.*;
 import com.Imphuls3.abigne.common.block.pipe.PipeBlock;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.*;
 
+import java.util.function.ToIntFunction;
+
 public class BlockInit {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
-            AbIgne.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, AbIgne.MODID);
+
+    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
+        return (p_50763_) -> {
+            return p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
+        };
+    }
+
+    public static final RegistryObject<EnflamedAshBlock> ENFLAMED_ASH = BLOCKS.register("enflamed_ash", () -> new EnflamedAshBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().noCollission()));
+
+    public static final RegistryObject<Block> TORCH = BLOCKS.register("calming_torch", () -> new CalmingTorchBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)
+            .lightLevel(litBlockEmission(8))));
 
     public static final RegistryObject<Block> WALL = BLOCKS.register("wall_lamp", () -> new WallLamp(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
     public static final RegistryObject<Block> PIPE = BLOCKS.register("pipe", () -> new PipeBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
-    public static final RegistryObject<Block> PEDESTAL = BLOCKS.register("pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> BLACK_CALCITE_PEDESTAL = BLOCKS.register("black_calcite_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> INFUSED_WOOD_PEDESTAL = BLOCKS.register("infused_wood_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> SOUL_INFUSED_WOOD_PEDESTAL = BLOCKS.register("soul_infused_wood_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Block> TRANSPORTER = BLOCKS.register("transporter", () -> new ItemTransporterBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
@@ -48,53 +57,29 @@ public class BlockInit {
     public static final RegistryObject<Block> TEMPERED_BLOCK = BLOCKS.register("tempered_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
-    public static final RegistryObject<Block> EMBER_LOG = BLOCKS.register("ember_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> INFUSED_PLANKS = BLOCKS.register("infused_planks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-    public static final RegistryObject<Block> STRIPPED_EMBER_LOG = BLOCKS.register("stripped_ember_log",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> INFUSED_PLANKS_TILE = BLOCKS.register("infused_planks_tile",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-    public static final RegistryObject<Block> EMBER_WOOD = BLOCKS.register("ember_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> INFUSED_PLANKS_TILE_INDENT = BLOCKS.register("infused_planks_tile_indent",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-    public static final RegistryObject<Block> STRIPPED_EMBER_WOOD = BLOCKS.register("stripped_ember_wood",
-            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<FullyRotatingPillarBlock> INFUSED_PLANKS_PILLAR = BLOCKS.register("infused_planks_pillar",
+            () -> new FullyRotatingPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-    public static final RegistryObject<Block> EMBER_PLANKS = BLOCKS.register("ember_planks",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
-                @Override
-                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return true;
-                }
+    public static final RegistryObject<Block> SOUL_INFUSED_PLANKS = BLOCKS.register("soul_infused_planks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-                @Override
-                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return 20;
-                }
+    public static final RegistryObject<Block> SOUL_INFUSED_PLANKS_TILE = BLOCKS.register("soul_infused_planks_tile",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-                @Override
-                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return 5;
-                }
-            });
+    public static final RegistryObject<Block> SOUL_INFUSED_PLANKS_TILE_INDENT = BLOCKS.register("soul_infused_planks_tile_indent",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-    public static final RegistryObject<Block> EMBER_PLANKS_TILE = BLOCKS.register("ember_planks_tile",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)) {
-                @Override
-                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return true;
-                }
-
-                @Override
-                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return 20;
-                }
-
-                @Override
-                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return 5;
-                }
-            });
+    public static final RegistryObject<FullyRotatingPillarBlock> SOUL_INFUSED_PLANKS_PILLAR = BLOCKS.register("soul_infused_planks_pillar",
+            () -> new FullyRotatingPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Block> CHARRED_LOG = BLOCKS.register("charred_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
@@ -103,22 +88,7 @@ public class BlockInit {
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
 
     public static final RegistryObject<Block> CHARRED_PLANKS = BLOCKS.register("charred_planks",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)){
-                @Override
-                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return true;
-                }
-
-                @Override
-                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return 20;
-                }
-
-                @Override
-                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-                    return 5;
-                }
-            });
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Block> BLACK_CALCITE = BLOCKS.register("black_calcite",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.CALCITE)));
@@ -137,7 +107,6 @@ public class BlockInit {
 
     public static final RegistryObject<Block> BLACK_CALCITE_BRICKS = BLOCKS.register("black_calcite_bricks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)));
-
 
     public static final RegistryObject<Block> CHISELED_BLACK_CALCITE_BRICKS = BLOCKS.register("chiseled_black_calcite_bricks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.CHISELED_STONE_BRICKS)));

@@ -24,8 +24,8 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity
         if (!blockEntityIn.inventory.getStackInSlot(0).isEmpty()) {
             ItemStack stack = blockEntityIn.inventory.getStackInSlot(0);
             stackIn.pushPose();
-            float yDiff = Mth.sin((System.currentTimeMillis() % 86400000) / 1000F) * 0.1F + 0.1F;
-            stackIn.translate(0.5D, 1.2D + yDiff, 0.5D);
+            float yDiff = Mth.sin((System.currentTimeMillis() % 86400000) / 850F) * 0.1F + 0.1F;
+            stackIn.translate(0.5D, 1D + yDiff, 0.5D);
             stackIn.mulPose(Vector3f.YP.rotationDegrees((level.getGameTime()) * 3 + partialTicks));
             stackIn.scale(0.5F, 0.5F, 0.5F);
             Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLightIn, NO_OVERLAY, stackIn, bufferIn, 0);

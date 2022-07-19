@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "abigne:block/infused_planks",
+    "side": "abigne:block/infused_planks_pillar"
+  }
+}

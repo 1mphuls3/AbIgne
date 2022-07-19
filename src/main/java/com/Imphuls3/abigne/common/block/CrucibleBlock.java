@@ -1,7 +1,7 @@
 package com.Imphuls3.abigne.common.block;
 
 import com.Imphuls3.abigne.common.block.entity.CrucibleBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.ModWaterLoggableBlock;
+import com.Imphuls3.abigne.common.block.utils.ModBlock;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import com.Imphuls3.abigne.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
@@ -20,7 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
 
-public class CrucibleBlock extends ModWaterLoggableBlock<CrucibleBlockEntity> {
+public class CrucibleBlock extends ModBlock<CrucibleBlockEntity> {
     /*public static final VoxelShape SHAPE = makeShape();
     public static final VoxelShape RENDER_SHAPE = makeRenderShape();*/
 
@@ -49,7 +49,7 @@ public class CrucibleBlock extends ModWaterLoggableBlock<CrucibleBlockEntity> {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit)
     {
-        if (player.getItemInHand(handIn).getItem().equals(ItemInit.PYROLITE_SHARD.get()))
+        if (player.getItemInHand(handIn).getItem().equals(ItemInit.ASHES.get()))
         {
             if(player.getDirection() == Direction.NORTH){
                 level.setBlockAndUpdate(pos,state.setValue(HASPIPEN, !state.getValue(HASPIPEN)));

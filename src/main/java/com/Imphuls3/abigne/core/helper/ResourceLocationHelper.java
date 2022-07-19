@@ -5,6 +5,6 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ResourceLocationHelper {
     public static ResourceLocation prefix(String path) {
-        return new ResourceLocation(AbIgne.MOD_ID, path);
+        return new ResourceLocation(AbIgne.MODID, path);
     }
 }

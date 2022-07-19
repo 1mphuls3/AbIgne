@@ -169,6 +169,12 @@ repositories {
     maven {
         url 'https://maven.blamejared.com'
     }
+    maven {
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
+    maven {
+        url "https://maven.firstdarkdev.xyz/snapshots"
+    }
 }
 
 dependencies {
@@ -177,8 +183,9 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.18.2-40.0.18'
 
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    implementation fg.deobf("curse.maven:shimmer-627824:3808077")
+
+    implementation fg.deobf('software.bernie.geckolib:geckolib-1.18-forge:3.0.22')
 
     // compile against the JEI API but do not include it at runtime
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")

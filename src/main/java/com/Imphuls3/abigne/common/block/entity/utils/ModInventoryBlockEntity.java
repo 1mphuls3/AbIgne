@@ -1,6 +1,6 @@
 package com.Imphuls3.abigne.common.block.entity.utils;
 
-import com.Imphuls3.abigne.core.helper.DataHelper;
+import com.Imphuls3.abigne.core.helper.BlockHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -43,7 +43,7 @@ public class ModInventoryBlockEntity extends ModBlockEntity {
     //drops items when broken
     @Override
     public void onBreak() {
-        inv.dropItems(level, DataHelper.v3fromBlockPos(worldPosition).add(0.5f,0.5f,0.5f));
+        inv.dropItems(level, BlockHelper.v3fromBlockPos(worldPosition).add(0.5f,0.5f,0.5f));
     }
 
     @Override

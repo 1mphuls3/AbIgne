@@ -2,11 +2,7 @@ package com.Imphuls3.abigne.common.block.pipe;
 
 import com.Imphuls3.abigne.api.ignis.AbstractIgnisMachine;
 import com.Imphuls3.abigne.api.ignis.IIgnis;
-import com.Imphuls3.abigne.common.block.PedestalBlock;
-import com.Imphuls3.abigne.common.block.entity.PedestalBlockEntity;
-import com.Imphuls3.abigne.core.helper.BlockHelper;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
-import com.Imphuls3.abigne.core.init.BlockInit;
 import com.Imphuls3.abigne.core.init.ItemInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,12 +19,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 public class PipeBlockEntity extends AbstractIgnisMachine {
 
     public PipeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -40,9 +30,9 @@ public class PipeBlockEntity extends AbstractIgnisMachine {
     }
 
     int num = 0;
-    public void tick() {
+    public void tick(Level level, BlockState state, BlockPos pos) {
         for(Direction facing : Direction.values()){
-           BlockEntity blockEntity = level.getBlockEntity(this.getBlockPos().relative(facing));
+           BlockEntity blockEntity = this.level.getBlockEntity(this.getBlockPos().relative(facing));
            if(blockEntity instanceof PipeBlockEntity) {
                if(((PipeBlockEntity) blockEntity).canAcceptIgnis()){
                    this.transferIgnis(this, (PipeBlockEntity) blockEntity);

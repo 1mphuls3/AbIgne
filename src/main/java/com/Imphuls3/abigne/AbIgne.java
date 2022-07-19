@@ -1,7 +1,9 @@
 package com.Imphuls3.abigne;
 
 import com.Imphuls3.abigne.common.config.Config;
+import com.Imphuls3.abigne.common.entity.EntityInit;
 import com.Imphuls3.abigne.common.features.ModFeatures;
+import com.Imphuls3.abigne.common.recipe.RecipeInit;
 import com.Imphuls3.abigne.common.worldgen.ModWorldGen;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import com.Imphuls3.abigne.core.init.BlockInit;
@@ -20,11 +22,11 @@ import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-@Mod(AbIgne.MOD_ID)
+@Mod(AbIgne.MODID)
 public class AbIgne {
-    public static final String MOD_ID = "abigne";
+    public static final String MODID = "abigne";
 
-    public static CreativeModeTab itemGroup = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MOD_ID) {
+    public static CreativeModeTab itemGroup = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MODID) {
         @Override
         public ItemStack makeIcon() {
             return ItemInit.IGNIS_INGOT.get().getDefaultInstance();
@@ -39,6 +41,8 @@ public class AbIgne {
         BlockEntityInit.BE.register(bus);
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
+        RecipeInit.register(bus);
+        EntityInit.register(bus);
         Config.register();
 
         bus.addListener(this::sendImc);

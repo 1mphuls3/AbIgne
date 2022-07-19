@@ -1,0 +1,7 @@
+{
+    "parent": "abigne:block/enflamed_ash_up",
+    "textures": {
+        "particle": "abigne:block/enflamed_ash_dot_ignited",
+        "line": "abigne:block/enflamed_ash_line0_ignited"
+    }
+}

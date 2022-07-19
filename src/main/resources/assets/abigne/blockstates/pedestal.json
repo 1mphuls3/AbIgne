@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": {"model": "abigne:block/pedestals/pedestal"},
-    "facing=east": {"model": "abigne:block/pedestals/pedestal", "y": 90},
-    "facing=south": {"model": "abigne:block/pedestals/pedestal", "y": 180},
-    "facing=west": {"model": "abigne:block/pedestals/pedestal", "y": 270}
-  }
-}

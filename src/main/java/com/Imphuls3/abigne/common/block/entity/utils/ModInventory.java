@@ -1,6 +1,6 @@
 package com.Imphuls3.abigne.common.block.entity.utils;
 
-import com.Imphuls3.abigne.core.helper.DataHelper;
+import com.Imphuls3.abigne.core.helper.BlockHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -24,47 +24,44 @@ import java.util.stream.Collectors;
 
 public class ModInventory extends ItemStackHandler {
     public final int numSlots;
-    public final int numItems;
-    public Predicate<ItemStack> inPred;
-    public Predicate<ItemStack> outPred;
-    public final LazyOptional<IItemHandler> invOptional = LazyOptional.of(() -> this);
-
+    public final int itemCount;
+    
     public ArrayList<Item> items = new ArrayList<>();
-    public ArrayList<ItemStack> nonEmptyStacks = new ArrayList<>();
-    public int emptyItemAmount;
-    public int nonEmptyItemAmount;
-    public int firstEmptyIndex;
+    public ArrayList<ItemStack> itemStacks = new ArrayList<>();
+    
+    public Predicate<ItemStack> inPredicate;
+    public Predicate<ItemStack> outPredicate;
 
-    public ModInventory(int numSlots, int numItems) {
+    public int firstEmptyIndex;
+    
+    public final LazyOptional<IItemHandler> invOptional = LazyOptional.of(() -> this);
+    
+    public ModInventory(int numSlots, int itemCount) {
         super(numSlots);
         this.numSlots = numSlots;
-        this.numItems = numItems;
+        this.itemCount = itemCount;
         update();
     }
 
-
-
-    public ModInventory(int numSlots, int numItems, Predicate<ItemStack> inPred) {
-        this(numSlots, numItems);
-        this.inPred = inPred;
+    public ModInventory(int numSlots, int itemCount, Predicate<ItemStack> inputPred) {
+        this(numSlots, itemCount);
+        this.inPredicate = inputPred;
     }
 
-    public ModInventory(int numSlots, int numItems, Predicate<ItemStack> inPred, Predicate<ItemStack> outPred) {
-        this(numSlots, numItems, inPred);
-        this.outPred = outPred;
+    public ModInventory(int numSlots, int itemCount, Predicate<ItemStack> inputPred, Predicate<ItemStack> outputPred) {
+        this(numSlots, itemCount, inputPred);
+        this.outPredicate = outputPred;
+    }
+
+    public void update() {
+        items = getItems();
+        itemStacks = getNonEmptyItemStacks();
+        firstEmptyIndex = getfirstEmptyIndex();
     }
 
     @Override
     public void onContentsChanged(int slot) {
         update();
-    }
-
-    public void update() {
-        items = getItems();
-        nonEmptyStacks = getNonEmptyItemStacks();
-        emptyItemAmount = getEmptyItemCount();
-        nonEmptyItemAmount = getNonEmptyItemCount();
-        firstEmptyIndex = getfirstEmptyIndex();
     }
 
     @Override
@@ -74,13 +71,13 @@ public class ModInventory extends ItemStackHandler {
 
     @Override
     public int getSlotLimit(int slot) {
-        return numItems;
+        return itemCount;
     }
 
     @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-        if (inPred != null) {
-            if (!inPred.test(stack)) {
+        if (inPredicate != null) {
+            if (!inPredicate.test(stack)) {
                 return false;
             }
         }
@@ -100,24 +97,12 @@ public class ModInventory extends ItemStackHandler {
         return stacks;
     }
 
-    public int getNonEmptyItemCount() {
-        return (int) getStacks().stream().filter(stack -> !stack.isEmpty()).count();
-    }
-
-    public int getEmptyItemCount() {
-        return (int) getStacks().stream().filter(ItemStack::isEmpty).count();
-    }
-
     public ArrayList<ItemStack> getNonEmptyItemStacks() {
         return getStacks().stream().filter(stack -> !stack.isEmpty()).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Item> getItems() {
         return getStacks().stream().map(ItemStack::getItem).collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public ArrayList<Item> getNonEmptyItemAmount() {
-        return getNonEmptyItemStacks().stream().map(ItemStack::getItem).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public void clear() {
@@ -127,7 +112,7 @@ public class ModInventory extends ItemStackHandler {
     }
 
     public void dropItems(Level level, BlockPos pos) {
-        dropItems(level, DataHelper.v3fromBlockPos(pos).add(0.5, 0.5, 0.5));
+        dropItems(level, BlockHelper.v3fromBlockPos(pos).add(0.5, 0.5, 0.5));
     }
 
     public void dropItems(Level level, Vec3 pos) {
@@ -142,10 +127,10 @@ public class ModInventory extends ItemStackHandler {
     public ItemStack invInteract(Level level, Player player, InteractionHand hand) {
         ItemStack held = player.getItemInHand(hand);
         player.swing(hand, true);
-        int size = nonEmptyStacks.size() - 1;
+        int size = itemStacks.size() - 1;
         if ((held.isEmpty() || firstEmptyIndex == -1) && size != -1) {
-            ItemStack removeStack = nonEmptyStacks.get(size);
-            if (removeStack.getItem().equals(held.getItem())) {
+            ItemStack removeStack = itemStacks.get(size);
+            if (removeStack.getItem().equals(held.getItem()) && !player.isCrouching()) {
                 return insertItem(level, held);
             }
             ItemStack extractedStack = extractItem(level, held, player);
@@ -160,7 +145,7 @@ public class ModInventory extends ItemStackHandler {
 
     public ItemStack extractItem(Level level, ItemStack held, Player player) {
         if (!level.isClientSide) {
-            List<ItemStack> nonEmptyStacks = this.nonEmptyStacks;
+            List<ItemStack> nonEmptyStacks = this.itemStacks;
             if (nonEmptyStacks.isEmpty()) {
                 return held;
             }
@@ -175,12 +160,11 @@ public class ModInventory extends ItemStackHandler {
         return ItemStack.EMPTY;
     }
 
-
     @Nonnull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        if (outPred != null) {
-            if (!outPred.test(super.extractItem(slot, amount, true))) {
+        if (outPredicate != null) {
+            if (!outPredicate.test(super.extractItem(slot, amount, true))) {
                 return ItemStack.EMPTY;
             }
         }
@@ -200,8 +184,8 @@ public class ModInventory extends ItemStackHandler {
                     return ItemStack.EMPTY;
                 }
                 int count = stack.getCount() - simulate.getCount();
-                if (count > numItems) {
-                    count = numItems;
+                if (count > itemCount) {
+                    count = itemCount;
                 }
                 ItemStack input = stack.split(count);
                 insertItem(input, false);

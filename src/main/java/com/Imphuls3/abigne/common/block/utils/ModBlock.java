@@ -30,28 +30,26 @@ public class ModBlock<T extends BlockEntity> extends Block implements EntityBloc
     }
 
     public ModBlock<T> setBlockEntity(Supplier<BlockEntityType<T>> type) {
-        this.ticker = (l, p, s, t) -> ((ModBlockEntity)t).tick();
+        this.ticker = (l, p, s, t) -> ((ModBlockEntity)t).tick(l, s, p);
         this.blockEntityType = type;
         return this;
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return hasBlockEntity(state) ? blockEntityType.get().create(pos, state) : null;
+        if(isBlockEntity(state)){
+            return blockEntityType.get().create(pos, state);
+        }
+        return null;
     }
 
-    public boolean hasBlockEntity(BlockState state) {
+    public boolean isBlockEntity(BlockState state) {
         return this.blockEntityType != null;
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return (BlockEntityTicker<T>) ticker;
-    }
-
-    @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        if (hasBlockEntity(state)) {
+        if (isBlockEntity(state)) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof ModBlockEntity simpleBlockEntity) {
                 simpleBlockEntity.onPlace(placer, stack);
@@ -62,10 +60,10 @@ public class ModBlock<T extends BlockEntity> extends Block implements EntityBloc
 
     @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
-        if (hasBlockEntity(state)) {
+        if (isBlockEntity(state)) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof ModBlockEntity modBE) {
-                ItemStack stack = modBE.onClone(state, target, world, pos, player);
+            if (blockEntity instanceof ModBlockEntity modBlockEntity) {
+                ItemStack stack = modBlockEntity.onClone(state, target, world, pos, player);
                 if (!stack.isEmpty())
                 {
                     return stack;
@@ -88,22 +86,28 @@ public class ModBlock<T extends BlockEntity> extends Block implements EntityBloc
     }
 
     public void onBlockBroken(BlockState state, BlockGetter level, BlockPos pos) {
-        if (hasBlockEntity(state)) {
+        if (isBlockEntity(state)) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof ModBlockEntity modBE) {
-                modBE.onBreak();
+            if (blockEntity instanceof ModBlockEntity modBlockEntity) {
+                modBlockEntity.onBreak();
             }
         }
     }
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult ray) {
-        if (hasBlockEntity(state)) {
+        if (isBlockEntity(state)) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof ModBlockEntity modBE) {
-                return modBE.onUse(player, hand);
+            if (blockEntity instanceof ModBlockEntity modBlockEntity) {
+                return modBlockEntity.onUse(player, hand);
             }
         }
         return super.use(state, level, pos, player, hand, ray);
+    }
+
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return (BlockEntityTicker<T>) ticker;
     }
 }

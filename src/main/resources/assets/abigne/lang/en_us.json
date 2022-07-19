@@ -41,18 +41,9 @@
   "item.abigne.ignis_nugget": "Ignis Nugget",
 
   "item.abigne.ashes": "Ashes",
-  "block.abigne.ashen_bricks_soft": "Ashen Bricks",
-  "block.abigne.ashen_bricks_hard": "Ashen Bricks (Hard)",
-  "block.abigne.ashen_bricks_small": "Ashen Bricks (Small)",
-  "block.abigne.ashen_tile": "Ashen Tile",
-  "block.abigne.ashen_tile_small": "Ashen Tile (Small)",
-  "block.abigne.ashen_tile_tiny": "Ashen Tile (Tiny)",
 
-  "block.abigne.ember_log": "Emberwood Log",
-  "block.abigne.stripped_ember_log": "Stripped Emberwood Log",
-  "block.abigne.ember_wood": "Emberwood",
-  "block.abigne.stripped_ember_wood": "Stripped Emberwood",
-  "block.abigne.ember_planks": "Emberwood Planks",
+  "block.abigne.infused_planks": "Infused Planks",
+  "block.abigne.infused_planks_tile": "Infused Planks Tile",
 
   "block.abigne.charred_log": "Charred Log",
   "block.abigne.charred_wood": "Charred Wood",
