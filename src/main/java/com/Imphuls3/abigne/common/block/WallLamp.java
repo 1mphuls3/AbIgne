@@ -20,6 +20,7 @@ public class WallLamp extends ModBlock<WallLampEntity> {
     public WallLamp(Properties properties) {
         super(properties);
         setBlockEntity(BlockEntityInit.WALL);
+        this.registerDefaultState(this.stateDefinition.any());
     }
 
     @Override

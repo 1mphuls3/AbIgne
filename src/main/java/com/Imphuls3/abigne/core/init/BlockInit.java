@@ -40,7 +40,7 @@ public class BlockInit {
 
     public static final RegistryObject<Block> CRUCIBLE = BLOCKS.register("crucible", () -> new CrucibleBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
-    public static final RegistryObject<Block> INFUSER = BLOCKS.register("infuser", () -> new InfuserBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> INFUSER = BLOCKS.register("infuser", () -> new InfuserBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
 
     public static final RegistryObject<Block> VOID = BLOCKS.register("void", () -> new IgnisVoidBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
@@ -63,6 +63,9 @@ public class BlockInit {
     public static final RegistryObject<Block> INFUSED_PLANKS_TILE = BLOCKS.register("infused_planks_tile",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
+    public static final RegistryObject<Block> INFUSED_PLANKS_TILE2 = BLOCKS.register("infused_planks_tile_2",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+
     public static final RegistryObject<Block> INFUSED_PLANKS_TILE_INDENT = BLOCKS.register("infused_planks_tile_indent",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
@@ -73,6 +76,9 @@ public class BlockInit {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Block> SOUL_INFUSED_PLANKS_TILE = BLOCKS.register("soul_infused_planks_tile",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+
+    public static final RegistryObject<Block> SOUL_INFUSED_PLANKS_TILE_2 = BLOCKS.register("soul_infused_planks_tile_2",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Block> SOUL_INFUSED_PLANKS_TILE_INDENT = BLOCKS.register("soul_infused_planks_tile_indent",

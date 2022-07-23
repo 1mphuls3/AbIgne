@@ -1,6 +1,9 @@
 package com.Imphuls3.abigne.client.renderer.block;
 
+import com.Imphuls3.abigne.client.postprocess.ModPostProcessing;
 import com.Imphuls3.abigne.common.block.entity.PedestalBlockEntity;
+import com.lowdragmc.shimmer.client.postprocessing.PostProcessing;
+import com.lowdragmc.shimmer.client.shader.RenderUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -28,7 +31,13 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalBlockEntity
             stackIn.translate(0.5D, 1D + yDiff, 0.5D);
             stackIn.mulPose(Vector3f.YP.rotationDegrees((level.getGameTime()) * 3 + partialTicks));
             stackIn.scale(0.5F, 0.5F, 0.5F);
-            Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLightIn, NO_OVERLAY, stackIn, bufferIn, 0);
+
+            PostProcessing effect = PostProcessing.VHS;
+
+            PoseStack finalStack = RenderUtils.copyPoseStack(stackIn);
+            effect.postEntity(buffer -> {
+                Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.FIXED, combinedLightIn, NO_OVERLAY, finalStack, buffer, 0);
+            });
             stackIn.popPose();
         }
     }

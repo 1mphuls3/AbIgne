@@ -2,15 +2,19 @@ package com.Imphuls3.abigne.client.event;
 
 import com.Imphuls3.abigne.AbIgne;
 import com.Imphuls3.abigne.client.renderer.block.*;
+import com.Imphuls3.abigne.common.block.WallLamp;
 import com.Imphuls3.abigne.common.entity.renderer.ModFireballProjectileRenderer;
 import com.Imphuls3.abigne.common.entity.renderer.SoulEntityRenderer;
 import com.Imphuls3.abigne.common.entity.EntityInit;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import com.Imphuls3.abigne.core.init.BlockInit;
+import com.lowdragmc.shimmer.client.light.ColorPointLight;
+import com.lowdragmc.shimmer.client.light.LightManager;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -57,7 +61,7 @@ public final class ClientModEvents {
     public static void EntityRenderersEvent$RegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityInit.PEDESTAL.get(), PedestalRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.CRUCIBLE.get(), CrucibleRenderer::new);
-        event.registerBlockEntityRenderer(BlockEntityInit.INFUSER.get(), TextureImageRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityInit.INFUSER.get(), TextureRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.RITUAL_PEDESTAL.get(), RitualRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.WALL.get(), WallLampRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityInit.PIPE.get(), PipeRenderer::new);
@@ -67,7 +71,7 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void onTextureStitch(TextureStitchEvent.Pre event) {
         if (event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
-            event.addSprite(TextureImageRenderer.HALO);
+            event.addSprite(TextureRenderer.HALO);
         }
     }
 }

@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": {"model": "abigne:block/pedestals/infused_planks_pedestal"}
+    "": {"model": "abigne:block/invisible_block"}
   }
 }

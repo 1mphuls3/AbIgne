@@ -28,8 +28,8 @@ public class FireBallCaster extends Item {
         ItemStack stack = player.getItemInHand(hand);
         if (!player.swinging) {
             if (!level.isClientSide) {
-                Vec3 pos = player.position().add(player.getLookAngle().scale(0.5)).add(0.5 * Math.sin(Math.toRadians(225 - player.yHeadRot)), player.getBbHeight() * 2 / 3, 0.5 * Math.cos(Math.toRadians(225 - player.yHeadRot)));
-                Vec3 vel = player.getEyePosition(0).add(player.getLookAngle().scale(40)).subtract(pos).scale(1.0 / 20);
+                Vec3 pos = player.position();/*.add(player.getLookAngle().scale(0.5)).add(0.5 * Math.sin(Math.toRadians(225 - player.yHeadRot)), player.getBbHeight() * 2 / 3, 0.5 * Math.cos(Math.toRadians(225 - player.yHeadRot)));
+                */Vec3 vel = player.getEyePosition(0).add(player.getLookAngle().scale(40)).subtract(pos).scale(1.0 / 20);
                 level.addFreshEntity(new ModFireballProjectileEntity(EntityInit.FIREBALL.get(), level).shoot(
                         pos.x, pos.y, pos.z, vel.x, vel.y, vel.z, player.getUUID(), false
                 ));

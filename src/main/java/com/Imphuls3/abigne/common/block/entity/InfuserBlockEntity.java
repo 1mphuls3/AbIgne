@@ -4,6 +4,7 @@ import com.Imphuls3.abigne.api.ignis.AbstractIgnisMachine;
 import com.Imphuls3.abigne.common.block.entity.utils.ModInventory;
 import com.Imphuls3.abigne.common.item.util.ModTags;
 import com.Imphuls3.abigne.core.helper.BlockHelper;
+import com.Imphuls3.abigne.core.helper.NBTHelper;
 import com.Imphuls3.abigne.core.init.BlockEntityInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,6 +21,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 
 public class InfuserBlockEntity extends AbstractIgnisMachine {
     int maxIgnis = 10000;
@@ -88,13 +90,49 @@ public class InfuserBlockEntity extends AbstractIgnisMachine {
     public void saveAdditional(CompoundTag nbt) {
         inventory.save(nbt, "inventory");
         catalystInv.save(nbt, "catalysts");
+        nbt.putFloat("alpha", alpha);
+        nbt.putFloat("red", red);
+        nbt.putFloat("green", green);
+        nbt.putFloat("blue", blue);
+        nbt.putFloat("scale", scale);
         super.saveAdditional(nbt);
+    }
+
+    float alpha = 0.9f;
+    float red = 1f;
+    float green = 0.1f;
+    float blue = 0.1f;
+    float scale = 2f;
+
+    public float getAlpha() {
+        return alpha;
+    }
+
+    public float getRed() {
+        return red;
+    }
+
+    public float getGreen() {
+        return green;
+    }
+
+    public float getBlue() {
+        return blue;
+    }
+
+    public float getScale(){
+        return scale;
     }
 
     @Override
     public void load(CompoundTag nbt) {
         inventory.load(nbt, "inventory");
         catalystInv.load(nbt, "catalysts");
+        alpha = nbt.getFloat("alpha");
+        red = nbt.getFloat("red");
+        green = nbt.getFloat("green");
+        blue = nbt.getFloat("blue");
+        scale = nbt.getFloat("scale");
         super.load(nbt);
     }
 

@@ -107,6 +107,9 @@ public class ItemInit {
     public static final RegistryObject<BlockItem> INFUSED_PLANKS_TILE = ITEMS.register("infused_planks_tile",
             () -> new BlockItem(BlockInit.INFUSED_PLANKS_TILE.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
+    public static final RegistryObject<BlockItem> INFUSED_PLANKS_TILE2 = ITEMS.register("infused_planks_tile_2",
+            () -> new BlockItem(BlockInit.INFUSED_PLANKS_TILE2.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+
     public static final RegistryObject<BlockItem> INFUSED_PLANKS_TILE_INDENT = ITEMS.register("infused_planks_tile_indent",
             () -> new BlockItem(BlockInit.INFUSED_PLANKS_TILE_INDENT.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
@@ -118,6 +121,9 @@ public class ItemInit {
 
     public static final RegistryObject<BlockItem> SOUL_INFUSED_PLANKS_TILE = ITEMS.register("soul_infused_planks_tile",
             () -> new BlockItem(BlockInit.SOUL_INFUSED_PLANKS_TILE.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+
+    public static final RegistryObject<BlockItem> SOUL_INFUSED_PLANKS_TILE_2 = ITEMS.register("soul_infused_planks_tile_2",
+            () -> new BlockItem(BlockInit.SOUL_INFUSED_PLANKS_TILE_2.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
     public static final RegistryObject<BlockItem> SOUL_INFUSED_PLANKS_TILE_INDENT = ITEMS.register("soul_infused_planks_tile_indent",
             () -> new BlockItem(BlockInit.SOUL_INFUSED_PLANKS_TILE_INDENT.get(), new Item.Properties().tab(AbIgne.itemGroup)));

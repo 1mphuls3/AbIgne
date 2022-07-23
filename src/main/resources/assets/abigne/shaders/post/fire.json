@@ -1,0 +1,14 @@
+{
+  "targets": [
+  ],
+  "passes": [
+    {
+      "name": "abigne:fire",
+      "intarget": "minecraft:main",
+      "outtarget": "shimmer:output",
+      "auxtargets": [
+        {"id":"shimmer:input", "name":"WarpImage"}
+      ]
+    }
+  ]
+}

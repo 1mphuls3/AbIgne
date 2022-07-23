@@ -162,7 +162,7 @@ public class ItemTransporterBlockEntity extends AbstractIgnisMachine {
         CompoundTag boundTag = nbt.getCompound("bound");
         BlockPos pos = NBTHelper.loadBlockPos(boundTag);
         if (level.getBlockEntity(pos) instanceof ItemTransporterBlockEntity) {
-            NBTHelper.saveBlockPos(boundTag, pos);
+            NBTHelper.loadBlockPos(boundTag);
             boundPos = pos;
             updateBound();
         }

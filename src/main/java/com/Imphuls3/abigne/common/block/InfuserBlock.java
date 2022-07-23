@@ -25,11 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.stream.Stream;
 
 public class InfuserBlock extends ModBlock {
-    public static final VoxelShape SHAPE = Stream.of(
-            Block.box(4, 0, 4, 12, 2, 12),
-            Block.box(4, 10, 4, 12, 12, 12),
-            Block.box(5, 2, 5, 11, 10, 11)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 0.25D, 13.0D);
 
     public InfuserBlock(Properties properties) {
         super(properties);

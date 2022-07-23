@@ -1,6 +1,5 @@
 package com.Imphuls3.abigne.common.item;
 
-import com.Imphuls3.abigne.client.screen.book.BookScreen;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -14,11 +13,9 @@ public class PhilosophiaItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
-    {
-        if (level.isClientSide)
-        {
-            BookScreen.openScreen(true);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        if (level.isClientSide) {
+            /*BookScreen.openScreen(true);*/
             player.swing(hand);
             return InteractionResultHolder.success(player.getItemInHand(hand));
         }

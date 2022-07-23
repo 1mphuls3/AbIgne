@@ -20,6 +20,7 @@ import net.minecraft.world.phys.Vec3;
 public class ModFireballProjectileEntity extends SpellProjectileEntity {
     public ModFireballProjectileEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
+        this.setNoGravity(true);
     }
 
     @Override
