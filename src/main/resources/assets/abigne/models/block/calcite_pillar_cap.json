@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "abigne:block/polished_calcite",
+    "side": "abigne:block/calcite_pillar_cap"
+  }
+}

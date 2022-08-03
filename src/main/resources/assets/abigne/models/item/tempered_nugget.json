@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "abigne:item/tempered_nugget"
-  }
-}

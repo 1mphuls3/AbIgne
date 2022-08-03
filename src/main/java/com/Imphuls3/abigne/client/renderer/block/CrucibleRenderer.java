@@ -1,6 +1,6 @@
 package com.Imphuls3.abigne.client.renderer.block;
 
-import com.Imphuls3.abigne.common.block.entity.CrucibleBlockEntity;
+import com.Imphuls3.abigne.common.blockentity.CrucibleBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;

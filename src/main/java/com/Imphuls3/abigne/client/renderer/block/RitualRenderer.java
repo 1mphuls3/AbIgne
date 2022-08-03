@@ -1,10 +1,6 @@
 package com.Imphuls3.abigne.client.renderer.block;
 
-import com.Imphuls3.abigne.common.block.entity.CenterPedestalBlockEntity;
-import com.Imphuls3.abigne.common.block.entity.CrucibleBlockEntity;
-import com.Imphuls3.abigne.common.block.entity.PedestalBlockEntity;
-import com.Imphuls3.abigne.common.ritual.Ritual;
-import com.Imphuls3.abigne.core.init.BlockInit;
+import com.Imphuls3.abigne.common.blockentity.CenterPedestalBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -15,12 +11,9 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.EmptyModelData;
-import net.minecraftforge.common.Tags;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 

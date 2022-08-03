@@ -1,7 +1,7 @@
 package com.Imphuls3.abigne.client.event;
 
 import com.Imphuls3.abigne.AbIgne;
-import com.Imphuls3.abigne.common.entity.EntityInit;
+import com.Imphuls3.abigne.core.registry.common.EntityRegistration;
 import com.Imphuls3.abigne.common.entity.SoulEntity;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -30,6 +30,6 @@ public class ModEventBus {
 
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
-        event.put(EntityInit.SOUL.get(), SoulEntity.setAttributes());
+        event.put(EntityRegistration.SOUL.get(), SoulEntity.setAttributes());
     }
 }

@@ -47,5 +47,13 @@
 
   "block.abigne.charred_log": "Charred Log",
   "block.abigne.charred_wood": "Charred Wood",
-  "block.abigne.charred_planks": "Charred Planks"
+  "block.abigne.charred_planks": "Charred Planks",
+
+  "death.attack.bleed": "%1$s bled to death",
+  "death.attack.bleed.player": "%2$s gave %1$s too many wounds",
+
+  "effect.abigne.bleed": "Bleed",
+  "item.minecraft.potion.effect.bleed_potion": "Potion of Bleed",
+  "item.minecraft.splash_potion.effect.bleed_potion": "Splash Potion of Bleed",
+  "item.minecraft.lingering_potion.effect.bleed_potion": "Lingering Potion of Bleed"
 }

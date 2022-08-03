@@ -1,18 +1,10 @@
 package com.Imphuls3.abigne.common.entity.ai;
 
 import com.Imphuls3.abigne.common.block.InfuserBlock;
-import com.Imphuls3.abigne.common.block.entity.InfuserBlockEntity;
-import com.Imphuls3.abigne.common.entity.SoulEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.phys.Vec3;
 
 public class SoulRechargeGoal extends MoveToBlockGoal {
     PathfinderMob mob;

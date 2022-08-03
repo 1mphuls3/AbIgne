@@ -1,9 +1,9 @@
 package com.Imphuls3.abigne.common.entity;
 
-import com.Imphuls3.abigne.core.helper.BlockHelper;
+import com.Imphuls3.abigne.core.helper.VecHelper;
+import com.Imphuls3.abigne.core.systems.spell.SpellProjectileEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -13,7 +13,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
@@ -48,7 +47,7 @@ public class ModFireballProjectileEntity extends SpellProjectileEntity {
         removeAfterChangingDimensions();
         if (!level.isClientSide) {
             Vec3 pos = ray.getLocation();
-            BlockPos bp = BlockHelper.blockPosfromVec3(pos);
+            BlockPos bp = VecHelper.blockPosfromVec3(pos);
             if(level.getBlockState(bp).getBlock() instanceof AirBlock) {
                 level.setBlock(bp, Blocks.FIRE.defaultBlockState(), 2);
                 level.playSound(null, pos.x, pos.y, pos.z, SoundEvents.FIRECHARGE_USE, SoundSource.NEUTRAL, 0.6f, random.nextFloat() * 0.2f + 0.9f);

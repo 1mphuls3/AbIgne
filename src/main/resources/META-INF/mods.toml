@@ -29,12 +29,12 @@ displayURL="https://github.com/1mphuls3/AbIgne" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits="Huge thanks to Modding by Kaupenjoe for making amazing YouTube tutorials that helped me a ton!" #optional
+credits="" #optional
 # A text field displayed in the mod UI
 authors="1mphuls3" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Ab Igne is a fire based magic mod. Create cool spells, armor, and machines to automate resources and defeat new bosses.
+Ab Igne is a fire magic mod. Build machines to automate resources and create new materials. Create spells and armor to traverse dungeons and fight off bosses.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.abigne]] #optional

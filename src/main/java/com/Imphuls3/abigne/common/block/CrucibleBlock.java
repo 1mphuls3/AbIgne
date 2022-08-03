@@ -1,12 +1,11 @@
 package com.Imphuls3.abigne.common.block;
 
-import com.Imphuls3.abigne.common.block.entity.CrucibleBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.ModBlock;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
-import com.Imphuls3.abigne.core.init.ItemInit;
+import com.Imphuls3.abigne.common.blockentity.CrucibleBlockEntity;
+import com.Imphuls3.abigne.core.systems.block.AbIgneBlock;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
+import com.Imphuls3.abigne.core.registry.common.ItemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -18,9 +17,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-import java.util.Random;
-
-public class CrucibleBlock extends ModBlock<CrucibleBlockEntity> {
+public class CrucibleBlock extends AbIgneBlock<CrucibleBlockEntity> {
     /*public static final VoxelShape SHAPE = makeShape();
     public static final VoxelShape RENDER_SHAPE = makeRenderShape();*/
 
@@ -31,7 +28,7 @@ public class CrucibleBlock extends ModBlock<CrucibleBlockEntity> {
 
     public CrucibleBlock(Properties properties) {
         super(properties);
-        setBlockEntity(BlockEntityInit.CRUCIBLE);
+        setBlockEntity(BlockEntityRegistry.CRUCIBLE);
         this.registerDefaultState(this.getStateDefinition().any().setValue(HASPIPEN, false).setValue(HASPIPEE, false).setValue(HASPIPES, false).setValue(HASPIPEW, false));
     }
 
@@ -49,7 +46,7 @@ public class CrucibleBlock extends ModBlock<CrucibleBlockEntity> {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit)
     {
-        if (player.getItemInHand(handIn).getItem().equals(ItemInit.ASHES.get()))
+        if (player.getItemInHand(handIn).getItem().equals(ItemRegistry.PYROLITE_SHARD_ACTIVE.get()))
         {
             if(player.getDirection() == Direction.NORTH){
                 level.setBlockAndUpdate(pos,state.setValue(HASPIPEN, !state.getValue(HASPIPEN)));

@@ -1,7 +1,7 @@
 package com.Imphuls3.abigne.common.block.pipe;
 
-import com.Imphuls3.abigne.common.block.utils.ModBlock;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
+import com.Imphuls3.abigne.core.systems.block.AbIgneBlock;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -19,7 +19,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nonnull;
 
-public class PipeBlock extends ModBlock<PipeBlockEntity> {
+public class PipeBlock extends AbIgneBlock<PipeBlockEntity> {
     private static final VoxelShape CENTER_SHAPE = Shapes.box(0.3125, 0.3125, 0.3125, 0.6875, 0.6875, 0.6875);
 
     private static final VoxelShape DOWN_SHAPE = Shapes.box(0.3125, 0, 0.3125, 0.6875, 0.6875, 0.6875);
@@ -48,7 +48,7 @@ public class PipeBlock extends ModBlock<PipeBlockEntity> {
 
     public PipeBlock(Properties properties) {
         super(properties);
-        setBlockEntity(BlockEntityInit.PIPE);
+        setBlockEntity(BlockEntityRegistry.PIPE);
         registerDefaultState(defaultBlockState()
                 .setValue(DOWN, false).setValue(UP, false)
                 .setValue(NORTH, false).setValue(SOUTH, false)

@@ -1,8 +1,8 @@
 package com.Imphuls3.abigne.common.block;
 
-import com.Imphuls3.abigne.common.block.entity.ItemTransporterBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.ModBlock;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
+import com.Imphuls3.abigne.common.blockentity.ItemTransporterBlockEntity;
+import com.Imphuls3.abigne.core.systems.block.AbIgneBlock;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +14,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-public class ItemTransporterBlock extends ModBlock<ItemTransporterBlockEntity> {
+public class ItemTransporterBlock extends AbIgneBlock<ItemTransporterBlockEntity> {
 
     public static final VoxelShape SHAPE = Stream.of(
             Block.box(4, 0, 4, 12, 4, 12),
@@ -25,7 +25,7 @@ public class ItemTransporterBlock extends ModBlock<ItemTransporterBlockEntity> {
     public ItemTransporterBlock(Properties properties)
     {
         super(properties);
-        setBlockEntity(BlockEntityInit.TRANSPORTER);
+        setBlockEntity(BlockEntityRegistry.TRANSPORTER);
     }
 
     @Override

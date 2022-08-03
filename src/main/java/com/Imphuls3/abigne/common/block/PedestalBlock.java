@@ -1,8 +1,8 @@
 package com.Imphuls3.abigne.common.block;
 
-import com.Imphuls3.abigne.common.block.entity.PedestalBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.ModBlock;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
+import com.Imphuls3.abigne.common.blockentity.PedestalBlockEntity;
+import com.Imphuls3.abigne.core.systems.block.AbIgneBlock;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +14,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-public class PedestalBlock extends ModBlock<PedestalBlockEntity> {
+public class PedestalBlock extends AbIgneBlock<PedestalBlockEntity> {
     public static final VoxelShape SHAPE = Stream.of(
             Block.box(4, 0, 4, 12, 2, 12),
             Block.box(4, 10, 4, 12, 12, 12),
@@ -23,7 +23,7 @@ public class PedestalBlock extends ModBlock<PedestalBlockEntity> {
 
     public PedestalBlock(Properties properties) {
         super(properties);
-        setBlockEntity(BlockEntityInit.PEDESTAL);
+        setBlockEntity(BlockEntityRegistry.PEDESTAL);
     }
 
     @Override

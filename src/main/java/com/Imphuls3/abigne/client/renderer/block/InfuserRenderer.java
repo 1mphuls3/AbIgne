@@ -1,26 +1,16 @@
 package com.Imphuls3.abigne.client.renderer.block;
 
-import com.Imphuls3.abigne.AbIgne;
-import com.Imphuls3.abigne.client.renderer.CustomRenderType;
-import com.Imphuls3.abigne.common.block.entity.InfuserBlockEntity;
+import com.Imphuls3.abigne.common.blockentity.InfuserBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Rotation;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 

@@ -1,9 +1,6 @@
 package com.Imphuls3.abigne.common.item.wand;
 
-import com.Imphuls3.abigne.api.ignis.AbstractWandPart;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.Imphuls3.abigne.core.systems.ignis.AbstractWandPart;
 
 public class WandPart extends AbstractWandPart {
     int tier;

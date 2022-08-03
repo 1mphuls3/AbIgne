@@ -24,21 +24,6 @@ public class BlockHelper {
     }
 
     /**
-     * Returns a new Vec3 from a Block Pos
-     * */
-    public static Vec3 v3fromBlockPos(BlockPos pos) {
-        return new Vec3(pos.getX(), pos.getY(), pos.getZ());
-    }
-
-
-    /**
-    * Returns a new BlockPos from a Vec3
-    * */
-    public static BlockPos blockPosfromVec3(Vec3 pos) {
-        return new BlockPos(pos.x(), pos.y(), pos.z());
-    }
-
-    /**
      * Returns a list of block entities within a certain AABB
      * */
     public static <T> List<T> getBlockEntitiesWithinAABB(Class<T> type, Level level, AABB bounds) {

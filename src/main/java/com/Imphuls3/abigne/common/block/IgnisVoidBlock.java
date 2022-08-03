@@ -1,13 +1,13 @@
 package com.Imphuls3.abigne.common.block;
 
-import com.Imphuls3.abigne.common.block.entity.IgnisVoidBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.ModBlock;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
+import com.Imphuls3.abigne.common.blockentity.IgnisVoidBlockEntity;
+import com.Imphuls3.abigne.core.systems.block.AbIgneBlock;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
 
-public class IgnisVoidBlock extends ModBlock<IgnisVoidBlockEntity> {
+public class IgnisVoidBlock extends AbIgneBlock<IgnisVoidBlockEntity> {
     public IgnisVoidBlock(Properties properties)
     {
         super(properties);
-        setBlockEntity(BlockEntityInit.VOID);
+        setBlockEntity(BlockEntityRegistry.VOID);
     }
 }

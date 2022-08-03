@@ -4,7 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.core.processor.IBone;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-import static com.Imphuls3.abigne.core.helper.ResourceLocationHelper.prefix;
+import static com.Imphuls3.abigne.AbIgne.prefix;
 
 public class SoulModel extends AnimatedGeoModel<SoulEntity> {
     @Override
@@ -24,6 +24,6 @@ public class SoulModel extends AnimatedGeoModel<SoulEntity> {
 
     @Override
     public ResourceLocation getAnimationFileLocation(SoulEntity animatable) {
-        return prefix("animations/soul.idle.json");
+        return null;
     }
 }

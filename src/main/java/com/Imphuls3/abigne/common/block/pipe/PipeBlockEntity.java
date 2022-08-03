@@ -1,9 +1,9 @@
 package com.Imphuls3.abigne.common.block.pipe;
 
-import com.Imphuls3.abigne.api.ignis.AbstractIgnisMachine;
-import com.Imphuls3.abigne.api.ignis.IIgnis;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
-import com.Imphuls3.abigne.core.init.ItemInit;
+import com.Imphuls3.abigne.core.systems.ignis.AbstractIgnisMachine;
+import com.Imphuls3.abigne.core.systems.ignis.IIgnis;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
+import com.Imphuls3.abigne.core.registry.common.ItemRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.Connection;
@@ -26,7 +26,7 @@ public class PipeBlockEntity extends AbstractIgnisMachine {
     }
 
     public PipeBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityInit.PIPE.get(), pos, state);
+        super(BlockEntityRegistry.PIPE.get(), pos, state);
     }
 
     int num = 0;
@@ -47,7 +47,7 @@ public class PipeBlockEntity extends AbstractIgnisMachine {
 
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
-        if(player.getItemInHand(hand).getItem() == ItemInit.PYROLITE_SHARD.get()){
+        if(player.getItemInHand(hand).getItem() == ItemRegistry.PYROLITE_SHARD.get()){
             this.addIgnis(100);
         }
         player.swing(hand);

@@ -1,18 +1,14 @@
 package com.Imphuls3.abigne.common.entity;
 
 
-import com.Imphuls3.abigne.api.ignis.IIgnis;
-import com.Imphuls3.abigne.common.block.InfuserBlock;
-import com.Imphuls3.abigne.common.block.entity.utils.ModInventory;
+import com.Imphuls3.abigne.core.systems.ignis.IIgnis;
+import com.Imphuls3.abigne.core.systems.blockentity.AbIgneInventory;
 import com.Imphuls3.abigne.common.entity.ai.SoulRechargeGoal;
 import com.Imphuls3.abigne.common.entity.ai.SoulWanderGoal;
 import com.Imphuls3.abigne.common.item.SoulStaff;
-import com.Imphuls3.abigne.core.helper.BlockHelper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -20,48 +16,28 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LightBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.system.CallbackI;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-import java.util.Comparator;
-import java.util.EnumSet;
-import java.util.List;
-
 public class SoulEntity extends Animal implements IAnimatable, IIgnis, FlyingAnimal {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public ModInventory inventory = new ModInventory(1, 64) {
+    public AbIgneInventory inventory = new AbIgneInventory(1, 64) {
         @Override
         public void onContentsChanged(int slot)  {
             super.onContentsChanged(slot);
@@ -139,9 +115,9 @@ public class SoulEntity extends Animal implements IAnimatable, IIgnis, FlyingAni
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if(!event.isMoving()) {
+        /*if(!event.isMoving()){
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.soul.idle"));
-        }
+        }*/
         return PlayState.CONTINUE;
     }
 

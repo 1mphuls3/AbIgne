@@ -1,13 +1,16 @@
 package com.Imphuls3.abigne;
 
-import com.Imphuls3.abigne.common.config.Config;
-import com.Imphuls3.abigne.common.entity.EntityInit;
-import com.Imphuls3.abigne.common.features.ModFeatures;
-import com.Imphuls3.abigne.common.recipe.RecipeInit;
-import com.Imphuls3.abigne.common.worldgen.ModWorldGen;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
-import com.Imphuls3.abigne.core.init.BlockInit;
-import com.Imphuls3.abigne.core.init.ItemInit;
+import com.Imphuls3.abigne.config.Config;
+import com.Imphuls3.abigne.common.effect.EffectsRegistry;
+import com.Imphuls3.abigne.common.effect.PotionsRegistry;
+import com.Imphuls3.abigne.core.registry.common.EntityRegistration;
+import com.Imphuls3.abigne.common.features.AbIgneFeatures;
+import com.Imphuls3.abigne.core.registry.common.RecipeRegistry;
+import com.Imphuls3.abigne.common.worldgen.AbIgneWorldGen;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
+import com.Imphuls3.abigne.core.registry.common.BlockRegistry;
+import com.Imphuls3.abigne.core.registry.common.ItemRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -29,29 +32,35 @@ public class AbIgne {
     public static CreativeModeTab itemGroup = new CreativeModeTab(CreativeModeTab.getGroupCountSafe(), MODID) {
         @Override
         public ItemStack makeIcon() {
-            return ItemInit.IGNIS_INGOT.get().getDefaultInstance();
+            return ItemRegistry.PYROLITE_SHARD_ACTIVE.get().getDefaultInstance();
         }
     };
 
     private static final Logger LOGGER = LogManager.getLogger();
 
     public AbIgne() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        BlockEntityInit.BE.register(bus);
-        BlockInit.BLOCKS.register(bus);
-        ItemInit.ITEMS.register(bus);
-        RecipeInit.register(bus);
-        EntityInit.register(bus);
+        BlockEntityRegistry.register(eventBus);
+        BlockRegistry.register(eventBus);
+        ItemRegistry.register(eventBus);
+        PotionsRegistry.register(eventBus);
+        EffectsRegistry.register(eventBus);
+        RecipeRegistry.register(eventBus);
+        EntityRegistration.register(eventBus);
         Config.register();
 
-        bus.addListener(this::sendImc);
+        eventBus.addListener(this::sendImc);
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new ModWorldGen());
+        MinecraftForge.EVENT_BUS.register(new AbIgneWorldGen());
+    }
+
+    public static ResourceLocation prefix(String path) {
+        return new ResourceLocation(MODID, path);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        ModFeatures.initialize();
+        AbIgneFeatures.initialize();
     }
 
     private void sendImc(InterModEnqueueEvent event){

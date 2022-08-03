@@ -1,9 +1,8 @@
 package com.Imphuls3.abigne.common.block;
 
-import com.Imphuls3.abigne.common.block.entity.CalmingTorchBlockEntity;
-import com.Imphuls3.abigne.common.block.utils.ModBlock;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
-import com.lowdragmc.shimmer.client.light.ColorPointLight;
+import com.Imphuls3.abigne.common.blockentity.CalmingTorchBlockEntity;
+import com.Imphuls3.abigne.core.systems.block.AbIgneBlock;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -28,12 +27,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.Random;
 import java.util.stream.Stream;
 
-public class CalmingTorchBlock extends ModBlock<CalmingTorchBlockEntity> {
+public class CalmingTorchBlock extends AbIgneBlock<CalmingTorchBlockEntity> {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public CalmingTorchBlock(Properties properties) {
         super(properties);
-        setBlockEntity(BlockEntityInit.TORCH);
+        setBlockEntity(BlockEntityRegistry.TORCH);
         this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false));
     }
 

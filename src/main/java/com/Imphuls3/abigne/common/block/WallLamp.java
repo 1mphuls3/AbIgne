@@ -1,8 +1,8 @@
 package com.Imphuls3.abigne.common.block;
 
-import com.Imphuls3.abigne.common.block.entity.WallLampEntity;
-import com.Imphuls3.abigne.common.block.utils.ModBlock;
-import com.Imphuls3.abigne.core.init.BlockEntityInit;
+import com.Imphuls3.abigne.common.blockentity.WallLampEntity;
+import com.Imphuls3.abigne.core.systems.block.AbIgneBlock;
+import com.Imphuls3.abigne.core.registry.common.BlockEntityRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -14,12 +14,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-public class WallLamp extends ModBlock<WallLampEntity> {
+public class WallLamp extends AbIgneBlock<WallLampEntity> {
     public static final VoxelShape SHAPE = makeShape();
 
     public WallLamp(Properties properties) {
         super(properties);
-        setBlockEntity(BlockEntityInit.WALL);
+        setBlockEntity(BlockEntityRegistry.WALL);
         this.registerDefaultState(this.stateDefinition.any());
     }
 

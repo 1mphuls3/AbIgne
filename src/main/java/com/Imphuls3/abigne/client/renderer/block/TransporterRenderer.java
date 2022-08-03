@@ -1,7 +1,8 @@
 package com.Imphuls3.abigne.client.renderer.block;
 
-import com.Imphuls3.abigne.common.block.entity.ItemTransporterBlockEntity;
-import com.Imphuls3.abigne.core.helper.MathHelper;
+import com.Imphuls3.abigne.common.blockentity.ItemTransporterBlockEntity;
+import com.Imphuls3.abigne.core.Easing;
+import com.Imphuls3.abigne.core.helper.VecHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -9,16 +10,17 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
 
 public class TransporterRenderer implements BlockEntityRenderer<ItemTransporterBlockEntity> {
-
+    int i;
+    int k;
     public TransporterRenderer(BlockEntityRendererProvider.Context context){
     }
 
@@ -36,16 +38,22 @@ public class TransporterRenderer implements BlockEntityRenderer<ItemTransporterB
             stackIn.popPose();
         }
         if(blockEntityIn.bound != null/* && blockEntityIn.canTransfer()*/){
-            float xDiff = blockEntityIn.getBlockPos().getX() - (blockEntityIn.bound.getBlockPos().getX()+0.5F);
-            float yDiff = blockEntityIn.getBlockPos().getY() - (blockEntityIn.bound.getBlockPos().getY()+0.5F);
-            float zDiff = blockEntityIn.getBlockPos().getZ() - (blockEntityIn.bound.getBlockPos().getZ()+0.5F);
-            float diag = MathHelper.pythag3D(xDiff, yDiff, zDiff);
-
-            float xRot = (float) ((Math.tan(zDiff/xDiff)));
-            float yRot = (float) ((Math.sin(yDiff/diag)));
-
-            BlockPos pos = blockEntityIn.getBlockPos();
-            level.addAlwaysVisibleParticle(ParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, xRot, 0/*yRot*/, xRot);
+            Vec3 pos = VecHelper.vec3FromBlockPos(blockEntityIn.getBlockPos());
+            pos = pos.add(0.5, 1.5, 0.5);
+            Vec3 pos2 = VecHelper.vec3FromBlockPos(blockEntityIn.bound.getBlockPos());
+            pos2 = pos2.add(0.5, 1.5, 0.5);
+            if(k == 5) {
+                if(i <= 45) {
+                    i++;
+                    Vec3 pos3 = VecHelper.easedLerpY(Easing.BACK_IN_OUT, i/45F, pos, pos2);
+                    level.addAlwaysVisibleParticle(ParticleTypes.FLAME, pos3.x, pos3.y, pos3.z, 0, 0.01, 0);
+                } else {
+                    i = 0;
+                }
+                k = 0;
+            } else {
+                k++;
+            }
         }
     }
 }

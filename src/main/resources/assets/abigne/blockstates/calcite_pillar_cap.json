@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=north": {
+      "x": 90,
+      "model": "abigne:block/calcite_pillar_cap"
+    },
+    "facing=east": {
+      "x": 90,
+      "y": 90,
+      "model": "abigne:block/calcite_pillar_cap"
+    },
+    "facing=south": {
+      "x": 90,
+      "y": 180,
+      "model": "abigne:block/calcite_pillar_cap"
+    },
+    "facing=west": {
+      "x": 90,
+      "y": 270,
+      "model": "abigne:block/calcite_pillar_cap"
+    },
+    "facing=up": {
+      "model": "abigne:block/calcite_pillar_cap"
+    },
+    "facing=down": {
+      "x": 180,
+      "model": "abigne:block/calcite_pillar_cap"
+    }
+  }
+}

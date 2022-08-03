@@ -1,6 +1,6 @@
 package com.Imphuls3.abigne.common.item.wand;
 
-import com.Imphuls3.abigne.common.block.entity.utils.ModInventory;
+import com.Imphuls3.abigne.core.systems.blockentity.AbIgneInventory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -24,10 +24,10 @@ public class Wand extends Item {
     public Item end;
     public Item extra;
 
-    ModInventory inv;
+    AbIgneInventory inv;
     public Wand(Properties properties) {
         super(properties);
-        inv = new ModInventory(3, 1) {
+        inv = new AbIgneInventory(3, 1) {
             @Override
             public void onContentsChanged(int slot) {
                 super.onContentsChanged(slot);
