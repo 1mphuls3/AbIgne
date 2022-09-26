@@ -29,7 +29,7 @@ public class InflictingFlower extends FlowerBlock {
      * Basically copied Wither Rose block using the effect in the constructor parameter instead of Wither
      * @param effect Effect given to entity touching it (also used for the flower's suspicious stew)
      * @param duration Duration the effect should last (in seconds) (also used for the flower's suspicious stew)
-     * @param color Color used for particles spawned by this block
+     * @param color Color used for particles spawned by this block.
      * */
     public InflictingFlower(MobEffect effect, int duration, ParticleColor color, BlockBehaviour.Properties pProperties) {
         super(effect, duration, pProperties);
