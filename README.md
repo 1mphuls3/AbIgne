@@ -1,3 +1,3 @@
 WIP. Very messy a lot will be cleaned up before release. If you see any terrible or game breaking code don't hesitate to message me on Discord 1mphuls3#0430 or create an issue here!
 
-Dont steal my stuff or I will eat your face :)
+Dont steal my assets or I will eat your face :)
