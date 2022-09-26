@@ -1,0 +1,7 @@
+{
+  "parent": "abigne:block/util_cube_glow_2_all",
+  "textures": {
+    "all": "abigne:block/chiseled_black_calcite_bricks",
+    "glow": "abigne:block/chiseled_black_calcite_bricks_glow"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "abigne:block/polished_black_calcite",
+    "bottom": "abigne:block/polished_black_calcite",
+    "top": "abigne:block/polished_black_calcite"
+  }
+}

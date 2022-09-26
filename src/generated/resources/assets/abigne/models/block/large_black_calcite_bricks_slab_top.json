@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "abigne:block/large_black_calcite_bricks",
+    "bottom": "abigne:block/large_black_calcite_bricks",
+    "top": "abigne:block/large_black_calcite_bricks"
+  }
+}

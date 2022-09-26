@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "bottom": "abigne:block/infused_wood_door_bottom",
+    "top": "abigne:block/infused_wood_door_top"
+  }
+}

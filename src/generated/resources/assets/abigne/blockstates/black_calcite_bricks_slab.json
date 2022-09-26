@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "abigne:block/black_calcite_bricks_slab_top"
+    },
+    "type=bottom": {
+      "model": "abigne:block/black_calcite_bricks_slab"
+    },
+    "type=double": {
+      "model": "abigne:block/black_calcite_bricks"
+    }
+  }
+}

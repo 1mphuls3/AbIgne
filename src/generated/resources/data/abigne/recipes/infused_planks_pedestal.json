@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    " W ",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "abigne:polished_infused_wood_slab"
+    },
+    "W": {
+      "item": "abigne:polished_infused_wood"
+    }
+  },
+  "result": {
+    "item": "abigne:infused_planks_pedestal"
+  }
+}

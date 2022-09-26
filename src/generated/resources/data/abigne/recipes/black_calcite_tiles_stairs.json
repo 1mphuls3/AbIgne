@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "abigne:black_calcite_tiles"
+    }
+  },
+  "result": {
+    "item": "abigne:black_calcite_tiles_stairs",
+    "count": 4
+  }
+}

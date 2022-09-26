@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "abigne:block/polished_infused_wood",
+    "side": "abigne:block/infused_wood_beam_cap"
+  }
+}

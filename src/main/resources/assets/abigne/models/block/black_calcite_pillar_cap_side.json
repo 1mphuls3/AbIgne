@@ -1,0 +1,8 @@
+{
+	"parent": "abigne:block/util_horizontal_pillar",
+	"textures": {
+		"side": "abigne:block/black_calcite_pillar_cap",
+		"end": "abigne:block/polished_black_calcite",
+		"particle": "abigne:block/black_calcite_pillar_cap"
+	}
+}

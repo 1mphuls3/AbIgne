@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "abigne:infused_planks_pedestal",
+    "abigne:infused_planks",
+    "abigne:polished_infused_wood",
+    "abigne:infused_wood_tile",
+    "abigne:infused_wood_tile_2",
+    "abigne:chiseled_infused_wood",
+    "abigne:infused_wood_beam",
+    "abigne:infused_wood_beam_cap",
+    "abigne:infused_planks_slab",
+    "abigne:polished_infused_wood_slab",
+    "abigne:infused_wood_tile_slab",
+    "abigne:infused_wood_tile_2_slab",
+    "abigne:infused_planks_stairs",
+    "abigne:polished_infused_wood_stairs",
+    "abigne:infused_wood_tile_stairs",
+    "abigne:infused_wood_tile_2_stairs",
+    "abigne:infused_wood_door",
+    "abigne:infused_wood_trapdoor"
+  ]
+}

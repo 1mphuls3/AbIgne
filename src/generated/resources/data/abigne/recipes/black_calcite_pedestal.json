@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    " B ",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "abigne:polished_black_calcite_slab"
+    },
+    "B": {
+      "item": "abigne:polished_black_calcite"
+    }
+  },
+  "result": {
+    "item": "abigne:black_calcite_pedestal"
+  }
+}

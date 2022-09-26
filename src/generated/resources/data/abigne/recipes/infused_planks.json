@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "abigne:infused_log"
+    }
+  ],
+  "result": {
+    "item": "abigne:infused_planks",
+    "count": 4
+  }
+}

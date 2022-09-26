@@ -1,0 +1,6 @@
+{
+  "parent": "abigne:block/util_pedestal_block",
+  "textures": {
+    "all": "abigne:block/pedestals/black_calcite_pedestal"
+  }
+}

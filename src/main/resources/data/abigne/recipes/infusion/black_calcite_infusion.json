@@ -1,0 +1,11 @@
+{
+  "type": "abigne:infusion",
+  "ingredients" : [
+    {
+      "item": "minecraft:stone"
+    }
+  ],
+  "output": {
+    "item": "abigne:polished_black_calcite"
+  }
+}

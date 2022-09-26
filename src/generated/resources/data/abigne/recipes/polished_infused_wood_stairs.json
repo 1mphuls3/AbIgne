@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "abigne:polished_infused_wood"
+    }
+  },
+  "result": {
+    "item": "abigne:polished_infused_wood_stairs",
+    "count": 4
+  }
+}

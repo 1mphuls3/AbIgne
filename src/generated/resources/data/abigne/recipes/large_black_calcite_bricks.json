@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "abigne:polished_black_calcite"
+    }
+  },
+  "result": {
+    "item": "abigne:large_black_calcite_bricks",
+    "count": 4
+  }
+}

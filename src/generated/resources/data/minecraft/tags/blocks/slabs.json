@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "abigne:infused_planks_slab",
+    "abigne:polished_infused_wood_slab",
+    "abigne:infused_wood_tile_slab",
+    "abigne:infused_wood_tile_2_slab",
+    "abigne:polished_black_calcite_slab",
+    "abigne:black_calcite_bricks_slab",
+    "abigne:black_calcite_tiles_slab",
+    "abigne:large_black_calcite_bricks_slab"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "abigne:black_calcite_pillar_cap"
+    ]
+  },
+  "criteria": {
+    "has_polished_black_calcite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "abigne:polished_black_calcite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_black_calcite_pillar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "abigne:black_calcite_pillar"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "abigne:black_calcite_pillar_cap"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_black_calcite",
+      "has_black_calcite_pillar",
+      "has_the_recipe"
+    ]
+  ]
+}
