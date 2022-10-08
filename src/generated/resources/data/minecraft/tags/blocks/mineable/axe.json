@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "abigne:infused_planks_pedestal",
+    "abigne:infused_wood_pedestal",
     "abigne:infused_planks",
     "abigne:polished_infused_wood",
     "abigne:infused_wood_tile",
@@ -17,7 +17,10 @@
     "abigne:polished_infused_wood_stairs",
     "abigne:infused_wood_tile_stairs",
     "abigne:infused_wood_tile_2_stairs",
+    "abigne:infused_wood",
+    "abigne:stripped_infused_wood",
     "abigne:infused_wood_door",
-    "abigne:infused_wood_trapdoor"
+    "abigne:infused_wood_trapdoor",
+    "abigne:infused_wood_planks_table"
   ]
 }

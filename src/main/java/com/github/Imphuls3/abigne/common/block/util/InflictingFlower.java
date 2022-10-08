@@ -44,7 +44,7 @@ public class InflictingFlower extends FlowerBlock {
         Vec3 vec3 = voxelshape.bounds().getCenter();
         double d0 = (double)pos.getX() + vec3.x;
         double d1 = (double)pos.getZ() + vec3.z;
-        for(int i = 0; i < 3; ++i) {
+        for(int i = 0; i < 3; i++) {
             if (random.nextBoolean()) {
                 ParticleOptions data = SparkleParticleData.createData(color, true, 0.1F, 0.8F, 35);
                 level.addParticle(data, d0 + random.nextDouble() / 5.0D, (double)pos.getY() + 0.2 + (0.5D - random.nextDouble()), d1 + random.nextDouble() / 5.0D,

@@ -30,10 +30,6 @@ public abstract class Easing {
         EASINGS.put(name, this);
     }
 
-    public static Easing valueOf(String name) {
-        return EASINGS.get(name);
-    }
-
     /**
      * The basic function for easing.
      *

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "abigne:block/alembic"
+    },
+    "facing=south": {
+      "model": "abigne:block/alembic",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "abigne:block/alembic",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "abigne:block/alembic",
+      "y": 90
+    }
+  }
+}

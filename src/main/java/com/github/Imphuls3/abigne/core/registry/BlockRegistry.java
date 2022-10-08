@@ -28,6 +28,12 @@ public class BlockRegistry {
     }
     public static final RegistryObject<FiringBlock> FIRING_BLOCK = BLOCKS.register("firing_block", () -> new FiringBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
+    public static final RegistryObject<FluidExtractorBlock> FLUID_EXTRACTOR = BLOCKS.register("fluid_extractor",
+            () -> new FluidExtractorBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
+    public static final RegistryObject<AlembicBlock> ALEMBIC = BLOCKS.register("alembic",
+            () -> new AlembicBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
     public static final RegistryObject<Block> FLAME = BLOCKS.register("flame", () -> new FlameBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().instabreak()));
 
     //region plants
@@ -38,7 +44,7 @@ public class BlockRegistry {
     //endregion
 
     public static final RegistryObject<Block> BLACK_CALCITE_PEDESTAL = BLOCKS.register("black_calcite_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> INFUSED_PLANKS_PEDESTAL = BLOCKS.register("infused_planks_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> INFUSED_WOOD_PEDESTAL = BLOCKS.register("infused_wood_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Block> TRANSPORTER = BLOCKS.register("transporter", () -> new ItemTransporterBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
@@ -92,11 +98,21 @@ public class BlockRegistry {
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get())));
     public static final RegistryObject<AbIgneLogBlock> INFUSED_LOG = BLOCKS.register("infused_log",
             () -> new AbIgneLogBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()), STRIPPED_INFUSED_LOG));
+    public static final RegistryObject<AbIgneLogBlock> INFUSED_WOOD = BLOCKS.register("infused_wood",
+            () -> new AbIgneLogBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()), STRIPPED_INFUSED_LOG));
+    public static final RegistryObject<RotatedPillarBlock> STRIPPED_INFUSED_WOOD = BLOCKS.register("stripped_infused_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get())));
+
+    public static final RegistryObject<LeavesBlock> ROWAN_LEAVES = BLOCKS.register("rowan_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
 
     public static final RegistryObject<DoorBlock> INFUSED_WOOD_DOOR = BLOCKS.register("infused_wood_door",
             () -> new DoorBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()).noOcclusion()));
     public static final RegistryObject<TrapDoorBlock> INFUSED_WOOD_TRAPDOOR = BLOCKS.register("infused_wood_trapdoor",
             () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()).noOcclusion()));
+
+    public static final RegistryObject<TableBlock> INFUSED_WOOD_TABLE = BLOCKS.register("infused_wood_planks_table",
+            () -> new TableBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()).noOcclusion()));
     //endregion
 
     //region black calcite

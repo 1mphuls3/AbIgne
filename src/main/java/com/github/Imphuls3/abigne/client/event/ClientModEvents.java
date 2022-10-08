@@ -47,10 +47,12 @@ public final class ClientModEvents {
         EntityRenderers.register(EntityRegistry.FIREBALL.get(), NoopRenderer::new);
         EntityRenderers.register(EntityRegistry.MANA.get(), NoopRenderer::new);
 
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BLACK_CALCITE_PILLAR_CAP.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.INFUSED_PLANKS_PEDESTAL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.INFUSED_WOOD_PEDESTAL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BLACK_CALCITE_PEDESTAL.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.INFUSER.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.INFUSER.get(), RenderType.tripwire());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FLUID_EXTRACTOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.ALEMBIC.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.INFUSED_WOOD_TABLE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.CRUCIBLE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FLAME.get(), RenderType.cutout());
 
@@ -58,6 +60,8 @@ public final class ClientModEvents {
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SMALL_PYROLITE_BUD.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.MEDIUM_PYROLITE_BUD.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.LARGE_PYROLITE_BUD.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.ROWAN_LEAVES.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.IGNIS_GLASS.get(), RenderType.translucent());
 
@@ -75,6 +79,8 @@ public final class ClientModEvents {
     @SubscribeEvent
     public static void EntityRenderersEvent$RegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityRegistry.PEDESTAL.get(), PedestalRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityRegistry.FLUID_EXTRACTOR.get(), FluidExtractorRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityRegistry.ALEMBIC.get(), AlembicRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.CRUCIBLE.get(), CrucibleRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.INFUSER.get(), TextureRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.TRANSPORTER.get(), TransporterRenderer::new);

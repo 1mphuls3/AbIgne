@@ -1,0 +1,155 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "abigne:block/infused_wood_table_four"
+      }
+    },
+    {
+      "when": {"east": false, "north": false, "south": false, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_none"
+      }
+    },
+    {
+      "when": {"east": false, "north": true, "south": false, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_one",
+        "y": 90
+      }
+    },
+    {
+      "when": {"east": false, "north": false, "south": true, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_one",
+        "y": 270
+      }
+    },
+    {
+      "when": {"east": false, "north": false, "south": false, "west": true
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_one"
+      }
+    },
+    {
+      "when": {"east": true, "north": false, "south": false, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_one",
+        "y": 180
+      }
+    },
+    {
+      "when": {"east": true, "north": true, "south": false, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two",
+        "y": 90
+      }
+    },
+    {
+      "when": {"east": false, "north": true, "south": false, "west": true
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two"
+      }
+    },
+    {
+      "when": {"east": true, "north": false, "south": true, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two",
+        "y": 180
+      }
+    },
+    {
+      "when": {"east": false, "north": false, "south": true, "west": true
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two",
+        "y": 270
+      }
+    },
+    {
+      "when": {"east": false, "north": true, "south": true, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two_mid",
+        "y": 90
+      }
+    },
+    {
+      "when": {"east": true, "north": false, "south": false, "west": true
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two_mid"
+      }
+    },
+    {
+      "when": {"east": false, "north": true, "south": true, "west": true
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_three",
+        "y": 90
+      }
+    },
+    {
+      "when": {"east": true, "north": true, "south": true, "west": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_three",
+        "y": 270
+      }
+    },
+    {
+      "when": {"east": true, "north": false, "south": true, "west": true
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_three"
+      }
+    },
+    {
+      "when": {"east": true, "north": true, "south": false, "west": true
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_three",
+        "y": 180
+      }
+    },
+    {
+      "when": {"north": true, "west": true, "nw": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two_internal"
+      }
+    },
+    {
+      "when": {"north": true, "east": true, "ne": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two_internal",
+        "y": 90
+      }
+    },
+    {
+      "when": {"south": true, "west": true, "sw": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two_internal",
+        "y": 270
+      }
+    },
+    {
+      "when": {"south": true, "east": true, "se": false
+      },
+      "apply": {
+        "model": "abigne:block/infused_wood_table_two_internal",
+        "y": 180
+      }
+    }
+  ]
+}

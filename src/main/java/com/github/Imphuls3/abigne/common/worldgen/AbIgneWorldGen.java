@@ -24,7 +24,7 @@ public class AbIgneWorldGen {
             }
         }
         if (BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.FOREST) && !BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.COLD)
-                && BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.HOT)) {
+                && !BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.HOT)) {
             if (true) {
                 builder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, AbIgneFeatures.BELLADONA_PLACE);
             }

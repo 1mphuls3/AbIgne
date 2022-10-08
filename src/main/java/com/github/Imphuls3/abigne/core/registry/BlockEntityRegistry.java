@@ -33,6 +33,12 @@ public final class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<PedestalBlockEntity>> PEDESTAL = BLOCKENTITIES.register("pedestal",
             () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, getBlocks(PedestalBlock.class)).build(null));
 
+    public static final RegistryObject<BlockEntityType<FluidExtractor>> FLUID_EXTRACTOR = BLOCKENTITIES.register("fluid_extractor",
+            () -> BlockEntityType.Builder.of(FluidExtractor::new, BlockRegistry.FLUID_EXTRACTOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<AlembicBlockEntity>> ALEMBIC = BLOCKENTITIES.register("alembic",
+            () -> BlockEntityType.Builder.of(AlembicBlockEntity::new, BlockRegistry.ALEMBIC.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<FiringBlockEntity>> FIRING_BLOCK = BLOCKENTITIES.register("firing_block",
             () -> BlockEntityType.Builder.of(FiringBlockEntity::new, BlockRegistry.FIRING_BLOCK.get()).build(null));
 

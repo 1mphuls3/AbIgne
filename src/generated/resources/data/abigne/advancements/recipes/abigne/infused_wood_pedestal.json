@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "abigne:infused_planks_pedestal"
+      "abigne:infused_wood_pedestal"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "abigne:infused_planks_pedestal"
+        "recipe": "abigne:infused_wood_pedestal"
       }
     }
   },

@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "abigne:infused_planks_pedestal"
+          "name": "abigne:stripped_infused_wood"
         }
       ],
       "conditions": [

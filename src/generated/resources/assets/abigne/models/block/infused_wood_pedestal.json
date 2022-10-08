@@ -1,6 +1,6 @@
 {
   "parent": "abigne:block/util_pedestal_block",
   "textures": {
-    "all": "abigne:block/pedestals/infused_planks_pedestal"
+    "all": "abigne:block/pedestals/infused_wood_pedestal"
   }
 }

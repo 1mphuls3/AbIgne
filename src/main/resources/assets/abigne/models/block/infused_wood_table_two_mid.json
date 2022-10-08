@@ -1,0 +1,35 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"2": "abigne:block/infused_wood_table_parts",
+		"particle": "abigne:block/infused_wood_table_bottom"
+	},
+	"elements": [
+		{
+			"from": [0, 6, 12],
+			"to": [16, 10, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [13, 8, 13]},
+			"faces": {
+				"north": {"uv": [16, 0, 0, 4], "texture": "#2", "cullface": "north"},
+				"east": {"uv": [14, 12, 12, 16], "texture": "#2", "cullface": "east"},
+				"south": {"uv": [16, 0, 0, 4], "texture": "#2", "cullface": "south"},
+				"west": {"uv": [2, 0, 0, 4], "texture": "#2", "cullface": "west"},
+				"up": {"uv": [14, 6, 8, 8], "rotation": 180, "texture": "#2", "cullface": "up"},
+				"down": {"uv": [8, 4, 14, 6], "texture": "#2", "cullface": "down"}
+			}
+		},
+		{
+			"from": [0, 6, 2],
+			"to": [16, 10, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [13, 8, 13]},
+			"faces": {
+				"north": {"uv": [16, 0, 0, 4], "texture": "#2", "cullface": "north"},
+				"east": {"uv": [14, 12, 12, 16], "texture": "#2", "cullface": "east"},
+				"south": {"uv": [16, 0, 0, 4], "texture": "#2", "cullface": "south"},
+				"west": {"uv": [2, 0, 0, 4], "texture": "#2", "cullface": "west"},
+				"up": {"uv": [14, 6, 8, 8], "rotation": 180, "texture": "#2", "cullface": "up"},
+				"down": {"uv": [8, 4, 14, 6], "texture": "#2", "cullface": "down"}
+			}
+		}
+	]
+}

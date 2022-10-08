@@ -25,6 +25,7 @@ import javax.annotation.Nonnull;
 import java.util.*;
 
 import static com.github.Imphuls3.abigne.AbIgne.modPath;
+import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
 
 public class ModBlockStatesProvider extends BlockStateProvider {
     public ModBlockStatesProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {

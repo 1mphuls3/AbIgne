@@ -21,6 +21,12 @@ public class ItemRegistry {
     public static final RegistryObject<BlockItem> FIRING_BLOCK = ITEMS.register("firing_block",
             () -> new BlockItem(BlockRegistry.FIRING_BLOCK.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
+    public static final RegistryObject<BlockItem> FLUID_EXTRACTOR = ITEMS.register("fluid_extractor",
+            () -> new BlockItem(BlockRegistry.FLUID_EXTRACTOR.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+
+    public static final RegistryObject<BlockItem> ALEMBIC = ITEMS.register("alembic",
+            () -> new BlockItem(BlockRegistry.ALEMBIC.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+
     public static final RegistryObject<Item> NECROTIC_SHARD = ITEMS.register("necrotic_shard",
             () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
 
@@ -55,8 +61,8 @@ public class ItemRegistry {
 
     public static final RegistryObject<BlockItem> BLACK_CALCITE_PEDESTAL = ITEMS.register("black_calcite_pedestal",
             () -> new BlockItem(BlockRegistry.BLACK_CALCITE_PEDESTAL.get(), new Item.Properties().tab(AbIgne.itemGroup)));
-    public static final RegistryObject<BlockItem> INFUSED_WOOD_PEDESTAL = ITEMS.register("infused_planks_pedestal",
-            () -> new BlockItem(BlockRegistry.INFUSED_PLANKS_PEDESTAL.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+    public static final RegistryObject<BlockItem> INFUSED_WOOD_PEDESTAL = ITEMS.register("infused_wood_pedestal",
+            () -> new BlockItem(BlockRegistry.INFUSED_WOOD_PEDESTAL.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
     public static final RegistryObject<BlockItem> INFUSER = ITEMS.register("infuser",
             () -> new BlockItem(BlockRegistry.INFUSER.get(), new Item.Properties().tab(AbIgne.itemGroup)));
@@ -127,11 +133,21 @@ public class ItemRegistry {
             () -> new BlockItem(BlockRegistry.INFUSED_LOG.get(), new Item.Properties().tab(AbIgne.itemGroup)));
     public static final RegistryObject<BlockItem> STRIPPED_INFUSED_LOG = ITEMS.register("stripped_infused_log",
             () -> new BlockItem(BlockRegistry.STRIPPED_INFUSED_LOG.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+    public static final RegistryObject<BlockItem> INFUSED_WOOD = ITEMS.register("infused_wood",
+            () -> new BlockItem(BlockRegistry.INFUSED_WOOD.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+    public static final RegistryObject<BlockItem> STRIPPED_INFUSED_WOOD = ITEMS.register("stripped_infused_wood",
+            () -> new BlockItem(BlockRegistry.STRIPPED_INFUSED_WOOD.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+
+    public static final RegistryObject<BlockItem> ROWAN_LEAVES = ITEMS.register("rowan_leaves",
+            () -> new BlockItem(BlockRegistry.ROWAN_LEAVES.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
     public static final RegistryObject<BlockItem> INFUSED_WOOD_DOOR = ITEMS.register("infused_wood_door",
             () -> new BlockItem(BlockRegistry.INFUSED_WOOD_DOOR.get(), new Item.Properties().tab(AbIgne.itemGroup)));
     public static final RegistryObject<BlockItem> INFUSED_WOOD_TRAPDOOR = ITEMS.register("infused_wood_trapdoor",
             () -> new BlockItem(BlockRegistry.INFUSED_WOOD_TRAPDOOR.get(), new Item.Properties().tab(AbIgne.itemGroup)));
+
+    public static final RegistryObject<BlockItem> INFUSED_WOOD_TABLE = ITEMS.register("infused_wood_planks_table",
+            () -> new BlockItem(BlockRegistry.INFUSED_WOOD_TABLE.get(), new Item.Properties().tab(AbIgne.itemGroup)));
     //endregion
 
     //region black calcite

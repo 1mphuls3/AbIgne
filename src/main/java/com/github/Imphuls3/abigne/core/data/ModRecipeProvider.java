@@ -57,7 +57,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         shaped4x4(consumer, BlockRegistry.POLISHED_INFUSED_WOOD.get(), BlockRegistry.INFUSED_PLANKS.get());
         shaped4x4(consumer, BlockRegistry.INFUSED_WOOD_TILE.get(), BlockRegistry.POLISHED_INFUSED_WOOD.get());
         shaped4x4(consumer, BlockRegistry.INFUSED_WOOD_TILE_2.get(), BlockRegistry.INFUSED_WOOD_TILE.get());
-        shaped(BlockRegistry.INFUSED_PLANKS_PEDESTAL.get()).define('I', BlockRegistry.POLISHED_INFUSED_WOOD_SLAB.get()).define('W', BlockRegistry.POLISHED_INFUSED_WOOD.get())
+        shaped(BlockRegistry.INFUSED_WOOD_PEDESTAL.get()).define('I', BlockRegistry.POLISHED_INFUSED_WOOD_SLAB.get()).define('W', BlockRegistry.POLISHED_INFUSED_WOOD.get())
                 .pattern("III")
                 .pattern(" W ")
                 .pattern("III")
