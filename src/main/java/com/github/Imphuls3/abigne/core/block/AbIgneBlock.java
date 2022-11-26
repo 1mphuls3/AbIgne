@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,7 +31,7 @@ public class AbIgneBlock<T extends BlockEntity> extends Block implements EntityB
     }
 
     public AbIgneBlock<T> setBlockEntity(Supplier<BlockEntityType<T>> type) {
-        this.ticker = (l, p, s, t) -> ((AbIgneBlockEntity)t).tick(l, s, p);
+        this.ticker = (level, pos, state, blockEntity) -> ((AbIgneBlockEntity) blockEntity).tick(level, state, pos);
         this.blockEntityType = type;
         return this;
     }
@@ -75,7 +76,7 @@ public class AbIgneBlock<T extends BlockEntity> extends Block implements EntityB
 
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        onBlockBroken(state, level, pos);
+        onPlayerBlockBroken(state, level, pos, player);
         super.playerWillDestroy(level, pos, state, player);
     }
 
@@ -87,9 +88,18 @@ public class AbIgneBlock<T extends BlockEntity> extends Block implements EntityB
 
     public void onBlockBroken(BlockState state, BlockGetter level, BlockPos pos) {
         if (isBlockEntity(state)) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof AbIgneBlockEntity abIgneBlockEntity) {
-                abIgneBlockEntity.onBreak();
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof AbIgneBlockEntity blockEntity) {
+                blockEntity.onBreak();
+            }
+        }
+    }
+
+    public void onPlayerBlockBroken(BlockState state, BlockGetter level, BlockPos pos, Player player) {
+        if (isBlockEntity(state)) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (be instanceof AbIgneBlockEntity blockEntity) {
+                blockEntity.onPlayerBreak(player);
             }
         }
     }

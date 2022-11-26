@@ -1,13 +1,12 @@
 package com.github.Imphuls3.abigne.core.registry;
 
-import com.github.Imphuls3.abigne.core.registry.ItemRegistry;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 public class TierRegistry {
-    public static class TarnishedTier implements Tier {
+    public static class SilverTier implements Tier {
         @Override
         public int getLevel() {
             return 2;
@@ -35,9 +34,9 @@ public class TierRegistry {
 
         @Override
         public @NotNull Ingredient getRepairIngredient() {
-            return Ingredient.of(new ItemStack(ItemRegistry.TARNISHED_STEEL_INGOT.get()));
+            return Ingredient.of(new ItemStack(ItemRegistry.SILVER_INGOT.get()));
         }
 
-        public static TarnishedTier INSTANCE = new TarnishedTier();
+        public static SilverTier INSTANCE = new SilverTier();
     }
 }

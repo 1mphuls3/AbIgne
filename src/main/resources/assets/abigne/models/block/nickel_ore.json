@@ -1,0 +1,7 @@
+{
+  "parent": "abigne:block/util_cube_glow_2",
+  "textures": {
+    "all": "minecraft:block/stone",
+    "glow": "abigne:block/nickel_ore_overlay"
+  }
+}

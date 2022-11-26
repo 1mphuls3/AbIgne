@@ -43,15 +43,15 @@ public class TableBlock extends AbIgneBlock {
                 .setValue(SE, false));
     }
 
-    protected BlockState updateCorners(BlockGetter world, BlockPos pos, BlockState state) {
-        BlockState blockstate = world.getBlockState(pos.north());
-        BlockState blockstate1 = world.getBlockState(pos.east());
-        BlockState blockstate2 = world.getBlockState(pos.south());
-        BlockState blockstate3 = world.getBlockState(pos.west());
-        BlockState blockstate4 = world.getBlockState(pos.north().west());
-        BlockState blockstate5 = world.getBlockState(pos.north().east());
-        BlockState blockstate6 = world.getBlockState(pos.south().west());
-        BlockState blockstate7 = world.getBlockState(pos.south().east());
+    protected BlockState updateCorners(BlockGetter level, BlockPos pos, BlockState state) {
+        BlockState blockstate = level.getBlockState(pos.north());
+        BlockState blockstate1 = level.getBlockState(pos.east());
+        BlockState blockstate2 = level.getBlockState(pos.south());
+        BlockState blockstate3 = level.getBlockState(pos.west());
+        BlockState blockstate4 = level.getBlockState(pos.north().west());
+        BlockState blockstate5 = level.getBlockState(pos.north().east());
+        BlockState blockstate6 = level.getBlockState(pos.south().west());
+        BlockState blockstate7 = level.getBlockState(pos.south().east());
         boolean conn = blockstate.getBlock() == this,
                 conn1 = blockstate1.getBlock() == this,
                 conn2 = blockstate2.getBlock() == this,
@@ -69,9 +69,9 @@ public class TableBlock extends AbIgneBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockGetter iblockreader = context.getLevel();
+        BlockGetter blockgetter = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
-        return updateCorners(iblockreader, blockpos, super.getStateForPlacement(context));
+        return updateCorners(blockgetter, blockpos, super.getStateForPlacement(context));
     }
 
     @Override

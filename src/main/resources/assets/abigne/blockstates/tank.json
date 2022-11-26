@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "up=false,down=false": {
+      "model": "abigne:block/tank"
+    },
+    "up=true,down=false": {
+      "model": "abigne:block/tank_bottom"
+    },
+    "up=false,down=true": {
+      "model": "abigne:block/tank_top"
+    },
+    "up=true,down=true": {
+      "model": "abigne:block/tank_mid"
+    }
+  }
+}

@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "abigne:block/large_black_calcite_bricks_slab_top"
-    },
     "type=bottom": {
       "model": "abigne:block/large_black_calcite_bricks_slab"
     },
     "type=double": {
       "model": "abigne:block/large_black_calcite_bricks"
+    },
+    "type=top": {
+      "model": "abigne:block/large_black_calcite_bricks_slab_top"
     }
   }
 }

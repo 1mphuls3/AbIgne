@@ -1,5 +1,6 @@
 {
   "parent": "abigne:block/util_cube_glow_2_all",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "abigne:block/chiseled_black_calcite_bricks",
     "glow": "abigne:block/chiseled_black_calcite_bricks_glow"

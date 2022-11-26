@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
   "key": {
     "#": {
       "item": "abigne:polished_black_calcite"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "abigne:polished_black_calcite_slab",
-    "count": 6
+    "count": 6,
+    "item": "abigne:polished_black_calcite_slab"
   }
 }

@@ -3,6 +3,9 @@ package com.github.Imphuls3.abigne.core.data;
 import com.github.Imphuls3.abigne.AbIgne;
 import com.github.Imphuls3.abigne.common.block.FlameBlock;
 import com.github.Imphuls3.abigne.common.block.PedestalBlock;
+import com.github.Imphuls3.abigne.common.block.PipeBlock;
+import com.github.Imphuls3.abigne.common.block.TableBlock;
+import com.github.Imphuls3.abigne.common.item.util.LargeSwordItem;
 import com.github.Imphuls3.abigne.core.registry.ItemRegistry;
 import com.github.Imphuls3.abigne.core.helper.DataHelper;
 import net.minecraft.core.Registry;
@@ -11,7 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -23,7 +25,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.github.Imphuls3.abigne.AbIgne.modPath;
-import static com.github.Imphuls3.abigne.core.helper.DataHelper.takeAll;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -34,7 +35,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         Set<RegistryObject<Item>> items = new HashSet<>(ItemRegistry.ITEMS.getEntries());
 
-        DataHelper.takeAll(items, i -> i.get() instanceof SwordItem).forEach(this::handheldItem);
+        DataHelper.takeAll(items, i -> i.get() instanceof SwordItem && !(i.get() instanceof LargeSwordItem)).forEach(this::handheldItem);
         DataHelper.takeAll(items, i -> i.get() instanceof PickaxeItem).forEach(this::handheldItem);
         DataHelper.takeAll(items, i -> i.get() instanceof AxeItem).forEach(this::handheldItem);
         DataHelper.takeAll(items, i -> i.get() instanceof ShovelItem).forEach(this::handheldItem);
@@ -48,9 +49,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         DataHelper.takeAll(items, i -> i.get() instanceof BlockItem && ((BlockItem) i.get()).getBlock() instanceof DoorBlock).forEach(this::generatedItem);
         DataHelper.takeAll(items, i -> i.get() instanceof BlockItem && ((BlockItem) i.get()).getBlock() instanceof TrapDoorBlock).forEach(this::trapdoorBlockItem);
 
-        DataHelper.takeAll(items, i -> i.get() instanceof BlockItem).forEach(this::blockItem);
-        
-        items.forEach(this::generatedItem);
+        DataHelper.takeAll(items, i -> i.get() instanceof BlockItem item && !(item.getBlock() instanceof TableBlock) && !(item.getBlock() instanceof PipeBlock)).forEach(this::blockItem);
+        DataHelper.takeAll(items, i -> !(i.get() instanceof BlockItem) && !(i.get() instanceof LargeSwordItem)).forEach(this::generatedItem);
     }
 
     private static final ResourceLocation GENERATED = new ResourceLocation("item/generated");

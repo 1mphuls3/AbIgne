@@ -4,10 +4,7 @@ import com.github.Imphuls3.abigne.AbIgne;
 import com.github.Imphuls3.abigne.common.block.FlameBlock;
 import com.github.Imphuls3.abigne.common.block.InfuserBlock;
 import com.github.Imphuls3.abigne.common.block.PedestalBlock;
-import com.github.Imphuls3.abigne.common.block.util.AbIgneLogBlock;
-import com.github.Imphuls3.abigne.common.block.util.FullyRotatingPillarBlock;
-import com.github.Imphuls3.abigne.common.block.util.PyroliteClusterBlock;
-import com.github.Imphuls3.abigne.common.block.util.TwoLayeredBlock;
+import com.github.Imphuls3.abigne.common.block.util.*;
 import com.github.Imphuls3.abigne.core.block.AbIgneBlock;
 import com.github.Imphuls3.abigne.core.helper.DataHelper;
 import com.github.Imphuls3.abigne.core.registry.BlockRegistry;
@@ -25,7 +22,6 @@ import javax.annotation.Nonnull;
 import java.util.*;
 
 import static com.github.Imphuls3.abigne.AbIgne.modPath;
-import static net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER;
 
 public class ModBlockStatesProvider extends BlockStateProvider {
     public ModBlockStatesProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -45,13 +41,16 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         DataHelper.takeAll(blocks, i -> i.get() instanceof PedestalBlock).forEach(this::pedestalBlock);
         DataHelper.takeAll(blocks, i -> i.get() instanceof FlameBlock || i.get() instanceof InfuserBlock).forEach(this::invisibleBlock);
         DataHelper.takeAll(blocks, i -> i.get() instanceof TwoLayeredBlock).forEach(this::layeredBlock);
+        DataHelper.takeAll(blocks, i -> i.get() instanceof LeavesBlock).forEach(this::cutoutBlock);
+        DataHelper.takeAll(blocks, i -> i.get() instanceof AbstractGlassBlock).forEach(this::translucentBlock);
         DataHelper.takeAll(blocks, i -> i.get() instanceof StairBlock).forEach(this::stairsBlock);
         DataHelper.takeAll(blocks, i -> i.get() instanceof DoorBlock).forEach(this::doorBlock);
         DataHelper.takeAll(blocks, i -> i.get() instanceof TrapDoorBlock).forEach(this::trapdoorBlock);
         DataHelper.takeAll(blocks, i -> i.get() instanceof BushBlock).forEach(this::plantBlock);
+        DataHelper.takeAll(blocks, i -> i.get() instanceof FlowerPotBlock).forEach(this::flowerPotBlock);
 
-        DataHelper.takeAll(blocks, i -> !(i.get() instanceof FullyRotatingPillarBlock || i.get() instanceof RotatedPillarBlock || i.get() instanceof AbIgneLogBlock
-                || i.get() instanceof PyroliteClusterBlock || i.get() instanceof AbIgneBlock || i.get() instanceof SlabBlock)).forEach(this::basicBlock);
+        DataHelper.takeAll(blocks, i -> !(i.get() instanceof FullyRotatingPillarBlock || i.get() instanceof RotatedPillarBlock || i.get() instanceof ModLogBlock
+                || i.get() instanceof AbIgneBlock || i.get() instanceof SlabBlock || i.get() instanceof LiquidBlock)).forEach(this::basicBlock);
 
         Collection<RegistryObject<Block>> slabs = DataHelper.takeAll(blocks, b -> b.get() instanceof SlabBlock);
         slabs.forEach(this::slabBlock);
@@ -59,6 +58,21 @@ public class ModBlockStatesProvider extends BlockStateProvider {
 
     public void basicBlock(RegistryObject<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get());
+    }
+
+    public void translucentBlock(RegistryObject<Block> blockRegistryObject) {
+        basicBlockWithRendertype(blockRegistryObject, "translucent");
+    }
+
+    public void cutoutBlock(RegistryObject<Block> blockRegistryObject) {
+        basicBlockWithRendertype(blockRegistryObject, "cutout");
+    }
+
+    public void basicBlockWithRendertype(RegistryObject<Block> blockRegistryObject, String renderType) {
+        String name = Registry.BLOCK.getKey(blockRegistryObject.get()).getPath();
+        String modelLocation = "block/block";
+        ModelFile block = models().withExistingParent(name, new ResourceLocation(modelLocation)).texture("all", modPath("block/" + name)).renderType(renderType);
+        getVariantBuilder(blockRegistryObject.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(block).build());
     }
 
     public void slabBlock(RegistryObject<Block> blockRegistryObject) {
@@ -76,35 +90,42 @@ public class ModBlockStatesProvider extends BlockStateProvider {
     public void pedestalBlock(RegistryObject<Block> blockRegistryObject) {
         String name = Registry.BLOCK.getKey(blockRegistryObject.get()).getPath();
         String modelLocation = "block/util_pedestal_block";
-        ModelFile pedestal = models().withExistingParent(name, modPath(modelLocation)).texture("all", modPath("block/pedestals/" + name));
+        ModelFile pedestal = models().withExistingParent(name, modPath(modelLocation)).texture("all", modPath("block/pedestals/" + name)).renderType("cutout");
         getVariantBuilder(blockRegistryObject.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(pedestal).build());
     }
 
     public void invisibleBlock(RegistryObject<Block> blockRegistryObject) {
         String name = Registry.BLOCK.getKey(blockRegistryObject.get()).getPath();
-        ModelFile empty = models().withExistingParent(name, new ResourceLocation("block/air")).texture("particle", modPath("item/flame"));
+        ModelFile empty = models().withExistingParent(name, new ResourceLocation("block/air")).texture("particle", modPath("item/flame")).renderType("translucent");
         getVariantBuilder(blockRegistryObject.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(empty).build());
     }
 
     public void doorBlock(RegistryObject<Block> blockRegistryObject) {
         String name = Registry.BLOCK.getKey(blockRegistryObject.get()).getPath();
-        doorBlock((DoorBlock) blockRegistryObject.get(), modPath("block/" + name + "_bottom"), modPath("block/" + name + "_top"));
+        doorBlockWithRenderType((DoorBlock) blockRegistryObject.get(), modPath("block/" + name + "_bottom"), modPath("block/" + name + "_top"), "cutout");
     }
 
     public void trapdoorBlock(RegistryObject<Block> blockRegistryObject) {
-        trapdoorBlock((TrapDoorBlock) blockRegistryObject.get(), blockTexture(blockRegistryObject.get()), true);
+        trapdoorBlockWithRenderType((TrapDoorBlock) blockRegistryObject.get(), blockTexture(blockRegistryObject.get()), true, "cutout");
     }
 
     public void layeredBlock(RegistryObject<Block> blockRegistryObject) {
         String name = Registry.BLOCK.getKey(blockRegistryObject.get()).getPath();
         String modelLocation = "block/util_cube_glow_2_all";
-        ModelFile pedestal = models().withExistingParent(name, modPath(modelLocation)).texture("all", modPath("block/" + name)).texture("glow", modPath("block/" + name + "_glow"));
+        ModelFile pedestal = models().withExistingParent(name, modPath(modelLocation)).texture("all", modPath("block/" + name)).texture("glow", modPath("block/" + name + "_glow")).renderType("cutout");
         getVariantBuilder(blockRegistryObject.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(pedestal).build());
     }
 
     public void plantBlock(RegistryObject<Block> blockRegistryObject) {
         String name = Registry.BLOCK.getKey(blockRegistryObject.get()).getPath();
-        ModelFile cross = models().withExistingParent(name, new ResourceLocation("block/cross")).texture("cross", modPath("block/" + name));
+        ModelFile cross = models().withExistingParent(name, new ResourceLocation("block/cross")).texture("cross", modPath("block/" + name)).renderType("cutout");
+        getVariantBuilder(blockRegistryObject.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(cross).build());
+    }
+
+    public void flowerPotBlock(RegistryObject<Block> blockRegistryObject) {
+        String name = Registry.BLOCK.getKey(blockRegistryObject.get()).getPath();
+        String flower = name.substring(7);
+        ModelFile cross = models().withExistingParent(name, new ResourceLocation("block/flower_pot_cross")).texture("plant", modPath("block/" + flower)).renderType("cutout");
         getVariantBuilder(blockRegistryObject.get()).forAllStates(s -> ConfiguredModel.builder().modelFile(cross).build());
     }
 }

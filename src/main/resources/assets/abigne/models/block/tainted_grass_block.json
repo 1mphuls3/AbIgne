@@ -1,0 +1,17 @@
+{
+  "parent": "abigne:block/util_cube_glow_2_all",
+  "textures": {
+    "up": "abigne:block/tainted_grass_block_top",
+    "down": "minecraft:block/dirt",
+    "north": "minecraft:block/dirt",
+    "south": "minecraft:block/dirt",
+    "east": "minecraft:block/dirt",
+    "west": "minecraft:block/dirt",
+    "glow_up": "abigne:block/tainted_grass_block_top",
+    "glow_down": "minecraft:block/dirt",
+    "glow_north": "abigne:block/tainted_grass_block",
+    "glow_south": "abigne:block/tainted_grass_block",
+    "glow_east": "abigne:block/tainted_grass_block",
+    "glow_west": "abigne:block/tainted_grass_block"
+  }
+}

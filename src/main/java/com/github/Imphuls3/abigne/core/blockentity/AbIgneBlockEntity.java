@@ -25,6 +25,10 @@ public class AbIgneBlockEntity extends BlockEntity {
         invalidateCaps();
     }
 
+    public void onPlayerBreak(Player player) {
+        invalidateCaps();
+    }
+
     public void onPlace(LivingEntity placer, ItemStack stack) {
     }
 

@@ -10,13 +10,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nonnull;
 
 public class AbIgneInventoryBlockEntity extends AbIgneBlockEntity {
-    public ModInventory inv;
+    public ExtendedItemStackHandler inv;
 
     public AbIgneInventoryBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -28,7 +28,7 @@ public class AbIgneInventoryBlockEntity extends AbIgneBlockEntity {
 
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
-        inv.invInteract(player.level, player, hand);
+        inv.interact(player.level, player, hand);
         return InteractionResult.SUCCESS;
     }
 
@@ -62,7 +62,7 @@ public class AbIgneInventoryBlockEntity extends AbIgneBlockEntity {
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap)
     {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        if (cap == ForgeCapabilities.ITEM_HANDLER)
         {
             return inv.invOptional.cast();
         }
@@ -73,7 +73,7 @@ public class AbIgneInventoryBlockEntity extends AbIgneBlockEntity {
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side)
     {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        if (cap == ForgeCapabilities.ITEM_HANDLER)
         {
             return inv.invOptional.cast();
         }

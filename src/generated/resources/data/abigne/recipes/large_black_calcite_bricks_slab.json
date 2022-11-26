@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
   "key": {
     "#": {
       "item": "abigne:large_black_calcite_bricks"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "abigne:large_black_calcite_bricks_slab",
-    "count": 6
+    "count": 6,
+    "item": "abigne:large_black_calcite_bricks_slab"
   }
 }

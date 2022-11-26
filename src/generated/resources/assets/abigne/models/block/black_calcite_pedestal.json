@@ -1,5 +1,6 @@
 {
   "parent": "abigne:block/util_pedestal_block",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "abigne:block/pedestals/black_calcite_pedestal"
   }

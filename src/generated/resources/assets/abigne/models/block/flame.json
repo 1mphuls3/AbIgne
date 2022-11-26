@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/air",
+  "render_type": "minecraft:translucent",
   "textures": {
     "particle": "abigne:item/flame"
   }

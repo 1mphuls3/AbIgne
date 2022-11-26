@@ -1,0 +1,23 @@
+// 1.19.2	2022-11-21T20:22:40.7193761	Abigne Block Tags
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/buttons.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/dirt.json
+0e9adc8ce3fa3fc36c1a0a19a202c5f92d29e42a data/minecraft/tags/blocks/doors.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/fences.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/fence_gates.json
+9deb00e12f0aca60c45f42862dd320fc9d9b4153 data/minecraft/tags/blocks/leaves.json
+bd2093b945a9e5ab927cf321e6a5cb06bdaa8e9f data/minecraft/tags/blocks/logs.json
+58a62155d6c60f088ca4d0e4a0e9d5d2446ddde5 data/minecraft/tags/blocks/mineable/axe.json
+2aa8701a81c85d84ffdfc76f7a0098783bb93d54 data/minecraft/tags/blocks/planks.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/pressure_plates.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/saplings.json
+e953d7d836e2e03e600a08032a8ff106e194c47d data/minecraft/tags/blocks/slabs.json
+66daaeb1ecea9d9a857fe9639b4b3f2902bc6608 data/minecraft/tags/blocks/stairs.json
+80d9cf5361167b0f711f2d08738658421c329370 data/minecraft/tags/blocks/trapdoors.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/walls.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/wooden_buttons.json
+0e9adc8ce3fa3fc36c1a0a19a202c5f92d29e42a data/minecraft/tags/blocks/wooden_doors.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/wooden_fences.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/wooden_pressure_plates.json
+8e11a74a12afc2e222f4f027b0669d6a982a3333 data/minecraft/tags/blocks/wooden_slabs.json
+16de1dd62711f3405c2835e376132cefac66021b data/minecraft/tags/blocks/wooden_stairs.json
+80d9cf5361167b0f711f2d08738658421c329370 data/minecraft/tags/blocks/wooden_trapdoors.json

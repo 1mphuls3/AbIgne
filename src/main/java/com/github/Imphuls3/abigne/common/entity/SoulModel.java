@@ -8,22 +8,22 @@ import static com.github.Imphuls3.abigne.AbIgne.modPath;
 
 public class SoulModel extends AnimatedGeoModel<SoulEntity> {
     @Override
-    public ResourceLocation getModelLocation(SoulEntity object) {
-        return modPath("geo/soul.geo.json");
-    }
-
-    @Override
-    public ResourceLocation getTextureLocation(SoulEntity object) {
-        return modPath("textures/entity/soul/soul.png");
-    }
-
-    @Override
     public void registerModelRenderer(IBone modelRenderer) {
         super.registerModelRenderer(modelRenderer);
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(SoulEntity animatable) {
+    public ResourceLocation getModelResource(SoulEntity object) {
+        return modPath("geo/soul.geo.json");
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(SoulEntity object) {
+        return modPath("textures/entity/soul/soul.png");
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(SoulEntity animatable) {
         return null;
     }
 }

@@ -1,0 +1,20 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"0": "abigne:block/fluid_pipe",
+		"particle": "abigne:block/infused_glass"
+	},
+	"elements": [
+		{
+			"from": [10, 6, 6],
+			"to": [16, 10, 10],
+			"faces": {
+				"north": {"uv": [0, 6, 6, 10], "texture": "#0"},
+				"south": {"uv": [6, 6, 0, 10], "texture": "#0"},
+				"up": {"uv": [16, 6, 10, 10], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [16, 6, 10, 10], "rotation": 180, "texture": "#0"}
+			}
+		}
+	]
+}

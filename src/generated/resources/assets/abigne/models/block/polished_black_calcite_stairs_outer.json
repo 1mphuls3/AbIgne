@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/outer_stairs",
   "textures": {
-    "side": "abigne:block/polished_black_calcite",
     "bottom": "abigne:block/polished_black_calcite",
+    "side": "abigne:block/polished_black_calcite",
     "top": "abigne:block/polished_black_calcite"
   }
 }

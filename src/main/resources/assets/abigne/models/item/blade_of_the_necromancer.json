@@ -1,0 +1,15 @@
+{
+  "parent": "item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "abigne:item/blade_of_the_necromancer_held"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "abigne:item/blade_of_the_necromancer_item"
+    },
+    "fixed": {
+      "parent": "abigne:item/blade_of_the_necromancer_item"
+    }
+  }
+}

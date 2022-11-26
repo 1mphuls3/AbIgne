@@ -1,10 +1,11 @@
 package com.github.Imphuls3.abigne.core.registry;
 
 import com.github.Imphuls3.abigne.AbIgne;
-import com.github.Imphuls3.abigne.client.particle.ParticleColor;
 import com.github.Imphuls3.abigne.common.block.*;
+import com.github.Imphuls3.abigne.common.block.PipeBlock;
 import com.github.Imphuls3.abigne.common.block.util.*;
 import com.github.Imphuls3.abigne.common.block.util.TwoLayeredBlock;
+import com.github.Imphuls3.abigne.config.FluidTransportConfig;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
@@ -12,10 +13,12 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.*;
 
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.ToIntFunction;
 
 public class BlockRegistry {
@@ -34,33 +37,78 @@ public class BlockRegistry {
     public static final RegistryObject<AlembicBlock> ALEMBIC = BLOCKS.register("alembic",
             () -> new AlembicBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
-    public static final RegistryObject<Block> FLAME = BLOCKS.register("flame", () -> new FlameBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().instabreak()));
+    public static final RegistryObject<TankBlock> TANK = BLOCKS.register("tank",
+            () -> new TankBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()));
 
-    //region plants
+    public static final RegistryObject<PipeBlock> FLUID_PIPE = BLOCKS.register("fluid_pipe",
+            () -> new PipeBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()));
+
+    public static final RegistryObject<CopperPotBlock> COPPER_POT = BLOCKS.register("copper_pot",
+            () -> new CopperPotBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion()));
+
+    public static final RegistryObject<FluidEmitterBlock> FLUID_EMITTER = BLOCKS.register("fluid_emitter",
+            () -> new FluidEmitterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+
+    public static final RegistryObject<Block> FLAME = BLOCKS.register("flame", () -> new FlameBlock(BlockBehaviour.Properties.copy(Blocks.STRUCTURE_VOID).noOcclusion().noCollission().instabreak()));
+
+    public static final RegistryObject<Block> TIN_BLOCK = BLOCKS.register("alchemical_tin_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 6.0F)));
+
+    public static final RegistryObject<Block> LEAD_BLOCK = BLOCKS.register("alchemical_lead_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 6.0F)));
+
+    public static final RegistryObject<Block> SILVER_BLOCK = BLOCKS.register("alchemical_silver_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 6.0F)));
+
+    public static final RegistryObject<Block> MOONSTONE_BLOCK = BLOCKS.register("moonstone_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).strength(5.0F, 6.0F)));
+
+    public static final RegistryObject<Block> SUNSTONE_BLOCK = BLOCKS.register("sunstone_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).strength(5.0F, 6.0F)));
+
+    public static final RegistryObject<Block> CINNABAR_ORE = BLOCKS.register("cinnabar_ore",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE).strength(3.0F, 3.0F)));
+
+/*
+    public static final RegistryObject<Block> CINNABAR_BLOCK = BLOCKS.register("cinnabar_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> MERCURY_BLOCK = BLOCKS.register("mercury_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> SULFUR_BLOCK = BLOCKS.register("sulfur_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));*/
+    public static final RegistryObject<Block> SALT_BLOCK = BLOCKS.register("salt_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> POLISHED_SALT_BLOCK = BLOCKS.register("polished_salt_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> SALT_BRICKS = BLOCKS.register("salt_bricks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> CHISELED_SALT_BLOCK = BLOCKS.register("chiseled_salt_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+
+    //Plants
     public static final RegistryObject<FlowerBlock> HEMLOCK = BLOCKS.register("hemlock",
-            () -> new InflictingFlower(MobEffects.POISON, 8, new ParticleColor(125, 255, 15), BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape().noCollission()));
+            () -> new InflictingFlower(MobEffects.POISON, 8, new Color(125, 255, 15), BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape().noCollission()));
+    public static final RegistryObject<FlowerPotBlock> POTTED_HEMLOCK = BLOCKS.register("potted_hemlock",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, HEMLOCK, BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape()));
     public static final RegistryObject<FlowerBlock> BELLADONA = BLOCKS.register("belladona",
-            () -> new InflictingFlower(MobEffects.POISON, 8, new ParticleColor(125, 255, 15), BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape().noCollission()));
-    //endregion
+            () -> new InflictingFlower(MobEffects.POISON, 8, new Color(125, 255, 15), BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape().noCollission()));
+    public static final RegistryObject<FlowerPotBlock> POTTED_BELLADONA = BLOCKS.register("potted_belladona",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, BELLADONA, BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape()));
+    public static final RegistryObject<FlowerBlock> FROST_BLOOM = BLOCKS.register("frost_bloom",
+            () -> new InflictingFlower(MobEffects.MOVEMENT_SLOWDOWN, 8, new Color(151, 178, 232), BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape().noCollission()));
+    public static final RegistryObject<FlowerPotBlock> POTTED_FROST_BLOOM = BLOCKS.register("potted_frost_bloom",
+            () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, FROST_BLOOM, BlockBehaviour.Properties.copy(Blocks.POPPY).dynamicShape()));
+    //
 
     public static final RegistryObject<Block> BLACK_CALCITE_PEDESTAL = BLOCKS.register("black_calcite_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> INFUSED_WOOD_PEDESTAL = BLOCKS.register("infused_wood_pedestal", () -> new PedestalBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-    public static final RegistryObject<Block> TRANSPORTER = BLOCKS.register("transporter", () -> new ItemTransporterBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
-
-    public static final RegistryObject<Block> CRUCIBLE = BLOCKS.register("crucible", () -> new CrucibleBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
-
     public static final RegistryObject<Block> INFUSER = BLOCKS.register("infuser", () -> new InfuserBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
 
-    public static final RegistryObject<Block> IGNIS_GLASS = BLOCKS.register("ignis_infused_glass",
-            () -> new StainedGlassBlock(DyeColor.RED, BlockBehaviour.Properties.copy(Blocks.RED_STAINED_GLASS).lightLevel((light) -> {
-                return 5;
-            })));
+    public static final RegistryObject<Block> INFUSED_GLASS = BLOCKS.register("infused_glass",
+            () -> new StainedGlassBlock(DyeColor.LIGHT_BLUE, BlockBehaviour.Properties.copy(Blocks.LIGHT_BLUE_STAINED_GLASS)));
 
-    public static final RegistryObject<Block> TARNISHED_STEEL_BLOCK = BLOCKS.register("tarnished_steel_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 6.0F)));
-
-    //region infused planks
+    //Infused planks
     public static final RegistryObject<Block> INFUSED_PLANKS = BLOCKS.register("infused_planks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F)));
     public static final RegistryObject<Block> POLISHED_INFUSED_WOOD = BLOCKS.register("polished_infused_wood",
@@ -96,14 +144,14 @@ public class BlockRegistry {
 
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_INFUSED_LOG = BLOCKS.register("stripped_infused_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get())));
-    public static final RegistryObject<AbIgneLogBlock> INFUSED_LOG = BLOCKS.register("infused_log",
-            () -> new AbIgneLogBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()), STRIPPED_INFUSED_LOG));
-    public static final RegistryObject<AbIgneLogBlock> INFUSED_WOOD = BLOCKS.register("infused_wood",
-            () -> new AbIgneLogBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()), STRIPPED_INFUSED_LOG));
+    public static final RegistryObject<ModLogBlock> INFUSED_LOG = BLOCKS.register("infused_log",
+            () -> new ModLogBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()), STRIPPED_INFUSED_LOG));
+    public static final RegistryObject<ModLogBlock> INFUSED_WOOD = BLOCKS.register("infused_wood",
+            () -> new ModLogBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()), STRIPPED_INFUSED_LOG));
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_INFUSED_WOOD = BLOCKS.register("stripped_infused_wood",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get())));
 
-    public static final RegistryObject<LeavesBlock> ROWAN_LEAVES = BLOCKS.register("rowan_leaves",
+    public static final RegistryObject<LeavesBlock> HICKORY_LEAVES = BLOCKS.register("hickory_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
 
     public static final RegistryObject<DoorBlock> INFUSED_WOOD_DOOR = BLOCKS.register("infused_wood_door",
@@ -113,9 +161,9 @@ public class BlockRegistry {
 
     public static final RegistryObject<TableBlock> INFUSED_WOOD_TABLE = BLOCKS.register("infused_wood_planks_table",
             () -> new TableBlock(BlockBehaviour.Properties.copy(INFUSED_PLANKS.get()).noOcclusion()));
-    //endregion
+    //
 
-    //region black calcite
+    //Black calcite
     public static final RegistryObject<Block> POLISHED_BLACK_CALCITE = BLOCKS.register("polished_black_calcite",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS).requiresCorrectToolForDrops().strength(1.5F, 9.0F)));
     public static final RegistryObject<Block> BLACK_CALCITE_BRICKS = BLOCKS.register("black_calcite_bricks",
@@ -148,33 +196,8 @@ public class BlockRegistry {
             () -> new StairBlock(() -> BLACK_CALCITE_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(POLISHED_BLACK_CALCITE.get())));
     public static final RegistryObject<Block> LARGE_BLACK_CALCITE_BRICKS_STAIRS = BLOCKS.register("large_black_calcite_bricks_stairs",
             () -> new StairBlock(() -> LARGE_BLACK_CALCITE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(POLISHED_BLACK_CALCITE.get())));
-    //endregion black calcite
+    //
 
-    public static final RegistryObject<Block> PYROLITE_GEM_BLOCK = BLOCKS.register("pyrolite_gem_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK)));
-
-    public static final RegistryObject<BuddingPyroliteBlock> BUDDING_PYROLITE_GEM_BLOCK = BLOCKS.register("budding_pyrolite",
-            () -> new BuddingPyroliteBlock(BlockBehaviour.Properties.copy(Blocks.BUDDING_AMETHYST)));
-
-    public static final RegistryObject<PyroliteClusterBlock> PYROLITE_CLUSTER = BLOCKS.register("pyrolite_cluster",
-            () -> new PyroliteClusterBlock(7, 3, BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5F).lightLevel((p_152632_) -> {
-                return 5;
-            })));
-
-    public static final RegistryObject<PyroliteClusterBlock> SMALL_PYROLITE_BUD = BLOCKS.register("small_pyrolite_bud",
-            () -> new PyroliteClusterBlock(5, 3, BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5F).lightLevel((p_152632_) -> {
-                return 4;
-            })));
-
-    public static final RegistryObject<PyroliteClusterBlock> MEDIUM_PYROLITE_BUD = BLOCKS.register("medium_pyrolite_bud",
-            () -> new PyroliteClusterBlock(4, 3, BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5F).lightLevel((p_152632_) -> {
-                return 2;
-            })));
-
-    public static final RegistryObject<Block> LARGE_PYROLITE_BUD = BLOCKS.register("large_pyrolite_bud",
-            () -> new PyroliteClusterBlock(3, 4, BlockBehaviour.Properties.of(Material.AMETHYST).randomTicks().sound(SoundType.AMETHYST_CLUSTER).strength(1.5F).lightLevel((p_152632_) -> {
-                return 1;
-            })));
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }

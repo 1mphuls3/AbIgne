@@ -3,7 +3,7 @@
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "abigne:block/alembic",
-		"particle": "abigne:block/alembic"
+		"particle": "abigne:block/infused_planks"
 	},
 	"elements": [
 		{

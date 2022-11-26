@@ -1,15 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
   "key": {
     "#": {
       "item": "abigne:infused_wood_tile"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "abigne:infused_wood_tile_slab",
-    "count": 6
+    "count": 6,
+    "item": "abigne:infused_wood_tile_slab"
   }
 }

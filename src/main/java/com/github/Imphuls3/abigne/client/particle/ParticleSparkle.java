@@ -1,6 +1,10 @@
 package com.github.Imphuls3.abigne.client.particle;
 
+import com.github.Imphuls3.abigne.client.event.RenderHandler;
+import com.github.Imphuls3.abigne.core.registry.RenderTypeRegistry;
 import com.github.Imphuls3.abigne.core.registry.ShaderRegistry;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
@@ -23,7 +27,6 @@ public class ParticleSparkle extends TextureSheetParticle {
     public ParticleSparkle(ClientLevel worldIn, double x, double y, double z, double vx, double vy, double vz, float r, float g, float b, float a, float scale, int lifetime, SpriteSet sprite, boolean disableDepthTest) {
         super(worldIn, x, y, z, 0, 0, 0);
         this.hasPhysics = false;
-
         this.colorR = r;
         this.colorG = g;
         this.colorB = b;
@@ -38,7 +41,7 @@ public class ParticleSparkle extends TextureSheetParticle {
         }
         this.setColor(colorR, colorG, colorB);
         this.lifetime = (int) ((float) lifetime * 0.5f);
-        this.quadSize = 0;
+        this.quadSize = scale;
         this.initScale = scale;
         this.xd = vx * 2.0f;
         this.yd = vy * 2.0f;
@@ -51,7 +54,12 @@ public class ParticleSparkle extends TextureSheetParticle {
 
     @Override
     public ParticleRenderType getRenderType() {
-        return ShaderRegistry.ParticleRenderTypes.TRANSPARENT_PARTICLE_RENDERTYPE;
+        return RenderTypeRegistry.ParticleRenderTypes.ADDITIVE_PARTICLE_RENDERTYPE;
+    }
+
+    @Override
+    public void render(VertexConsumer buffer, Camera info, float ticks) {
+        super.render(RenderHandler.getDelayedRender().getBuffer(RenderTypeRegistry.ADDITIVE_PARTICLE), info, ticks);
     }
 
     @Override
@@ -67,7 +75,6 @@ public class ParticleSparkle extends TextureSheetParticle {
             this.age++;
         }
         float lifeCoeff = (float) this.age / (float) this.lifetime;
-        this.quadSize = initScale - initScale * lifeCoeff/2;
         this.alpha = initAlpha * (1.0f - lifeCoeff);
 
         this.oRoll = roll;

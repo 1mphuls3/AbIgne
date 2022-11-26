@@ -18,7 +18,7 @@ public class Config {
     private static void registerCommonConfigs() {
         ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
         GeodeConfig.registerCommonConfig(COMMON_BUILDER);
-        CalmingTorchConfig.registerCommonConfig(COMMON_BUILDER);
+        FluidTransportConfig.registerCommonConfig(COMMON_BUILDER);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, COMMON_BUILDER.build());
     }
 

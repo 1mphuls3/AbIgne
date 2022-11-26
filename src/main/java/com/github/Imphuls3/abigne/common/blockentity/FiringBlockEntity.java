@@ -3,7 +3,7 @@ package com.github.Imphuls3.abigne.common.blockentity;
 import com.github.Imphuls3.abigne.common.block.FiringBlock;
 import com.github.Imphuls3.abigne.common.entity.ManaBurst;
 import com.github.Imphuls3.abigne.core.blockentity.AbIgneBlockEntity;
-import com.github.Imphuls3.abigne.core.blockentity.ModInventory;
+import com.github.Imphuls3.abigne.core.blockentity.ExtendedItemStackHandler;
 import com.github.Imphuls3.abigne.core.helper.BlockHelper;
 import com.github.Imphuls3.abigne.core.helper.VecHelper;
 import com.github.Imphuls3.abigne.core.registry.BlockEntityRegistry;
@@ -20,15 +20,15 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nonnull;
 
 import static com.github.Imphuls3.abigne.core.helper.VecHelper.CENTER;
 
 public class FiringBlockEntity extends AbIgneBlockEntity {
-    public ModInventory inventory = new ModInventory(1, 64) {
+    public ExtendedItemStackHandler inventory = new ExtendedItemStackHandler(1, 64) {
         @Override
         public void onContentsChanged(int slot) {
             super.onContentsChanged(slot);
@@ -47,7 +47,7 @@ public class FiringBlockEntity extends AbIgneBlockEntity {
     @Override
     public InteractionResult onUse(Player player, InteractionHand hand) {
         if(!player.isCrouching()){
-            inventory.invInteract(player.level, player, hand);
+            inventory.interact(player.level, player, hand);
         }
         return InteractionResult.SUCCESS;
     }
@@ -73,7 +73,6 @@ public class FiringBlockEntity extends AbIgneBlockEntity {
         Vec3i vel = dir.getNormal();
         Vec3 velocity = new Vec3(vel.getX()/5F, 0F, vel.getZ()/5F);
         ManaBurst manaBurst = new ManaBurst(EntityRegistry.MANA.get(), level);
-        manaBurst.inventory.setStackInSlot(0, inventory.getStackInSlot(0));
         level.addFreshEntity(manaBurst.shoot(pos.x, pos.y, pos.z, velocity.x, velocity.y, velocity.z, null));
     }
 
@@ -97,7 +96,7 @@ public class FiringBlockEntity extends AbIgneBlockEntity {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return inventory.invOptional.cast();
         }
         return super.getCapability(cap);
@@ -106,7 +105,7 @@ public class FiringBlockEntity extends AbIgneBlockEntity {
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, Direction side) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return inventory.invOptional.cast();
         }
         return super.getCapability(cap, side);

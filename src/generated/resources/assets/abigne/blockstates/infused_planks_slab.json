@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "abigne:block/infused_planks_slab_top"
-    },
     "type=bottom": {
       "model": "abigne:block/infused_planks_slab"
     },
     "type=double": {
       "model": "abigne:block/infused_planks"
+    },
+    "type=top": {
+      "model": "abigne:block/infused_planks_slab_top"
     }
   }
 }

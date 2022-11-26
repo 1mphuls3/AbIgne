@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static com.github.Imphuls3.abigne.core.helper.RegistryHelper.getRegistryName;
 import static com.github.Imphuls3.abigne.core.registry.BlockRegistry.BLOCKS;
 import static net.minecraft.tags.BlockTags.*;
 
@@ -27,8 +28,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags() {
         /*tag(Tags.Blocks.ORES).add();*/
-        tag(BEACON_BASE_BLOCKS).add(BlockRegistry.TARNISHED_STEEL_BLOCK.get());
-
         tag(BlockTags.SLABS).add(getModBlocks(b -> b instanceof SlabBlock));
         tag(BlockTags.STAIRS).add(getModBlocks(b -> b instanceof StairBlock));
         tag(BlockTags.WALLS).add(getModBlocks(b -> b instanceof WallBlock));
@@ -42,18 +41,18 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(DIRT).add(getModBlocks(b -> b instanceof GrassBlock || b instanceof FarmBlock));
         tag(SAPLINGS).add(getModBlocks(b -> b instanceof SaplingBlock));
 
-        tag(LOGS).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_log")));
-        tag(PLANKS).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_planks")));
-        tag(WOODEN_BUTTONS).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_button") && b.getRegistryName().getPath().contains("wood")));
-        tag(WOODEN_FENCES).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_fence") && b.getRegistryName().getPath().contains("wood")));
-        tag(WOODEN_DOORS).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_door") && b.getRegistryName().getPath().contains("wood")));
-        tag(WOODEN_STAIRS).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_stairs") && b.getRegistryName().getPath().contains("wood")));
-        tag(WOODEN_SLABS).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_slab") && b.getRegistryName().getPath().contains("wood")));
-        tag(WOODEN_TRAPDOORS).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_trapdoor") && b.getRegistryName().getPath().contains("wood")));
-        tag(WOODEN_PRESSURE_PLATES).add(getModBlocks(b -> b.getRegistryName().getPath().endsWith("_pressure_plate") && b.getRegistryName().getPath().contains("wood")));
+        tag(LOGS).add(getModBlocks(b -> getRegistryName(b).getPath().contains("_log")));
+        tag(PLANKS).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_planks")));
+        tag(WOODEN_BUTTONS).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_button") && getRegistryName(b).getPath().contains("wood")));
+        tag(WOODEN_FENCES).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_fence") && getRegistryName(b).getPath().contains("wood")));
+        tag(WOODEN_DOORS).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_door") && getRegistryName(b).getPath().contains("wood")));
+        tag(WOODEN_STAIRS).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_stairs") && getRegistryName(b).getPath().contains("wood")));
+        tag(WOODEN_SLABS).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_slab") && getRegistryName(b).getPath().contains("wood")));
+        tag(WOODEN_TRAPDOORS).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_trapdoor") && getRegistryName(b).getPath().contains("wood")));
+        tag(WOODEN_PRESSURE_PLATES).add(getModBlocks(b -> getRegistryName(b).getPath().endsWith("_pressure_plate") && getRegistryName(b).getPath().contains("wood")));
 
         for (RegistryObject<Block> block : BLOCKS.getEntries()) {
-            if (block.get().getRegistryName().getPath().contains("wood") || block.get().getRegistryName().getPath().contains("planks")) {
+            if (getRegistryName(block.get()).getPath().contains("wood") || getRegistryName(block.get()).getPath().contains("planks")) {
                 tag(MINEABLE_WITH_AXE).add(block.get());
             }
         }

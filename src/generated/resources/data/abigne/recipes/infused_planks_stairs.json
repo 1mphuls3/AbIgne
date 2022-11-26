@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#  ",
-    "## ",
-    "###"
-  ],
   "key": {
     "#": {
       "item": "abigne:infused_planks"
     }
   },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
   "result": {
-    "item": "abigne:infused_planks_stairs",
-    "count": 4
+    "count": 4,
+    "item": "abigne:infused_planks_stairs"
   }
 }

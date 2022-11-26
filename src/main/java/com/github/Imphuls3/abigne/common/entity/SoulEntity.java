@@ -1,6 +1,6 @@
 package com.github.Imphuls3.abigne.common.entity;
 
-import com.github.Imphuls3.abigne.core.blockentity.ModInventory;
+import com.github.Imphuls3.abigne.core.blockentity.ExtendedItemStackHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,7 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class SoulEntity extends PathfinderMob implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
-    public ModInventory inventory = new ModInventory(1, 64) {
+    public ExtendedItemStackHandler inventory = new ExtendedItemStackHandler(1, 64) {
         @Override
         public void onContentsChanged(int slot)  {
             super.onContentsChanged(slot);

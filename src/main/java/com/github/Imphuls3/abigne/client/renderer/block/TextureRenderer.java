@@ -1,12 +1,12 @@
 package com.github.Imphuls3.abigne.client.renderer.block;
 
 import com.github.Imphuls3.abigne.client.particle.FlameParticleData;
-import com.github.Imphuls3.abigne.client.particle.ParticleColor;
 import com.github.Imphuls3.abigne.common.blockentity.InfuserBlockEntity;
 import com.github.Imphuls3.abigne.core.Easing;
 import com.github.Imphuls3.abigne.core.helper.ColorHelper;
 import com.github.Imphuls3.abigne.core.helper.VecHelper;
 import com.github.Imphuls3.abigne.core.helper.RenderHelper;
+import com.github.Imphuls3.abigne.core.registry.RenderTypeRegistry;
 import com.github.Imphuls3.abigne.core.registry.ShaderRegistry;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -20,13 +20,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
-import java.util.Random;
 
 import static com.github.Imphuls3.abigne.AbIgne.modPath;
 import static net.minecraft.client.renderer.texture.OverlayTexture.NO_OVERLAY;
@@ -65,17 +65,17 @@ public class TextureRenderer<T extends InfuserBlockEntity> implements BlockEntit
 
         Matrix4f matrix = stackIn.last().pose();
 
-        VertexConsumer vertexConsumer = bufferIn.getBuffer(ShaderRegistry.AbIgneRenderTypes.ADD);
-        Color col = ColorHelper.multicolorLerp(Easing.LINEAR, Mth.sin((System.currentTimeMillis() % 86400000) / 850F) * speed + 0.1F, color, color2);
-        RenderHelper.renderSprite(vertexConsumer, matrix, stackIn, sprite, scale, col, alpha, brightness);
+        VertexConsumer vertexConsumer = bufferIn.getBuffer(RenderTypeRegistry.ADD);
+        Color lerp = ColorHelper.multicolorLerp(Easing.LINEAR, Mth.sin((System.currentTimeMillis() % 86400000) / 850F) * speed, color, color2);
+        RenderHelper.renderSprite(vertexConsumer, matrix, stackIn, sprite, scale, lerp.getRed(), lerp.getGreen(), lerp.getBlue(), alpha, brightness);
         Vec3 pos = VecHelper.vec3FromBlockPos(blockEntity.getBlockPos());
         pos = pos.add(0.5, 0.2, 0.5);
-        for (int i = 0; i < 16; i++) {
-            Vec3 cir = VecHelper.radialOffset(pos, 1,  i, 16);
-            Random random = new Random();
+        for (int i = 0; i < 12; i++) {
+            Vec3 cir = VecHelper.radialOffset(pos, 1,  i, 12);
+            RandomSource random = RandomSource.create();
             float rand = Mth.randomBetween(random, -0.2F, 0.2F);
             float rand2 = Mth.randomBetween(random, -0.2F, 0.2F);
-            level.addParticle(FlameParticleData.createData(new ParticleColor(col.getRed(), col.getGreen(), col.getBlue())), cir.x + rand, cir.y, cir.z + rand2, 0, 0.05, 0);
+            level.addParticle(FlameParticleData.createData(new Color(lerp.getRed(), lerp.getGreen(), lerp.getBlue())), cir.x + rand, cir.y, cir.z + rand2, 0, 0.05, 0);
         }
 
         stackIn.popPose();
@@ -83,7 +83,7 @@ public class TextureRenderer<T extends InfuserBlockEntity> implements BlockEntit
             ItemStack stack = blockEntity.inventory.getStackInSlot(0);
             stackIn.pushPose();
             float yDiff = Mth.sin((System.currentTimeMillis() % 86400000) / 850F) * 0.1F + 0.1F;
-            stackIn.translate(0.5D, 0.4D + yDiff + (((double)blockEntity.progress/blockEntity.maxProgress)/0.5D)-0.25D, 0.5D);
+            stackIn.translate(0.5D, 0.4D + yDiff, 0.5D);
             stackIn.mulPose(Vector3f.YP.rotationDegrees((level.getGameTime()) * 3 + partialTicks));
             stackIn.scale(0.5F, 0.5F, 0.5F);
 

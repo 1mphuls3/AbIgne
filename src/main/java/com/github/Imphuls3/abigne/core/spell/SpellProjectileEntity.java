@@ -1,6 +1,5 @@
 package com.github.Imphuls3.abigne.core.spell;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.Entity;
@@ -16,8 +15,6 @@ import java.util.UUID;
 
 public abstract class SpellProjectileEntity extends Entity {
     public UUID casterId = null;
-    BlockPos targetPos;
-    Vec3 playerPos;
     
     public SpellProjectileEntity(EntityType<?> entityTypeIn, Level level) {
         super(entityTypeIn, level);

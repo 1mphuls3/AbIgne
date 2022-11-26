@@ -1,6 +1,10 @@
 package com.github.Imphuls3.abigne.client.particle;
 
+import com.github.Imphuls3.abigne.client.event.RenderHandler;
+import com.github.Imphuls3.abigne.core.registry.RenderTypeRegistry;
 import com.github.Imphuls3.abigne.core.registry.ShaderRegistry;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
@@ -52,7 +56,12 @@ public class ParticleFlame extends TextureSheetParticle {
 
     @Override
     public ParticleRenderType getRenderType() {
-        return disableDepthTest ? ShaderRegistry.ParticleRenderTypes.FLAME_RENDERTYPE_DEPTH : ShaderRegistry.ParticleRenderTypes.TRANSPARENT_PARTICLE_RENDERTYPE;
+        return RenderTypeRegistry.ParticleRenderTypes.ADDITIVE_PARTICLE_RENDERTYPE;
+    }
+
+    @Override
+    public void render(VertexConsumer buffer, Camera info, float ticks) {
+        super.render(RenderHandler.getDelayedRender().getBuffer(RenderTypeRegistry.ADDITIVE_PARTICLE), info, ticks);
     }
 
     @Override

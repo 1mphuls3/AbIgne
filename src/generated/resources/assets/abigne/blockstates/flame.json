@@ -1,39 +1,6 @@
 {
   "variants": {
-    "colors=0": {
-      "model": "abigne:block/flame"
-    },
-    "colors=1": {
-      "model": "abigne:block/flame"
-    },
-    "colors=2": {
-      "model": "abigne:block/flame"
-    },
-    "colors=3": {
-      "model": "abigne:block/flame"
-    },
-    "colors=4": {
-      "model": "abigne:block/flame"
-    },
-    "colors=5": {
-      "model": "abigne:block/flame"
-    },
-    "colors=6": {
-      "model": "abigne:block/flame"
-    },
-    "colors=7": {
-      "model": "abigne:block/flame"
-    },
-    "colors=8": {
-      "model": "abigne:block/flame"
-    },
-    "colors=9": {
-      "model": "abigne:block/flame"
-    },
-    "colors=10": {
-      "model": "abigne:block/flame"
-    },
-    "colors=11": {
+    "": {
       "model": "abigne:block/flame"
     }
   }

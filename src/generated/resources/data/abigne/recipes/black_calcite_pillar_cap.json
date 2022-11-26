@@ -1,9 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "C",
-    "P"
-  ],
   "key": {
     "C": {
       "item": "abigne:polished_black_calcite"
@@ -12,8 +8,12 @@
       "item": "abigne:black_calcite_pillar"
     }
   },
+  "pattern": [
+    "C",
+    "P"
+  ],
   "result": {
-    "item": "abigne:black_calcite_pillar_cap",
-    "count": 2
+    "count": 2,
+    "item": "abigne:black_calcite_pillar_cap"
   }
 }

@@ -1,12 +1,11 @@
 package com.github.Imphuls3.abigne.common.block.util;
 
-import java.util.Random;
-
-import com.github.Imphuls3.abigne.client.particle.ParticleColor;
+import java.awt.*;
 import com.github.Imphuls3.abigne.client.particle.SparkleParticleData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -23,22 +22,23 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class InflictingFlower extends FlowerBlock {
     public MobEffect effect;
     private int duration;
-    private ParticleColor color;
+    private Color color;
 
     /**
      * Basically copied Wither Rose block using the effect in the constructor parameter instead of Wither
-     * @param effect Effect given to entity touching it (also used for the flower's suspicious stew)
-     * @param duration Duration the effect should last (in seconds) (also used for the flower's suspicious stew)
+     * @param effect Effect given to entity touching it (also used for the flower's suspicious stew recipe)
+     * @param duration Duration the effect should last (in seconds) (also used for the flower's suspicious stew recipe)
      * @param color Color used for particles spawned by this block.
      * */
-    public InflictingFlower(MobEffect effect, int duration, ParticleColor color, BlockBehaviour.Properties pProperties) {
+    public InflictingFlower(MobEffect effect, int duration, Color color, BlockBehaviour.Properties pProperties) {
         super(effect, duration, pProperties);
         this.effect = effect;
         this.duration = duration*20;
         this.color = color;
     }
 
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         float vel = 0.015F;
         VoxelShape voxelshape = this.getShape(state, level, pos, CollisionContext.empty());
         Vec3 vec3 = voxelshape.bounds().getCenter();
@@ -48,11 +48,12 @@ public class InflictingFlower extends FlowerBlock {
             if (random.nextBoolean()) {
                 ParticleOptions data = SparkleParticleData.createData(color, true, 0.1F, 0.8F, 35);
                 level.addParticle(data, d0 + random.nextDouble() / 5.0D, (double)pos.getY() + 0.2 + (0.5D - random.nextDouble()), d1 + random.nextDouble() / 5.0D,
-                        Mth.randomBetween(new Random(), -vel, vel), Mth.randomBetween(new Random(), -vel, vel), Mth.randomBetween(new Random(), -vel, vel));
+                        Mth.randomBetween(RandomSource.create(), -vel, vel), Mth.randomBetween(RandomSource.create(), -vel, vel), Mth.randomBetween(RandomSource.create(), -vel, vel));
             }
         }
     }
 
+    @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (!level.isClientSide && level.getDifficulty() != Difficulty.PEACEFUL) {
             if (entity instanceof LivingEntity) {

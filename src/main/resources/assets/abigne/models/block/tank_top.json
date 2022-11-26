@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "abigne:block/tank_top",
+    "side": "abigne:block/tank_side_top"
+  }
+}

@@ -1,0 +1,28 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "abigne:item/blade_of_the_necromancer_held"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -90, 55],
+			"translation": [0, 10, 0.5],
+			"scale": [1.5, 1.5, 1.0]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, -55],
+			"translation": [0, 10, 0.5],
+			"scale": [1.5, 1.5, 1.0]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -90, 25],
+			"translation": [1, 4, 1],
+			"scale": [1.1, 1.1, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, -25],
+			"translation": [1, 4, 1],
+			"scale": [1.1, 1.1, 1]
+		}
+	}
+}
