@@ -49,9 +49,6 @@ public final class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<FluidEmitterBlockEntity>> FLUID_EMITTER = BLOCKENTITIES.register("fluid_emitter",
             () -> BlockEntityType.Builder.of(FluidEmitterBlockEntity::new, BlockRegistry.FLUID_EMITTER.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<AlembicBlockEntity>> ALEMBIC = BLOCKENTITIES.register("alembic",
-            () -> BlockEntityType.Builder.of(AlembicBlockEntity::new, BlockRegistry.ALEMBIC.get()).build(null));
-
     public static final RegistryObject<BlockEntityType<FiringBlockEntity>> FIRING_BLOCK = BLOCKENTITIES.register("firing_block",
             () -> BlockEntityType.Builder.of(FiringBlockEntity::new, BlockRegistry.FIRING_BLOCK.get()).build(null));
 

@@ -1,15 +1,13 @@
-// 1.19.2	2022-11-21T22:19:38.2539255	Item Models: abigne
+// 1.19.2	2022-11-28T19:29:36.6714862	Item Models: abigne
 edbf26d213321fbbe9f2716080d2039990a32336 assets/abigne/models/item/alchemical_lead_block.json
 8245d37334aa941ac33cc3b37e423449294b76df assets/abigne/models/item/alchemical_lead_ingot.json
 176144b6f562d6f10aaa82f515d4e0648e5d04ba assets/abigne/models/item/alchemical_lead_nugget.json
 dc1c7f7f33faf52ac80b51fc5c800cda9aaf7709 assets/abigne/models/item/alchemical_silver_block.json
-b6e6f2cc3159bee571a805632a4442853ac56942 assets/abigne/models/item/alchemical_silver_dust.json
 b5729b368184bc78dabbc4b806bd02f5556a4340 assets/abigne/models/item/alchemical_silver_ingot.json
 be9cca5c3ac7316e394bcecda71ad1be0f45f31c assets/abigne/models/item/alchemical_silver_nugget.json
 762d23ecd4dbdd2242c66ddd8e4f00795de31985 assets/abigne/models/item/alchemical_tin_block.json
 5b24452eb8c81a9293aadf5695d93485a0a05160 assets/abigne/models/item/alchemical_tin_ingot.json
 db73e2615f8c275ab53cca8214b9a07c380eb48a assets/abigne/models/item/alchemical_tin_nugget.json
-7e41671200a7f91ad20d728a6c39b88f7beca351 assets/abigne/models/item/alembic.json
 9ee4e7cad4f22cd7a471a0b77c07520914309927 assets/abigne/models/item/amethyst_fragment.json
 e1c5614b0b2a582019ea6c7f453dc1b58a8394df assets/abigne/models/item/belladona.json
 e526d61c0603eeb634c8bf92d5bdc2079d30fee6 assets/abigne/models/item/black_calcite_bricks.json
@@ -59,7 +57,6 @@ db3d0bdeab24baeed098bd8daefd196e96543b4e assets/abigne/models/item/large_black_c
 030b6af64f54f5f0a38f7ed397a6dbef5cbbfd34 assets/abigne/models/item/large_black_calcite_bricks_slab.json
 2f1893a08fc7fadbd6a4422dd7aa54f5393fb406 assets/abigne/models/item/large_black_calcite_bricks_stairs.json
 e3d4ee787952c52a313d80f9b938ff652039bb81 assets/abigne/models/item/lemegeton.json
-caa1a36fadfb7aba2208c3664511bafbf43aa43f assets/abigne/models/item/mercury.json
 281506e492b7e86d95a3084a070b93122712f2e5 assets/abigne/models/item/molten_alchemical_silver_bucket.json
 779799f903faa3a1d041304aabd9484d003ab06f assets/abigne/models/item/moonstone.json
 81a1884349a5746ebe755fdd26786726e78ec1b2 assets/abigne/models/item/moonstone_block.json
@@ -74,14 +71,12 @@ bf75b546839043d5411a71acdf94dff581bc1c79 assets/abigne/models/item/polished_infu
 0725c5749b9bf17cd624e50117375f34575aca0a assets/abigne/models/item/polished_infused_wood_slab.json
 3cef50a49bdada5eb430697ec4b220f4f8e87ae2 assets/abigne/models/item/polished_infused_wood_stairs.json
 cbaeec3d37b105df8cb60c41ba532502792e0ba6 assets/abigne/models/item/polished_salt_block.json
-e9f6c828c8abc435b286902c197e57037e60ce99 assets/abigne/models/item/potash.json
+bfa100e39788b00cb23197a79e5859f8d29af2b0 assets/abigne/models/item/quicksilver.json
 d1b0783be5c7c4350506c1c9c74ea46cb66494dc assets/abigne/models/item/salt.json
 183f4628e1fa2f89c0e4e5c9c39e647994999fcf assets/abigne/models/item/salt_block.json
 868f1246807858f9b3501f839d74c55423322524 assets/abigne/models/item/salt_bricks.json
 e8c8f04c69be6f7864a2047399acf687cd49fd3a assets/abigne/models/item/silver_dagger.json
-aeeefe8992ade745b1b8e214cee8d3ccce519bfe assets/abigne/models/item/silver_nitrate_bag.json
 0fd326c8203769b154e0a00bebc32532f6636ef8 assets/abigne/models/item/silver_pickaxe.json
-63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/abigne/models/item/soul_spawn_egg.json
 9b1ba49358479d13ca6363c1e3a4bf7c05d72d1b assets/abigne/models/item/stripped_infused_log.json
 34887e15a992c165d8ae38887c413d48a1cca015 assets/abigne/models/item/stripped_infused_wood.json
 64af0151ab7917bbcaa504ba63f0268d66e6fb4f assets/abigne/models/item/sulfur.json
@@ -89,3 +84,4 @@ aeeefe8992ade745b1b8e214cee8d3ccce519bfe assets/abigne/models/item/silver_nitrat
 d0b34fb79966f9d7f58d1addf278a35ddc6dae45 assets/abigne/models/item/sunstone_block.json
 10c64b8e2cb9bb40570d5407d3db219c63870c1a assets/abigne/models/item/sunstone_ring.json
 77d91e201484e2e82b7778f0a9293b99279ca96b assets/abigne/models/item/tank.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/abigne/models/item/wisp_spawn_egg.json

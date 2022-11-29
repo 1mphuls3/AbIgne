@@ -1,8 +1,7 @@
-// 1.19.2	2022-11-21T22:19:38.2574271	LootTables
+// 1.19.2	2022-11-26T17:07:40.2871985	LootTables
 f5c1464470c91e4eeff6df25a0e0ece1a5fe9b47 data/abigne/loot_tables/blocks/alchemical_lead_block.json
 f171635fd03cc49efa5382337b179b12b842e7c1 data/abigne/loot_tables/blocks/alchemical_silver_block.json
 1de00c0bd80dde049f325073363f67deeb37cfe7 data/abigne/loot_tables/blocks/alchemical_tin_block.json
-9e5fbd2f681dfd9718f90282ba81f5ac0a221e83 data/abigne/loot_tables/blocks/alembic.json
 88153bbdabec70f944b1f8fa20000ec7a536eaf3 data/abigne/loot_tables/blocks/belladona.json
 4b61f31dd15ab5b08de8cc9e222c921ba886ad4a data/abigne/loot_tables/blocks/black_calcite_bricks.json
 27a942ed6aabfc92c540d0a5ba0bb8a7d366de6d data/abigne/loot_tables/blocks/black_calcite_bricks_slab.json

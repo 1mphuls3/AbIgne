@@ -11,19 +11,21 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.awt.*;
+
 @SuppressWarnings({"UnusedDeclaration"})
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
             AbIgne.MODID);
+
+    public static final RegistryObject<ForgeSpawnEggItem> WISP_SPAWN = ITEMS.register("wisp_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityRegistry.WISP, new Color(96, 90, 195).getRGB(), new Color(255, 174, 228).getRGB(), new Item.Properties().tab(AbIgne.itemGroup)));
 
     public static final RegistryObject<BlockItem> FIRING_BLOCK = ITEMS.register("firing_block",
             () -> new BlockItem(BlockRegistry.FIRING_BLOCK.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
     public static final RegistryObject<BlockItem> FLUID_EXTRACTOR = ITEMS.register("fluid_extractor",
             () -> new BlockItem(BlockRegistry.FLUID_EXTRACTOR.get(), new Item.Properties().tab(AbIgne.itemGroup)));
-
-    public static final RegistryObject<BlockItem> ALEMBIC = ITEMS.register("alembic",
-            () -> new BlockItem(BlockRegistry.ALEMBIC.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
     public static final RegistryObject<BlockItem> TANK = ITEMS.register("tank",
             () -> new BlockItem(BlockRegistry.TANK.get(), new Item.Properties().tab(AbIgne.itemGroup)));
@@ -75,8 +77,6 @@ public class ItemRegistry {
             () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
     public static final RegistryObject<Item> SILVER_NUGGET = ITEMS.register("alchemical_silver_nugget",
             () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
-    public static final RegistryObject<Item> SILVER_DUST = ITEMS.register("alchemical_silver_dust",
-            () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
     public static final RegistryObject<BlockItem> SILVER_BLOCK = ITEMS.register("alchemical_silver_block",
             () -> new BlockItem(BlockRegistry.SILVER_BLOCK.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
@@ -103,11 +103,9 @@ public class ItemRegistry {
             () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
     public static final RegistryObject<BlockItem> CINNABAR_ORE = ITEMS.register("cinnabar_ore",
             () -> new BlockItem(BlockRegistry.CINNABAR_ORE.get(), new Item.Properties().tab(AbIgne.itemGroup)));
-    public static final RegistryObject<Item> MERCURY = ITEMS.register("mercury",
+    public static final RegistryObject<Item> QUICKSILVER = ITEMS.register("quicksilver",
             () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
     public static final RegistryObject<Item> SULFUR = ITEMS.register("sulfur",
-            () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
-    public static final RegistryObject<Item> POTASH = ITEMS.register("potash",
             () -> new Item(new Item.Properties().tab(AbIgne.itemGroup)));
 
     public static final RegistryObject<Item> SALT = ITEMS.register("salt",
@@ -121,15 +119,8 @@ public class ItemRegistry {
     public static final RegistryObject<BlockItem> CHISELED_SALT_BLOCK = ITEMS.register("chiseled_salt_block",
             () -> new BlockItem(BlockRegistry.CHISELED_SALT_BLOCK.get(), new Item.Properties().tab(AbIgne.itemGroup)));
 
-    public static final RegistryObject<ForgeSpawnEggItem> SOUL_SPAWN_EGG = ITEMS.register("soul_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityRegistry.SOUL, 0x377b80, 0x5deaf5,
-                    new Item.Properties().tab(AbIgne.itemGroup)));
-
     public static final RegistryObject<BlockItem> FLAME = ITEMS.register("flame",
             () -> new BlockItem(BlockRegistry.FLAME.get(), new Item.Properties().tab(AbIgne.itemGroup)));
-
-    public static final RegistryObject<SilverNitrateBag> SILVER_NITRATE_BAG = ITEMS.register("silver_nitrate_bag",
-            () -> new SilverNitrateBag(new Item.Properties().tab(AbIgne.itemGroup)));
     //Plants
     public static final RegistryObject<BlockItem> HEMLOCK = ITEMS.register("hemlock",
             () -> new EffectBlockItem(MobEffects.POISON, BlockRegistry.HEMLOCK.get(), new Item.Properties().tab(AbIgne.itemGroup)));

@@ -2,7 +2,9 @@ package com.github.Imphuls3.abigne.client.event;
 
 import com.github.Imphuls3.abigne.AbIgne;
 import com.github.Imphuls3.abigne.common.entity.SoulEntity;
-import com.github.Imphuls3.abigne.common.entity.renderer.SoulEntityRenderer;
+import com.github.Imphuls3.abigne.common.entity.WispEntity;
+import com.github.Imphuls3.abigne.common.entity.WispModel;
+import com.github.Imphuls3.abigne.common.entity.renderer.WispRenderer;
 import com.github.Imphuls3.abigne.core.registry.EntityRegistry;
 import com.github.Imphuls3.abigne.core.registry.BlockEntityRegistry;
 import com.github.Imphuls3.abigne.core.registry.BlockRegistry;
@@ -27,23 +29,31 @@ public final class ClientModEvents {
     private ClientModEvents() {
     }
 
+    @SuppressWarnings("removal")
     @SubscribeEvent//TODO: FIX THIS
     public static void clientSetup(FMLClientSetupEvent event) {
-        EntityRenderers.register(EntityRegistry.SOUL.get(), SoulEntityRenderer::new);
         EntityRenderers.register(EntityRegistry.FIREBALL.get(), NoopRenderer::new);
         EntityRenderers.register(EntityRegistry.MANA.get(), NoopRenderer::new);
-        EntityRenderers.register(EntityRegistry.SYMBOL_PROJECTILE.get(), NoopRenderer::new);
-        EntityRenderers.register(EntityRegistry.SILVER_EXPLOSIVE.get(), NoopRenderer::new);
+        EntityRenderers.register(EntityRegistry.WISP.get(), WispRenderer::new);
 
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.INFUSER.get(), RenderType.tripwire());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FLUID_EXTRACTOR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.ALEMBIC.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.TANK.get(), RenderType.tripwire());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FLUID_PIPE.get(), RenderType.tripwire());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COPPER_POT.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FLUID_EMITTER.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.INFUSED_WOOD_TABLE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BlockRegistry.FLAME.get(), RenderType.cutout());
+    }
+
+    @SubscribeEvent
+    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(EntityRegistry.WISP.get(), WispRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(WispModel.LAYER_LOCATION, WispModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -54,14 +64,13 @@ public final class ClientModEvents {
         event.registerBlockEntityRenderer(BlockEntityRegistry.FLUID_PIPE.get(), PipeRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.COPPER_POT.get(), CopperPotRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.FLUID_EMITTER.get(), FluidEmitterRenderer::new);
-        event.registerBlockEntityRenderer(BlockEntityRegistry.ALEMBIC.get(), AlembicRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.INFUSER.get(), TextureRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.FIRING_BLOCK.get(), FiringBlockRenderer::new);
     }
 
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
-        event.put(EntityRegistry.SOUL.get(), SoulEntity.setAttributes());
+        event.put(EntityRegistry.WISP.get(), WispEntity.setAttributes());
     }
 
     @SubscribeEvent
@@ -70,7 +79,6 @@ public final class ClientModEvents {
             event.addSprite(TextureRenderer.CIRCLE);
             event.addSprite(TextureRenderer.CIRCLE_OUTER);
             event.addSprite(TextureRenderer.WHITE);
-            event.addSprite(SoulEntityRenderer.SYMBOL);
         }
     }
 }

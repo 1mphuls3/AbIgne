@@ -34,9 +34,6 @@ public class BlockRegistry {
     public static final RegistryObject<FluidExtractorBlock> FLUID_EXTRACTOR = BLOCKS.register("fluid_extractor",
             () -> new FluidExtractorBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
-    public static final RegistryObject<AlembicBlock> ALEMBIC = BLOCKS.register("alembic",
-            () -> new AlembicBlock(BlockBehaviour.Properties.copy(Blocks.STONE)));
-
     public static final RegistryObject<TankBlock> TANK = BLOCKS.register("tank",
             () -> new TankBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()));
 

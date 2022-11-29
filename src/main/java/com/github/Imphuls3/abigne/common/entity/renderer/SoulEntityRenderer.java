@@ -15,8 +15,6 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 import static com.github.Imphuls3.abigne.AbIgne.modPath;
 
 public class SoulEntityRenderer<T extends Entity> extends GeoEntityRenderer<SoulEntity> {
-    public static final ResourceLocation SYMBOL = modPath("effect/symbol_1");
-
     public SoulEntityRenderer(EntityRendererProvider.Context context) {
         super(context, new SoulModel());
         this.shadowRadius = 0.6f;
